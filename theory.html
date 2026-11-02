@@ -1,0 +1,1441 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Advanced Higher Physics Theory Bank</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: same instrument-panel look as the Question Bank and Equation Bank; topic tiles grouped by course area, one exam "sheet" per question, feedback and "why" box beneath */
+:root{
+  --bg:#edf0f4; --surface:#ffffff; --ink:#152031; --muted:#56627a; --line:#cfd6e2;
+  --accent:#2549a8; --accent-ink:#ffffff; --tile:#e2e8f2; --mark:#8f4a0c; --mark-bg:#fbf1e4;
+  --good:#1f7a3a; --good-bg:#e3f3e8; --part:#946300; --part-bg:#fbf1d6; --bad:#a8322b; --bad-bg:#f9e3e1;
+  --sheet:#ffffff; --sheet-ink:#152031; --sel:#dfe7fb;
+  --f-body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f141c; --surface:#171e2a; --ink:#e3e8f1; --muted:#97a3b8; --line:#2b3546;
+  --accent:#7da0f2; --accent-ink:#0b1630; --tile:#1c2533; --mark:#f2ae6e; --mark-bg:#2c2016;
+  --good:#6fd08d; --good-bg:#173323; --part:#e8c15a; --part-bg:#33290f; --bad:#f08a82; --bad-bg:#3a1c1a;
+  --sheet:#1b2230; --sheet-ink:#e3e8f1; --sel:#22304d; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f141c; --surface:#171e2a; --ink:#e3e8f1; --muted:#97a3b8; --line:#2b3546;
+  --accent:#7da0f2; --accent-ink:#0b1630; --tile:#1c2533; --mark:#f2ae6e; --mark-bg:#2c2016;
+  --good:#6fd08d; --good-bg:#173323; --part:#e8c15a; --part-bg:#33290f; --bad:#f08a82; --bad-bg:#3a1c1a;
+  --sheet:#1b2230; --sheet-ink:#e3e8f1; --sel:#22304d; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:17px/1.5 var(--f-body)}
+.wrap{max-width:60rem;margin:0 auto;padding-block:20px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px 16px;margin-bottom:18px}
+h1{font-size:1.65rem;line-height:1.2;margin:0;text-wrap:balance}
+h2{text-wrap:balance}
+.eyebrow{font:600 .72rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.unit{margin-top:22px}
+.unit h2{font:600 .78rem var(--f-mono);margin:0 0 10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
+.tile{all:unset;box-sizing:border-box;cursor:pointer;background:var(--tile);border:1px solid var(--line);border-radius:6px;padding:12px;display:grid;grid-template-rows:1fr auto auto;gap:6px;min-height:96px}
+.tile:hover{border-color:var(--accent)}
+.tile.on{border-color:var(--accent);background:var(--sel);box-shadow:inset 0 0 0 1px var(--accent)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.tile .nm{font-weight:700;line-height:1.25;color:var(--ink)}
+.cnt{font:500 .72rem var(--f-mono);color:var(--muted)}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+button.b{font:700 .92rem var(--f-body);border-radius:6px;padding:10px 15px;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+button.b:hover{border-color:var(--accent)}
+button.b.pri{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+button.b:disabled{opacity:.45;cursor:default}
+button.b.sm{padding:6px 10px;font-size:.82rem}
+button.b.ghost{background:transparent;border-color:transparent;color:var(--muted)}
+button.b.danger{color:var(--bad)}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px;margin-top:14px}
+.panel h2{margin:0 0 8px;font-size:1.1rem}
+.msg{font-size:.88rem;color:var(--muted)}
+.row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;align-items:center}
+.prog{height:5px;border-radius:3px;background:var(--line);overflow:hidden;display:flex}
+.prog i{display:block;height:100%}.prog .g{background:var(--good)}.prog .p{background:var(--part)}.prog .n{background:var(--bad)}
+.countdown{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:6px 14px;background:var(--accent);color:var(--accent-ink);border-radius:6px;padding:10px 14px;margin-bottom:16px}
+.cdl{font-weight:700}
+.cdt{display:flex;gap:12px;font:600 1rem var(--f-mono);font-variant-numeric:tabular-nums}
+.cdt span{display:inline-flex;flex-direction:column;align-items:center;line-height:1.1}
+.cdt small{font:500 .62rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;opacity:.85}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.tchip{font:600 .82rem var(--f-body);padding:7px 11px;border-radius:999px;border:1px solid var(--line);background:var(--tile);color:var(--ink);cursor:pointer}
+.tchip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.tchip small{font:500 .72rem var(--f-mono);opacity:.8;margin-left:4px}
+.seglbl{font:600 .72rem var(--f-mono);color:var(--muted);margin:14px 0 6px;letter-spacing:.06em;text-transform:uppercase}
+.key{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.8rem;color:var(--muted);margin-top:8px}
+.key i{display:inline-block;width:.8rem;height:.8rem;border-radius:2px;vertical-align:-1px;margin-right:4px;border:1px solid}
+.drop>summary,.qtypes summary{cursor:pointer;list-style:none;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px}
+.drop>summary::-webkit-details-marker,.qtypes summary::-webkit-details-marker{display:none}
+.drop>summary::before,.qtypes summary::before{content:"";width:.5rem;height:.5rem;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(-45deg);align-self:center;transition:transform .15s}
+.drop[open]>summary::before,.qtypes[open] summary::before{transform:rotate(45deg)}
+.qt-h{font-weight:700;font-size:1.05rem}
+.qt-body{margin-top:12px}
+.mixchips{display:flex;flex-direction:column;gap:6px;margin-top:12px}
+.mixchips .mu{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.mixchips .mu b{font:600 .7rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);flex:0 0 100%;margin-top:4px}
+.qtypes{margin-top:14px;border-top:1px solid var(--line);padding-top:12px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:14px}
+.col{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px;min-width:0}
+.col h2{margin:0 0 2px;font-size:1.05rem}
+.qs{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.qb{font:600 .82rem var(--f-mono);min-width:2.6rem;padding:7px;border-radius:4px;border:1px solid var(--line);background:var(--tile);color:var(--ink);cursor:pointer;text-align:center;font-variant-numeric:tabular-nums}
+.qb:hover{border-color:var(--accent)}
+.qb.g{background:var(--good-bg);border-color:var(--good);color:var(--good)}
+.qb.a{background:var(--part-bg);border-color:var(--part);color:var(--part)}
+.qb.r{background:var(--bad-bg);border-color:var(--bad);color:var(--bad)}
+.qtitle .qn{font-family:var(--f-mono);color:var(--accent)}
+.startrow{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+.startrow #startBtn{padding:11px 26px;font-size:1rem}
+.sticky{position:sticky;bottom:0;z-index:5;background:var(--bg);padding:10px 0 calc(10px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);margin-top:16px}
+
+/* quiz */
+.qbar{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:12px}
+.qtitle{font-weight:700;font-size:1rem;min-width:0}
+.qspace{flex:1}
+.chip{font:600 .72rem var(--f-mono);padding:3px 8px;border-radius:4px;background:var(--tile);border:1px solid var(--line);color:var(--muted)}
+.chip.h{background:var(--mark-bg);color:var(--mark)}
+.qprog{height:4px;border-radius:2px;background:var(--line);overflow:hidden;margin-bottom:12px}
+.qprog i{display:block;height:100%;background:var(--accent);transition:width .2s}
+.sheet{background:var(--sheet);color:var(--sheet-ink);border:1px solid var(--line);border-radius:4px;padding:18px}
+.qtext{font-size:1.15rem;line-height:1.6;max-width:62ch;margin:0}
+.qtext sub,.qtext sup,.mi sub,.mi sup,.opt sub,.opt sup{font-size:.7em}
+.inst{font-size:.85rem;color:var(--muted);margin-top:10px;font-weight:700}
+table.dt{border-collapse:collapse;margin:10px 0 2px;font-size:.95rem}
+table.dt td,table.dt th{border:1px solid var(--line);padding:5px 10px;text-align:left}
+table.dt th{background:var(--tile)}
+table.dt td{font-variant-numeric:tabular-nums}
+.tscroll{overflow-x:auto;max-width:100%}
+.opts{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+.opt{display:flex;gap:12px;align-items:center;text-align:left;width:100%;padding:13px 15px;border:1.5px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);cursor:pointer;font:inherit;font-size:1.02rem;min-height:52px}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt .k{font:600 .8rem var(--f-mono);color:var(--muted);flex:none;width:1.1rem}
+.opt:disabled{cursor:default}
+.opt.ok{border-color:var(--good);background:var(--good-bg)}
+.opt.no{border-color:var(--bad);background:var(--bad-bg);text-decoration:line-through;text-decoration-color:var(--bad)}
+.opt.dim{opacity:.5}
+.tf{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.tf .opt{justify-content:center;font-weight:700;font-size:1.1rem}
+.stmt{font-size:1.2rem;line-height:1.55;padding:14px 16px;border-left:4px solid var(--accent);background:var(--tile);border-radius:0 6px 6px 0;margin-top:10px}
+
+/* gaps */
+.gaptext{font-size:1.15rem;line-height:2.4;margin:0}
+.slot{display:inline-block;min-width:5.5em;padding:1px 10px;margin:0 2px;border:2px dashed var(--muted);border-radius:6px;text-align:center;cursor:pointer;line-height:1.6;vertical-align:baseline;background:var(--surface);color:var(--ink);font:inherit}
+.slot.fill{border-style:solid;border-color:var(--accent);background:var(--sel);font-weight:700}
+.slot.cur{box-shadow:0 0 0 3px var(--sel);border-color:var(--accent)}
+.slot.ok{border:2px solid var(--good);background:var(--good-bg)}
+.slot.no{border:2px solid var(--bad);background:var(--bad-bg)}
+.bank{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;padding-top:12px;border-top:1px dashed var(--line)}
+.word{font:700 1rem var(--f-body);padding:9px 14px;border-radius:6px;border:1.5px solid var(--line);background:var(--tile);color:var(--ink);cursor:pointer}
+.word:hover:not(:disabled){border-color:var(--accent)}
+.word:disabled{opacity:.3;cursor:default}
+
+/* sort */
+.sitems{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+.sitem{border:1.5px solid var(--line);border-radius:8px;padding:10px 12px;background:var(--surface)}
+.sitem.ok{border-color:var(--good);background:var(--good-bg)}
+.sitem.no{border-color:var(--bad);background:var(--bad-bg)}
+.sitem .st{font-weight:700;margin-bottom:8px}
+.sitem .sb{display:flex;flex-wrap:wrap;gap:6px}
+.sitem .sb button{font:600 .85rem var(--f-body);padding:7px 11px;border-radius:6px;border:1px solid var(--line);background:var(--tile);color:var(--ink);cursor:pointer}
+.sitem .sb button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.sitem .fix{font-size:.85rem;color:var(--bad);font-weight:700;margin-top:6px}
+
+/* build and order */
+.built{min-height:64px;border:2px dashed var(--line);border-radius:8px;padding:10px;margin-top:14px;display:flex;flex-direction:column;gap:8px;background:var(--surface)}
+.built:empty::before{content:attr(data-empty);color:var(--muted);font-size:.9rem}
+.pool{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.piece{display:flex;gap:10px;align-items:flex-start;text-align:left;width:100%;padding:11px 13px;border:1.5px solid var(--line);border-radius:8px;background:var(--tile);color:var(--ink);cursor:pointer;font:inherit;font-size:1rem;line-height:1.45}
+.piece:hover:not(:disabled){border-color:var(--accent)}
+.piece .n{font:600 .78rem var(--f-mono);color:var(--accent);flex:none;min-width:1.2rem;padding-top:2px}
+.built .piece{background:var(--sel);border-color:var(--accent)}
+.piece.ok{background:var(--good-bg);border-color:var(--good)}
+.piece.no{background:var(--bad-bg);border-color:var(--bad)}
+.piece:disabled{cursor:default}
+.lbl2{font:600 .72rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:14px}
+
+/* spot */
+.ans{margin-top:12px;display:flex;flex-direction:column;gap:6px}
+.sent{text-align:left;width:100%;padding:10px 12px;border:1.5px dashed var(--line);border-radius:6px;background:var(--surface);color:var(--ink);cursor:pointer;font:inherit;font-size:1.02rem;line-height:1.5}
+.sent:hover:not(:disabled){border-color:var(--accent)}
+.sent.ok{border:2px solid var(--good);background:var(--good-bg)}
+.sent.no{border:2px solid var(--bad);background:var(--bad-bg)}
+.sent.was{border:2px solid var(--bad);background:var(--bad-bg)}
+.sent:disabled{cursor:default}
+
+/* write */
+textarea{font:inherit;font-size:1.05rem;width:100%;min-height:130px;padding:12px;border-radius:6px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);margin-top:12px;resize:vertical}
+.pts{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.pt{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;border-radius:6px;border:1px solid var(--line);background:var(--surface)}
+.pt.got{border-color:var(--good);background:var(--good-bg)}
+.pt input{width:1.2rem;height:1.2rem;margin-top:2px;flex:none}
+.pt label{cursor:pointer}
+
+/* feedback */
+.fb{margin-top:12px;padding:11px 13px;border-radius:6px;border:1px solid var(--line);font-weight:700}
+.fb.ok{background:var(--good-bg);border-color:var(--good);color:var(--good)}
+.fb.mid{background:var(--part-bg);border-color:var(--part);color:var(--part)}
+.fb.no{background:var(--bad-bg);border-color:var(--bad);color:var(--bad)}
+.fb span{display:block;font-weight:400;color:var(--ink);margin-top:3px}
+.mi{background:var(--mark-bg);border:1px solid var(--line);border-radius:6px;padding:12px 15px;margin-top:10px;line-height:1.55}
+.mi .lbl{font:600 .72rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--mark);display:block;margin-bottom:3px}
+.mi p{margin:6px 0 0}
+.qnav{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;margin-top:14px}
+.score{font:600 2rem var(--f-mono)}
+.slist{display:flex;flex-direction:column;gap:4px;margin-top:10px}
+.sl{display:flex;gap:8px;align-items:baseline;font-size:.92rem}
+.sl i{display:inline-block;width:.7rem;height:.7rem;border-radius:2px;flex:none}
+.confirm{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+.foot{color:var(--muted);font-size:.8rem;margin-top:28px;max-width:70ch}
+@media (max-width:480px){.qspace{display:none}.qtext,.gaptext{font-size:1.08rem}body{font-size:16px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <div class="countdown"><span class="cdl">Advanced Higher Physics exam · Tuesday 4 May 2027, 9:00 am</span><span class="cdt" id="cdt"></span></div>
+
+  <div id="home">
+    <header class="top">
+      <div><div class="eyebrow">Advanced Higher Physics · knowledge and understanding</div><h1>Theory practice</h1></div>
+      <div class="bar"><button class="b" id="redoBtn">Redo my mistakes</button></div>
+    </header>
+
+    <details class="panel drop" id="mixBox">
+      <summary><span class="qt-h">Mixed practice</span><span class="msg">A random set of questions from the topics you tick</span></summary>
+      <div class="qt-body">
+      <div class="row">
+        <span class="msg">Tick one topic or several.</span>
+        <div class="bar"><button class="b sm" id="selAll">Select all</button><button class="b sm" id="selNone">Clear</button></div>
+      </div>
+      <div id="mixTopics"></div>
+      <details class="qtypes" id="qtypesBox">
+        <summary><span class="qt-h">Question types</span><span class="msg" id="qtypeSum"></span></summary>
+        <div class="qt-body">
+          <div class="chips" id="presets"></div>
+          <div class="seglbl">Or choose your own</div>
+          <div class="chips" id="types"></div>
+        </div>
+      </details>
+      <label class="msg" style="display:flex;gap:6px;align-items:center;margin-top:12px;cursor:pointer"><input type="checkbox" id="skipGot"> Skip questions I got right first time</label>
+      <div class="startrow">
+        <span class="msg" id="selMsg">No topics ticked yet</span>
+        <div class="bar">
+          <label class="msg" for="nq">Questions</label>
+          <select id="nq" class="b sm" style="font:600 .9rem var(--f-mono);padding:8px"><option>10</option><option selected>20</option><option>40</option><option value="0">All</option></select>
+          <button class="b pri" id="startBtn" disabled>Start</button>
+        </div>
+      </div>
+      </div>
+    </details>
+
+    <h2 class="seglbl" style="margin-top:24px">Topics · tap one to see its numbered questions</h2>
+    <div id="units"></div>
+
+    <div class="panel">
+      <h2>How it works</h2>
+      <p class="msg" style="margin:0;max-width:70ch">Every question shows the physics behind the answer once you finish. If you get one wrong, you get a second try and a hint about the mistake you made. In mixed practice, questions you miss come back again later in the set. Questions are numbered within each topic and never change, so Question 12 on Gas laws is always the same question.</p>
+      <div class="key"><span><i style="background:var(--good-bg);border-color:var(--good)"></i>Right first time</span><span><i style="background:var(--part-bg);border-color:var(--part)"></i>Right on second try</span><span><i style="background:var(--bad-bg);border-color:var(--bad)"></i>Answer shown</span></div>
+      <div class="bar" style="margin-top:12px"><button class="b sm danger" id="resetBtn">Reset all progress</button></div>
+      <div class="confirm" id="resetAsk" hidden><span class="msg">Clear every result on this device?</span><button class="b sm danger" id="resetYes">Yes, clear it</button><button class="b sm" id="resetNo">Cancel</button></div>
+    </div>
+    <p class="foot" id="foot">Progress is saved in this browser only.</p>
+  </div>
+
+  <div id="menu" hidden>
+    <div class="row"><button class="b" id="mback">← Topics</button></div>
+    <div class="eyebrow" id="munit" style="margin-top:16px"></div>
+    <h1 id="mtitle"></h1>
+    <div class="bar" style="margin-top:10px"><button class="b pri" id="mstart">Start</button><span class="msg" id="mstat"></span></div>
+    <div class="key"><span><i style="background:var(--good-bg);border-color:var(--good)"></i>Right first time</span><span><i style="background:var(--part-bg);border-color:var(--part)"></i>Right on second try</span><span><i style="background:var(--bad-bg);border-color:var(--bad)"></i>Answer shown</span></div>
+    <div class="cols" id="mcols"></div>
+  </div>
+
+  <div id="quiz" hidden>
+    <div class="qbar">
+      <button class="b sm" id="back" aria-label="Back to topics">←</button>
+      <span class="qtitle" id="qtopic"></span>
+      <span class="chip" id="qtype"></span>
+      <span class="qspace"></span>
+      <span class="msg" id="qpos"></span>
+      <button class="b sm" id="finishNow">Finish now</button>
+    </div>
+    <div class="qprog"><i id="qbarfill"></i></div>
+    <div class="sheet" id="qbox"></div>
+    <div id="fb" class="fb" hidden></div>
+    <div id="why" hidden></div>
+    <div class="qnav">
+      <div class="bar"><button class="b" id="skip">Skip</button><button class="b" id="prev">Previous</button><button class="b" id="rand">Random</button></div>
+      <div class="bar"><button class="b pri" id="check">Check</button><button class="b pri" id="next" hidden>Next</button></div>
+    </div>
+  </div>
+
+  <div id="summary" hidden>
+    <div class="eyebrow">Set finished</div>
+    <h1>How you did</h1>
+    <div class="panel"><div class="score" id="sscore"></div><div class="msg" id="sline"></div><div class="slist" id="slist"></div>
+      <div class="bar" style="margin-top:14px"><button class="b pri" id="sagain">Another set, same topics</button><button class="b" id="smiss">Redo the ones I missed</button><button class="b" id="shome">Topics</button></div>
+    </div>
+  </div>
+</div>
+<script>
+const TOPICS=[];
+const TP=(key,unit,name,d)=>TOPICS.push({key,unit,name,d});
+
+TP("ka","Rotational motion and astrophysics","Kinematic relationships",{
+terms:[
+["displacement","The straight-line distance from the start to a point, with a direction."],
+["instantaneous velocity","The rate of change of displacement at one moment: v = ds/dt."],
+["instantaneous acceleration","The rate of change of velocity at one moment: a = dv/dt = d²s/dt²."],
+["derivative","The rate of change of one quantity with respect to another, found by differentiating."],
+["uniform acceleration","Acceleration that does not change with time."],
+["gradient of a tangent","The slope of a line touching a curve at one point; it gives the instantaneous rate of change."]
+],
+tf:[
+["Velocity is the first derivative of displacement with respect to time.","Velocity is the second derivative of displacement with respect to time.","v = ds/dt; acceleration is the second derivative."],
+["The gradient of a tangent to a displacement-time curve gives the instantaneous velocity.","The area under a displacement-time graph gives the velocity.","Gradient of s-t: velocity. Area under v-t: displacement."],
+["The equations of motion can be derived by integrating a = constant.","The equations of motion apply when acceleration changes with time.","They come from integrating a constant acceleration."],
+["Integrating a velocity-time function gives displacement.","Integrating a velocity-time function gives acceleration.","Integration reverses differentiation."],
+["If s = 4t³, then v = 12t².","If s = 4t³, then v = 4t².","Differentiate: d(4t³)/dt = 12t²."],
+["The area under an acceleration-time graph gives the change in velocity.","The area under an acceleration-time graph gives the displacement.","∫a dt = Δv."]
+],
+mc:[
+["s = 3t² + 2t. What is the velocity at t = 2.0 s?","14 m s⁻¹",[["16 m s⁻¹","That is the displacement at t = 2.0 s."],["6 m s⁻¹","That is the acceleration."],["12 m s⁻¹","Do not forget the +2 from differentiating 2t."]],"v = ds/dt = 6t + 2 = 6 × 2.0 + 2 = 14 m s⁻¹.","p"],
+["v = 5t² − 2t. What is the acceleration at t = 3.0 s?","28 m s⁻²",[["39 m s⁻²","That is the velocity."],["30 m s⁻²","Include the −2 from differentiating −2t."],["10 m s⁻²","That is 10t without substituting t."]],"a = dv/dt = 10t − 2 = 28 m s⁻².","p"],
+["Which gives the instantaneous velocity from a displacement-time graph?","the gradient of the tangent at that time",[["the area under the graph","That has no meaning for s-t."],["the displacement divided by the total time","That gives the average velocity."],["the y-intercept","That is the starting displacement."]],"v = ds/dt.","h"],
+["An object has constant acceleration a. Which expression gives its velocity if it starts with velocity u?","v = u + at",[["v = at²","Integrate a once, not twice."],["v = u + ½at²","That has the form of a displacement."],["v = a ÷ t","That is not a rate of change."]],"Integrate a with respect to t and add the constant u.",""],
+["s = 2t³. What is the acceleration at t = 1.0 s?","12 m s⁻²",[["6 m s⁻²","That is the velocity at 1.0 s."],["2 m s⁻²","Differentiate twice."],["24 m s⁻²","Check: d²s/dt² = 12t."]],"v = 6t², a = 12t = 12 m s⁻² at t = 1.0 s.","p"],
+["A ball's velocity is v = 20 − 9.8t. When is it at its highest point?","2.0 s",[["0 s","It is moving up at the start."],["9.8 s","Set v = 0 and solve."],["4.1 s","That is the time to return to the start."]],"At the highest point v = 0: t = 20 ÷ 9.8 = 2.0 s.","p"]
+],
+gap:[
+["Velocity is the first [derivative] of displacement with respect to time. Acceleration is the [second] derivative of displacement.",["integral","third"],"v = ds/dt, a = d²s/dt²."],
+["To get displacement from a velocity function, [integrate] with respect to [time].",["differentiate","distance"],"Integration reverses differentiation."]
+],
+sort:[
+["Sort these by what you do to get the quantity from s(t).",{"Differentiate once":["velocity"],"Differentiate twice":["acceleration"]},"Each derivative is a rate of change."],
+["Sort these: gradient or area?",{"Gradient":["velocity from s-t","acceleration from v-t"],"Area":["displacement from v-t","change in velocity from a-t"]},"Gradient: differentiate. Area: integrate."]
+],
+order:[
+["Put the steps in order to find the acceleration at a given time from s(t).",["Differentiate s(t) to get v(t).","Differentiate v(t) to get a(t).","Substitute the time.","Give the answer with units of m s⁻²."],"Two derivatives."],
+["Put the steps in order to derive v² = u² + 2as.",["Start from v = u + at and s = ut + ½at².","Rearrange v = u + at to give t = (v − u)/a.","Substitute t into s = ut + ½at².","Simplify to give v² = u² + 2as."],"Eliminate t."]
+],
+build:[
+["Explain how to find the instantaneous velocity from a curved displacement-time graph.",["Choose the time of interest on the graph.","Draw a tangent to the curve at that point.","Find the gradient of the tangent.","This gradient is the instantaneous velocity, v = ds/dt."],["Divide the displacement by the time at that point.","Find the area under the curve."],"Tangent gradient."],
+["Explain how calculus links displacement, velocity and acceleration.",["Velocity is the rate of change of displacement, v = ds/dt.","Acceleration is the rate of change of velocity, a = dv/dt.","So acceleration is the second derivative of displacement.","Integrating works the other way: a to v to s."],["Displacement is the derivative of velocity.","Acceleration is the area under a displacement graph."],"Differentiate down, integrate up."]
+],
+spot:[
+["s = 4t² + 3t + 1. Find v at t = 2 s.",["v = ds/dt","v = 8t + 3 + 1","v = 8 × 2 + 4","v = 20 m s⁻¹"],1,"The constant 1 differentiates to zero: v = 8t + 3 = 19 m s⁻¹."],
+["v = 3t². Find the acceleration at t = 2 s.",["a = dv/dt","a = 6t","a = 6 × 2","a = 12 m s⁻¹"],3,"The unit of acceleration is m s⁻²."]
+],
+write:[
+["State how the velocity of an object can be found from an equation for its displacement.",[["differentiat|derivative|ds ?\\/ ?dt|rate of change","Differentiate the displacement equation"],["time|substitut","With respect to time / substitute the time"]],1,"Differentiate the displacement with respect to time (v = ds/dt), then substitute the time."],
+["Explain what the gradient of a velocity-time graph represents.",[["acceleration","Acceleration"],["rate of change|dv ?\\/ ?dt|change in velocity.{0,20}time","The rate of change of velocity"]],2,"The gradient is the rate of change of velocity, dv/dt, which is the acceleration."]
+]
+});
+
+TP("am","Rotational motion and astrophysics","Angular motion",{
+terms:[
+["radian","The angle at the centre of a circle subtended by an arc equal in length to the radius."],
+["angular displacement","The angle turned through, θ, measured in radians."],
+["angular velocity","The rate of change of angular displacement, ω = dθ/dt, in rad s⁻¹."],
+["angular acceleration","The rate of change of angular velocity, α = dω/dt, in rad s⁻²."],
+["centripetal acceleration","The acceleration towards the centre of a circular path, v²/r = rω²."],
+["central force","The unbalanced force towards the centre needed for circular motion, F = mv²/r."]
+],
+tf:[
+["One complete revolution is 2π radians.","One complete revolution is π radians.","Circumference = 2πr, so a full turn is 2π rad."],
+["An object moving in a circle at constant speed is accelerating.","An object moving in a circle at constant speed has no acceleration.","Its direction changes, so its velocity changes."],
+["The central force acts towards the centre of the circle.","The central force acts outwards, away from the centre.","Centripetal means centre-seeking."],
+["v = rω links tangential speed and angular velocity.","v = ω ÷ r links tangential speed and angular velocity.","Points further out move faster for the same ω."],
+["Centrifugal force is not a real force in an inertial frame.","Centrifugal force is the force that keeps an object in a circle.","In an inertial frame only the centripetal (central) force acts."]
+],
+mc:[
+["A wheel turns at 120 revolutions per minute. What is its angular velocity?","12.6 rad s⁻¹",[["120 rad s⁻¹","Convert rev min⁻¹ to rad s⁻¹."],["2.0 rad s⁻¹","That is revolutions per second."],["754 rad s⁻¹","That multiplies by 2π but does not divide by 60."]],"2.0 rev s⁻¹ × 2π = 12.6 rad s⁻¹.","p"],
+["A 0.20 kg ball moves at 4.0 m s⁻¹ in a horizontal circle of radius 0.50 m. What is the central force?","6.4 N",[["1.6 N","Square the speed."],["0.40 N","Check: 0.20 × 4.0² ÷ 0.50."],["3.2 N","That is mv²."]],"F = mv²/r = 0.20 × 16 ÷ 0.50 = 6.4 N.","p"],
+["A car goes round a flat bend. What provides the central force?","friction between the tyres and the road",[["the engine","The engine drives the car forwards."],["centrifugal force","That is not a real force."],["the car's weight","Weight acts downwards."]],"Friction acts towards the centre of the bend.","h"],
+["A stone on a string is whirled in a horizontal circle. The string breaks. Which way does the stone go?","along the tangent to the circle at that point",[["directly outwards from the centre","There is no outward force."],["towards the centre","The central force has gone."],["it keeps moving in the circle","Nothing now pulls it round."]],"With no force, it moves in a straight line (Newton's first law): along the tangent.","h"],
+["What is the angular velocity of the Earth spinning on its axis?","7.3 × 10⁻⁵ rad s⁻¹",[["2π rad s⁻¹","One turn takes a day, not a second."],["0.26 rad s⁻¹","That is per hour."],["1.2 × 10⁻⁵ rad s⁻¹","Check: 2π ÷ 86 400."]],"ω = 2π ÷ (24 × 3600) = 7.3 × 10⁻⁵ rad s⁻¹.","p"],
+["The speed of an object in a circle is doubled. What happens to the central force needed?","It is four times bigger.",[["It doubles.","F ∝ v²."],["It halves.","Faster needs more force."],["It stays the same.","F depends on speed."]],"F = mv²/r.",""],
+["A wheel accelerates uniformly from rest to 30 rad s⁻¹ in 6.0 s. What is its angular acceleration?","5.0 rad s⁻²",[["180 rad s⁻²","That multiplies."],["0.20 rad s⁻²","That is t ÷ ω."],["15 rad s⁻²","That is the average angular velocity."]],"α = (ω − ω₀)/t = 30 ÷ 6.0 = 5.0 rad s⁻².","p"]
+],
+gap:[
+["Angular velocity is measured in [radians] per second. A full revolution is [2π] radians.",["degrees","π"],"Always work in radians."],
+["The [central] force on an object in circular motion is directed towards the [centre] of the circle. It is given by F = [mv²/r].",["outward","edge","mv/r"],"Also F = mrω²."]
+],
+sort:[
+["Sort these: linear or angular quantity?",{"Linear":["displacement s","velocity v","acceleration a"],"Angular":["angular displacement θ","angular velocity ω","angular acceleration α"]},"s = rθ, v = rω, a = rα."],
+["Sort what provides the central force.",{"Friction":["a car on a flat bend","a coin on a turntable"],"Gravity":["the Moon orbiting the Earth","a satellite in orbit"],"Tension":["a stone whirled on a string","a conker on a string"]},"A real force must be identified."]
+],
+order:[
+["Put the steps in order to convert 300 rev min⁻¹ to rad s⁻¹.",["Divide by 60 to get revolutions per second.","Multiply by 2π to get radians per second.","300 ÷ 60 = 5.0 rev s⁻¹.","5.0 × 2π = 31 rad s⁻¹."],"Per minute → per second → radians."],
+["Put the angular kinematic equations in order of the matching linear ones: v = u + at, s = ut + ½at², v² = u² + 2as.",["ω = ω₀ + αt","θ = ω₀t + ½αt²","ω² = ω₀² + 2αθ"],"Replace s, u, v, a with θ, ω₀, ω, α."]
+],
+build:[
+["Explain why an object moving in a circle at constant speed needs a force acting on it.",["Velocity is a vector, so a change in direction is a change in velocity.","The object's direction is always changing.","So it is accelerating, towards the centre.","Newton's second law says an unbalanced force is needed: F = mv²/r."],["A force is needed to keep the speed constant.","The force acts outwards, along the radius."],"Direction change needs a central force."],
+["Explain why a passenger in a car turning a corner feels pushed outwards.",["The passenger's body tends to keep moving in a straight line (Newton's first law).","The car turns towards the centre of the bend.","The door or seat must push the passenger towards the centre.","The passenger feels this as being pushed against the outer side."],["There is a real centrifugal force pushing the passenger out.","Gravity pulls the passenger outwards."],"Inertia, not an outward force."]
+],
+spot:[
+["A 1200 kg car goes round a bend of radius 50 m at 15 m s⁻¹. Find the central force.",["F = mv²/r","F = 1200 × 15 ÷ 50","F = 360 N","The force is provided by friction."],1,"The speed must be squared: F = 1200 × 15² ÷ 50 = 5400 N."],
+["Convert 3.0 rev s⁻¹ to rad s⁻¹.",["One revolution is 2π rad.","ω = 3.0 × 2π","ω = 3.0 × 3.14","ω = 9.4 rad s⁻¹"],2,"Multiply by 2π, not π: ω = 19 rad s⁻¹."]
+],
+write:[
+["Define the radian.",[["angle","An angle"],["arc.{0,40}(equal|same).{0,20}radius|radius.{0,40}(equal|same).{0,20}arc","Arc length equal to the radius"]],2,"One radian is the angle at the centre of a circle subtended by an arc equal in length to the radius."],
+["State what provides the central force for a satellite in orbit and in which direction it acts.",[["gravit|weight","Gravity"],["(towards|to) the centre|centre of the (earth|planet)","Towards the centre"]],2,"The gravitational force of the planet provides the central force, acting towards the centre of the planet."]
+]
+});
+
+TP("rd","Rotational motion and astrophysics","Rotational dynamics",{
+terms:[
+["torque","The turning effect of a force, T = Fr, where r is the perpendicular distance from the axis."],
+["moment of inertia","The resistance of an object to changes in its rotational motion; it depends on the mass and how it is distributed about the axis."],
+["angular momentum","L = Iω. It is conserved when no external torque acts."],
+["rotational kinetic energy","The kinetic energy of a rotating object, Eₖ = ½Iω²."],
+["unbalanced torque","A resultant torque that causes angular acceleration, T = Iα."],
+["conservation of angular momentum","The total angular momentum stays constant if no external torque acts."]
+],
+tf:[
+["Moving mass further from the axis increases the moment of inertia.","Moving mass further from the axis decreases the moment of inertia.","I = Σmr², so distance from the axis matters a lot."],
+["An ice skater spins faster when she pulls her arms in.","An ice skater spins slower when she pulls her arms in.","I decreases, L = Iω is conserved, so ω increases."],
+["Torque is measured in N m.","Torque is measured in N m⁻¹.","T = Fr: newtons × metres."],
+["A cylinder rolling down a slope has both translational and rotational kinetic energy.","A cylinder rolling down a slope only has translational kinetic energy.","mgh = ½mv² + ½Iω²."],
+["Angular momentum is conserved when there is no external torque.","Angular momentum is conserved only when there is no friction anywhere.","Internal torques do not change the total."]
+],
+mc:[
+["A 20 N force is applied at right angles to a spanner 0.25 m from the bolt. What is the torque?","5.0 N m",[["80 N m","Multiply, do not divide."],["0.0125 N m","That is r ÷ F."],["20 N m","Multiply by the distance."]],"T = Fr = 20 × 0.25 = 5.0 N m.","p"],
+["A flywheel of I = 4.0 kg m² has a torque of 12 N m applied. What is its angular acceleration?","3.0 rad s⁻²",[["48 rad s⁻²","Divide T by I."],["0.33 rad s⁻²","That is I ÷ T."],["12 rad s⁻²","Divide by the moment of inertia."]],"α = T ÷ I = 12 ÷ 4.0 = 3.0 rad s⁻².","p"],
+["A skater spins at 2.0 rad s⁻¹ with I = 4.0 kg m². She pulls her arms in so I = 1.0 kg m². What is her new angular velocity?","8.0 rad s⁻¹",[["0.50 rad s⁻¹","Smaller I means faster spin."],["2.0 rad s⁻¹","Angular momentum, not angular velocity, is conserved."],["4.0 rad s⁻¹","Check: 4.0 × 2.0 = 1.0 × ω."]],"Iω is conserved: 4.0 × 2.0 = 1.0 × ω, so ω = 8.0 rad s⁻¹.","p"],
+["A solid sphere and a hoop of the same mass and radius roll down the same slope from rest. Which reaches the bottom first?","the solid sphere",[["the hoop","The hoop has more mass far from the axis, so more energy goes into rotation."],["they arrive together","Their moments of inertia are different."],["it depends on the mass","Mass cancels; the shape matters."]],"The sphere has a smaller I, so a smaller share of the energy goes into rotation and more into linear speed.","h"],
+["What is the rotational kinetic energy of a disc of I = 0.50 kg m² spinning at 10 rad s⁻¹?","25 J",[["50 J","Do not forget the ½."],["5.0 J","Square ω."],["2.5 J","Check: ½ × 0.50 × 100."]],"Eₖ = ½Iω² = ½ × 0.50 × 10² = 25 J.","p"],
+["A small mass is dropped onto a spinning turntable and sticks. What happens?","The angular velocity decreases.",[["The angular velocity increases.","I increases, so ω must fall to keep L constant."],["Nothing changes.","The moment of inertia has changed."],["The angular momentum increases.","No external torque acts, so L is conserved."]],"I increases and L = Iω is constant, so ω decreases.","h"],
+["Which change increases the moment of inertia of a wheel?","moving mass towards the rim",[["moving mass towards the axle","That reduces I."],["spinning it faster","I does not depend on ω."],["applying a larger torque","Torque changes ω, not I."]],"I depends on mass and its distance from the axis.",""]
+],
+gap:[
+["Torque is force multiplied by the [perpendicular] distance from the axis. An unbalanced torque causes angular [acceleration]: T = [Iα].",["parallel","velocity","mα"],"The rotational version of F = ma."],
+["The moment of inertia depends on the [mass] of an object and how it is [distributed] about the axis of rotation.",["speed","coloured"],"More mass further out means a larger I."],
+["When no external [torque] acts, angular [momentum] is conserved.",["force","energy"],"L = Iω."]
+],
+sort:[
+["Sort these: linear quantity or rotational equivalent?",{"Linear":["mass","force","momentum","F = ma"],"Rotational":["moment of inertia","torque","angular momentum","T = Iα"]},"Each linear idea has a rotational partner."],
+["Sort these changes for a spinning skater (no external torque).",{"Increases":["angular velocity when arms are pulled in","rotational kinetic energy when arms are pulled in"],"Decreases":["moment of inertia when arms are pulled in"],"Stays the same":["angular momentum"]},"L is conserved; Eₖ increases because the skater does work pulling her arms in."]
+],
+order:[
+["Put these objects in order of moment of inertia, smallest first (same mass and radius).",["solid sphere","solid disc","hoop (ring)"],"I = 2/5 mr², ½mr², mr²."],
+["Put the steps in order to find the final speed of a ball rolling down a slope.",["Calculate the Eₚ lost: mgh.","Write mgh = ½mv² + ½Iω².","Replace ω with v/r.","Solve for v."],"Energy is shared between linear and rotational kinetic energy."]
+],
+build:[
+["Explain why an ice skater spins faster when she pulls her arms in.",["There is no external torque on the skater.","So her angular momentum, L = Iω, is conserved.","Pulling her arms in moves mass closer to the axis, reducing her moment of inertia.","To keep L constant, her angular velocity increases."],["Pulling her arms in increases her moment of inertia.","Her angular momentum increases."],"Smaller I, bigger ω, same L."],
+["Explain why a hollow cylinder rolls down a slope more slowly than a solid cylinder of the same mass.",["Both lose the same potential energy, mgh.","This becomes translational and rotational kinetic energy.","The hollow cylinder has more mass far from the axis, so a larger moment of inertia.","More of its energy goes into rotation, leaving less for linear speed."],["The hollow cylinder has more friction.","The hollow cylinder loses less potential energy."],"Larger I takes a bigger share of the energy."]
+],
+spot:[
+["A disc (I = 0.20 kg m²) spinning at 5.0 rad s⁻¹ has 0.10 kg m² of mass added. Find the new ω.",["L before = 0.20 × 5.0 = 1.0 kg m² s⁻¹.","Angular momentum is conserved.","New I = 0.20 + 0.10 = 0.30 kg m².","ω = 0.30 ÷ 1.0 = 0.30 rad s⁻¹."],3,"ω = L ÷ I = 1.0 ÷ 0.30 = 3.3 rad s⁻¹."],
+["Find the torque from a 50 N force at 30° to a 0.40 m spanner.",["T = Fr","The perpendicular component of force is 50 sin 30° = 25 N.","T = 50 × 0.40","T = 20 N m"],2,"Use the perpendicular component: T = 25 × 0.40 = 10 N m."]
+],
+write:[
+["State what is meant by the moment of inertia of an object.",[["resist|opposition|reluctance","Resistance to change"],["rotat|angular","In rotational motion"],["mass.{0,40}(distribut|axis|distance)|distribution","Depends on mass and its distribution about the axis"]],2,"The moment of inertia is an object's resistance to changes in its rotational motion; it depends on its mass and how that mass is distributed about the axis."],
+["State the principle of conservation of angular momentum.",[["angular momentum","Angular momentum"],["(conserved|constant|same|unchanged)","Is conserved"],["(no|without).{0,20}(external|unbalanced).{0,10}torque","When no external torque acts"]],2,"The total angular momentum of a system stays constant as long as no external torque acts on it."]
+]
+});
+
+TP("gv","Rotational motion and astrophysics","Gravitation",{
+terms:[
+["gravitational field strength","The force per unit mass at a point in a gravitational field, g = F/m."],
+["gravitational potential","The work done in bringing unit mass from infinity to that point, V = −GM/r."],
+["gravitational potential energy","The work done in bringing a mass from infinity to that point, Eₚ = −GMm/r."],
+["escape velocity","The minimum velocity an unpowered object needs to escape the gravitational field of a mass, v = √(2GM/r)."],
+["equipotential","A surface on which every point has the same gravitational potential."],
+["satellite","An object in orbit around a planet."]
+],
+tf:[
+["Gravitational potential is zero at infinity and negative everywhere else.","Gravitational potential is zero at the surface of a planet.","Work must be done to move a mass out to infinity, so V is negative."],
+["Escape velocity does not depend on the mass of the escaping object.","A heavier rocket needs a higher escape velocity.","Mass cancels: ½mv² = GMm/r."],
+["No work is done moving a mass along an equipotential.","Work is done moving along an equipotential.","The potential does not change along it."],
+["Field lines are always at right angles to equipotentials.","Field lines run along equipotentials.","Equipotentials are perpendicular to the field."],
+["For a satellite in a circular orbit, gravity provides the central force.","A satellite stays in orbit because the forces on it are balanced.","GMm/r² = mv²/r."]
+],
+mc:[
+["What is the gravitational potential at the Earth's surface? (M = 6.0 × 10²⁴ kg, r = 6.4 × 10⁶ m)","−6.3 × 10⁷ J kg⁻¹",[["+6.3 × 10⁷ J kg⁻¹","Gravitational potential is negative."],["−9.8 J kg⁻¹","That is the field strength."],["−9.8 × 10²⁰ J kg⁻¹","Divide by r, not multiply."]],"V = −GM/r = −6.67 × 10⁻¹¹ × 6.0 × 10²⁴ ÷ 6.4 × 10⁶ = −6.3 × 10⁷ J kg⁻¹.","p"],
+["What is the escape velocity from the Earth's surface?","1.1 × 10⁴ m s⁻¹",[["7.9 × 10³ m s⁻¹","That is the orbital speed at the surface: √(GM/r)."],["1.3 × 10⁸ m s⁻¹","Take the square root."],["11 m s⁻¹","Check the powers of ten."]],"v = √(2GM/r) = √(2 × 6.67 × 10⁻¹¹ × 6.0 × 10²⁴ ÷ 6.4 × 10⁶) = 1.1 × 10⁴ m s⁻¹.","p"],
+["How much energy is needed to move a 1000 kg satellite from the Earth's surface to infinity?","6.3 × 10¹⁰ J",[["6.3 × 10⁷ J","Multiply V by the mass."],["9.8 × 10³ J","That is the weight."],["−6.3 × 10¹⁰ J","Energy must be supplied, so it is positive."]],"E = mΔV = 1000 × 6.3 × 10⁷ = 6.3 × 10¹⁰ J.","p"],
+["What happens to the gravitational potential as you move away from the Earth?","It increases towards zero.",[["It decreases towards zero.","It is negative and becomes less negative, which is an increase."],["It stays the same.","V depends on r."],["It becomes positive.","It is never positive."]],"V = −GM/r: as r increases, V gets closer to zero.","h"],
+["A satellite moves to a higher circular orbit. What happens to its speed?","It decreases.",[["It increases.","v = √(GM/r): larger r, smaller v."],["It stays the same.","Orbital speed depends on radius."],["It becomes zero.","It still orbits."]],"Gravity is weaker further out, so less speed is needed.","h"],
+["What is the unit of gravitational potential?","J kg⁻¹",[["N kg⁻¹","That is field strength."],["J","That is potential energy."],["N","That is force."]],"Potential is energy per unit mass.",""]
+],
+gap:[
+["Gravitational potential is the [work] done in bringing unit mass from [infinity] to a point. Its value is always [negative].",["force","surface","positive"],"V = −GM/r."],
+["Escape velocity is v = √(2GM/r). It does not depend on the [mass] of the escaping object, only on the mass and [radius] of the planet.",["speed","colour"],"Mass cancels."]
+],
+sort:[
+["Sort these quantities by unit.",{"J kg⁻¹":["gravitational potential"],"N kg⁻¹":["gravitational field strength"],"J":["gravitational potential energy"],"m s⁻¹":["escape velocity"]},"Know the unit of each."],
+["Sort these: does it depend on the mass of the small object?",{"Depends on the small mass":["gravitational force on it","its gravitational potential energy"],"Does not depend on the small mass":["gravitational potential at that point","escape velocity","gravitational field strength"]},"Potential and field strength are per unit mass."]
+],
+order:[
+["Put these positions in order of gravitational potential, most negative first.",["Earth's surface","the ISS orbit","geostationary orbit","the Moon's orbit"],"Further from the centre, the potential rises towards zero."],
+["Put the steps in order to derive escape velocity.",["The object needs enough kinetic energy to reach infinity.","Set ½mv² equal to the work done against gravity, GMm/r.","Cancel the mass m.","Rearrange to v = √(2GM/r)."],"Energy approach."]
+],
+build:[
+["Explain why gravitational potential is always negative.",["Gravitational potential is zero at infinity.","Gravity is an attractive force.","Work must be done to move a mass from any point out to infinity.","So every point has less potential energy than infinity: a negative value."],["Gravity pushes masses away, so potential is negative.","Potential is negative only below the surface."],"Zero at infinity, attractive force."],
+["Explain why escape velocity is the same for a 1 kg rock and a 1000 kg rocket fired from the same planet.",["To escape, kinetic energy must at least equal the work done against gravity.","½mv² = GMm/r.","The mass m appears on both sides and cancels.","So v = √(2GM/r) does not depend on the object's mass."],["Heavier objects need more speed because they are pulled harder.","The rocket needs a higher escape velocity because it has engines."],"Mass cancels."]
+],
+spot:[
+["Calculate the gravitational potential 1.0 × 10⁷ m from the Earth's centre.",["V = −GM/r","V = −6.67 × 10⁻¹¹ × 6.0 × 10²⁴ ÷ (1.0 × 10⁷)²","V = −4.0 J kg⁻¹","V is negative because gravity is attractive."],1,"Potential uses r, not r²: V = −4.0 × 10⁷ J kg⁻¹."],
+["Describe moving a mass along an equipotential.",["Every point on an equipotential has the same potential.","So the change in potential is zero.","So the work done is zero.","The mass must be moving along a field line."],3,"Equipotentials are at right angles to field lines, not along them."]
+],
+write:[
+["Define gravitational potential.",[["work|energy","Work done"],["unit mass|1 ?kg|per (unit )?kilogram|per kg","On unit mass"],["infinity","From infinity to the point"]],3,"The gravitational potential at a point is the work done in bringing unit mass from infinity to that point."],
+["Explain what is meant by escape velocity.",[["minimum|least","Minimum velocity"],["escape|infinity|leave","To escape the field"],["(unpowered|no (further )?(thrust|force|energy)|without (engine|power))","With no further energy supplied"]],2,"Escape velocity is the minimum velocity an unpowered object must have to escape the gravitational field of a planet (to reach infinity)."]
+]
+});
+
+TP("gr","Rotational motion and astrophysics","General relativity",{
+terms:[
+["equivalence principle","The idea that it is impossible to tell the difference between the effects of gravity and the effects of acceleration."],
+["spacetime","The four-dimensional combination of the three dimensions of space and one of time."],
+["geodesic","The shortest path between two points in curved spacetime, which free objects follow."],
+["black hole","A region where spacetime is curved so much that nothing, not even light, can escape."],
+["event horizon","The boundary around a black hole, at the Schwarzschild radius, beyond which nothing can escape."],
+["Schwarzschild radius","The radius of the event horizon: r = 2GM/c²."]
+],
+tf:[
+["General relativity describes gravity as the curvature of spacetime by mass.","General relativity describes gravity as a force between masses, just like Newton's law.","Mass tells spacetime how to curve; spacetime tells mass how to move."],
+["Clocks run more slowly in a stronger gravitational field.","Clocks run faster in a stronger gravitational field.","Gravitational time dilation: time passes slower near a large mass."],
+["Light is bent by a massive object.","Light cannot be affected by gravity because it has no mass.","Light follows curved spacetime (gravitational lensing)."],
+["Special relativity deals with non-accelerating frames; general relativity includes accelerating frames.","Special relativity deals with accelerating frames.","GR extends relativity to accelerating frames and gravity."],
+["The Schwarzschild radius is proportional to the mass of the object.","The Schwarzschild radius is proportional to the square of the mass.","r = 2GM/c²."]
+],
+mc:[
+["An astronaut in a sealed rocket accelerating at 9.8 m s⁻² in deep space drops a ball. What does she see?","The ball falls to the floor exactly as it would on Earth.",[["The ball floats.","The floor accelerates up to meet it."],["The ball falls more slowly than on Earth.","The acceleration matches g."],["The ball moves sideways.","There is no sideways acceleration."]],"The equivalence principle: acceleration and gravity are indistinguishable.","h"],
+["What is the Schwarzschild radius of a 2.0 × 10³⁰ kg object?","3.0 × 10³ m",[["1.5 × 10³ m","Remember the factor of 2."],["8.9 × 10¹¹ m","Divide by c²."],["3.0 × 10⁻³ m","Check the powers of ten."]],"r = 2GM/c² = 2 × 6.67 × 10⁻¹¹ × 2.0 × 10³⁰ ÷ (3.0 × 10⁸)² = 3.0 × 10³ m.","p"],
+["Which observation supports general relativity?","Light from distant stars bends as it passes the Sun.",[["Galaxies are redshifted.","That is evidence for expansion."],["Objects at rest stay at rest.","That is Newton's first law."],["Charged particles curve in magnetic fields.","That is electromagnetism."]],"Gravitational lensing was observed in the 1919 eclipse.",""],
+["A clock is placed at the top of a tall building and another at the bottom. Which runs slower?","the clock at the bottom",[["the clock at the top","The field is weaker at the top."],["they run at the same rate","Gravitational time dilation makes them differ (very slightly)."],["it depends on the time of day","Only the gravitational field matters."]],"Time runs slower in a stronger gravitational field.","h"],
+["On a spacetime diagram, how is an object at rest shown?","a vertical line (along the time axis)",[["a horizontal line","That would mean infinite speed."],["a line at 45°","That represents light."],["a curve","A curve means acceleration."]],"Position does not change, but time passes.","h"],
+["How does an object move in general relativity when only gravity acts on it?","It follows a geodesic in curved spacetime.",[["It is pushed by a gravitational force.","GR replaces the force with curvature."],["It moves in a straight line in flat space.","Mass curves spacetime."],["It stays at rest.","It moves along the curvature."]],"Free-falling objects follow geodesics.",""]
+],
+gap:[
+["The [equivalence] principle states that the effects of gravity and [acceleration] cannot be distinguished.",["uncertainty","velocity"],"This is the basis of general relativity."],
+["In general relativity, mass causes [spacetime] to curve. A black hole has an event horizon at the [Schwarzschild] radius.",["light","Bohr"],"r = 2GM/c²."]
+],
+sort:[
+["Sort these: special relativity or general relativity?",{"Special relativity":["time dilation for moving clocks","length contraction","frames moving at constant velocity"],"General relativity":["gravitational time dilation","bending of light by the Sun","the equivalence principle"]},"GR includes acceleration and gravity."],
+["Sort these lines on a spacetime diagram.",{"Object at rest":["vertical line"],"Constant velocity":["straight line at an angle less than 45° to the time axis"],"Accelerating object":["curved line"],"Light":["line at 45°"]},"Steeper means slower."]
+],
+order:[
+["Put these in order of Schwarzschild radius, smallest first.",["the Earth","the Sun","a black hole of 10 solar masses","the black hole at the centre of the Milky Way"],"r ∝ M."],
+["Put the steps of the 1919 eclipse test in order.",["Photograph a star field at night.","Photograph the same stars near the Sun during a total eclipse.","Compare the star positions.","The shift shows that light is bent by the Sun's mass."],"Starlight bending was first measured this way."]
+],
+build:[
+["Explain how general relativity accounts for the orbit of a planet around the Sun.",["The Sun's large mass curves spacetime around it.","The planet moves along the shortest path in this curved spacetime (a geodesic).","This path appears to us as an orbit.","No force is needed; gravity is the curvature of spacetime."],["The Sun pulls the planet with a magnetic force.","Spacetime pushes the planet outwards."],"Curvature replaces force."],
+["Explain why light cannot escape from inside the event horizon of a black hole.",["The mass of a black hole curves spacetime extremely strongly.","Inside the event horizon, all paths through spacetime lead inwards.","Light must follow these paths.","So even light cannot get out."],["Light slows down to zero near a black hole.","Black holes absorb light because they are black."],"Every path leads inward."]
+],
+spot:[
+["Explain gravitational time dilation.",["Time passes more slowly in a strong gravitational field.","A clock near a black hole runs slow compared with a distant clock.","GPS satellites are further from the Earth, so their clocks run slower.","Corrections are needed to keep GPS accurate."],2,"Further from the Earth the field is weaker, so the satellite clocks run faster (from this effect)."],
+["State the equivalence principle.",["An observer cannot tell the difference between gravity and acceleration.","For example, a closed lift accelerating upwards feels like a stronger gravity.","A freely falling lift feels like zero gravity.","This only works for objects moving close to the speed of light."],3,"The equivalence principle applies at any speed."]
+],
+write:[
+["State the equivalence principle.",[["gravit","Gravity"],["accelerat","Acceleration"],["(cannot|impossible|no way).{0,30}(tell|distinguish)|indistinguishable|same effect|equivalent","Cannot be distinguished"]],2,"The equivalence principle states that it is impossible to distinguish between the effects of gravity and the effects of acceleration."],
+["Describe what is meant by the event horizon of a black hole.",[["boundary|surface|edge","A boundary"],["(nothing|no|not even).{0,30}(escape|light)|light cannot escape","Nothing, not even light, can escape"],["schwarzschild","At the Schwarzschild radius"]],2,"The event horizon is the boundary around a black hole, at the Schwarzschild radius, inside which nothing, not even light, can escape."]
+]
+});
+
+TP("st","Rotational motion and astrophysics","Stellar physics",{
+terms:[
+["luminosity","The total power emitted by a star, in watts."],
+["apparent brightness","The power per unit area received from a star at the observer, b = L/4πd²."],
+["black body","An object that absorbs all radiation falling on it and emits a characteristic spectrum depending only on its temperature."],
+["Stefan-Boltzmann law","The power emitted per unit area of a black body is σT⁴."],
+["Hertzsprung-Russell diagram","A graph of luminosity against surface temperature (decreasing) for stars."],
+["main sequence","The band on the HR diagram where stars fuse hydrogen into helium in their cores."],
+["proton-proton chain","The series of fusion reactions by which hydrogen nuclei become helium in stars like the Sun."]
+],
+tf:[
+["Luminosity is proportional to the fourth power of surface temperature.","Luminosity is proportional to surface temperature.","L = 4πr²σT⁴."],
+["Apparent brightness follows an inverse square law with distance.","Apparent brightness is independent of distance.","b = L/4πd²."],
+["On an HR diagram, temperature increases from right to left.","On an HR diagram, temperature increases from left to right.","The temperature axis is reversed."],
+["Stars on the main sequence fuse hydrogen into helium in their cores.","Stars on the main sequence fuse helium into carbon in their cores.","Helium fusion happens later, in giants."],
+["More massive stars spend less time on the main sequence.","More massive stars spend more time on the main sequence.","They use their fuel much faster."]
+],
+mc:[
+["Star A has twice the radius and the same temperature as star B. How do their luminosities compare?","L(A) = 4 L(B)",[["L(A) = 2 L(B)","L ∝ r²."],["L(A) = 16 L(B)","That would be for twice the temperature."],["L(A) = L(B)","Radius matters."]],"L ∝ r²: 2² = 4.","p"],
+["Star X has the same radius as star Y but twice the surface temperature. How do their luminosities compare?","L(X) = 16 L(Y)",[["L(X) = 2 L(Y)","L ∝ T⁴."],["L(X) = 4 L(Y)","That is T²."],["L(X) = 8 L(Y)","2⁴ = 16."]],"L ∝ T⁴: 2⁴ = 16.","p"],
+["A star of luminosity 4.0 × 10²⁶ W is 1.5 × 10¹¹ m away. What is its apparent brightness?","1.4 × 10³ W m⁻²",[["2.7 × 10¹⁵ W m⁻²","Square the distance."],["1.8 × 10⁴ W m⁻²","Include the 4π."],["1.4 × 10⁻³ W m⁻²","Check the powers of ten."]],"b = L/4πd² = 4.0 × 10²⁶ ÷ (4π × (1.5 × 10¹¹)²) = 1.4 × 10³ W m⁻².","p"],
+["Where are red giants found on the HR diagram?","upper right: cool but very luminous",[["lower left","That is where white dwarfs are."],["upper left","That is hot, luminous stars."],["lower right","Those are cool, dim main sequence stars."]],"Cool surface, but huge radius, so high luminosity.","h"],
+["Why does a star become a red giant?","Hydrogen in the core runs out, the core contracts and heats, and the outer layers expand and cool.",[["It gains mass from space.","Mass is not added."],["Its fusion stops completely.","Fusion continues in a shell and later with helium."],["It moves further from us.","Distance does not change a star's type."]],"Core contraction heats the shell, and the outer layers swell.","h"],
+["Which quantity can be found from a star's peak wavelength?","its surface temperature",[["its distance","Distance needs brightness and luminosity."],["its mass","Not directly."],["its age","Not from peak wavelength alone."]],"Hotter stars peak at shorter wavelengths.",""],
+["What stops a main sequence star from collapsing?","outward radiation and gas pressure from fusion balancing gravity",[["its magnetic field","That is not the main support."],["the strong force between atoms","The strong force acts within nuclei."],["its rotation","Rotation is not enough."]],"Hydrostatic equilibrium: pressure balances gravity.",""]
+],
+gap:[
+["Luminosity is the total [power] emitted by a star. Apparent brightness is the power per unit [area] received at the observer.",["energy","volume"],"b = L/4πd²."],
+["On an HR diagram, the [main] sequence runs from top left to bottom right. White dwarfs are hot but [dim].",["red","bright"],"Their small radius gives low luminosity."]
+],
+sort:[
+["Sort these stars by their position on the HR diagram.",{"Upper right":["red giants","supergiants"],"Lower left":["white dwarfs"],"Diagonal band":["the Sun","main sequence stars"]},"Know the main regions."],
+["Sort these: what affects luminosity, and what affects apparent brightness only?",{"Affects luminosity":["surface temperature","radius"],"Affects apparent brightness only":["distance from the observer","interstellar dust"]},"Luminosity is a property of the star itself."]
+],
+order:[
+["Put the stages in the life of a Sun-like star in order.",["nebula (gas and dust)","protostar","main sequence star","red giant","planetary nebula and white dwarf"],"Gravity, fusion, expansion, collapse."],
+["Put these stars in order of surface temperature, coolest first.",["red star","yellow star","white star","blue star"],"Bluer is hotter."]
+],
+build:[
+["Explain why two stars of the same size can have very different apparent brightnesses.",["Luminosity depends on radius and surface temperature, L = 4πr²σT⁴.","A hotter star of the same size has a much bigger luminosity.","Apparent brightness also depends on distance, b = L/4πd².","So a closer or hotter star appears brighter."],["Stars of the same size always have the same luminosity.","Apparent brightness depends only on size."],"Temperature and distance both matter."],
+["Explain how a star is kept stable on the main sequence.",["Gravity pulls the star's material inwards.","Fusion in the core heats the gas.","Gas and radiation pressure push outwards.","The inward and outward forces balance (hydrostatic equilibrium)."],["The star's rotation holds it up.","Gravity and the strong force cancel out."],"Pressure balances gravity."]
+],
+spot:[
+["A star has L = 3.8 × 10²⁶ W and r = 7.0 × 10⁸ m. Find its surface temperature.",["L = 4πr²σT⁴","T⁴ = L ÷ (4πr²σ)","T⁴ = 3.8 × 10²⁶ ÷ (4π × (7.0 × 10⁸)² × 5.67 × 10⁻⁸)","T = 1.1 × 10¹⁵ K"],3,"That is T⁴. Take the fourth root: T = 5.8 × 10³ K."],
+["Describe the Sun's future.",["The Sun is a main sequence star.","When hydrogen in the core runs out, it will become a red giant.","It will then explode as a supernova.","Its core will remain as a white dwarf."],2,"The Sun is not massive enough to go supernova. Its outer layers will drift away as a planetary nebula."]
+],
+write:[
+["State what is meant by the luminosity of a star.",[["total","Total"],["power|energy (per|each) second|rate of energy","Power (energy per second)"],["emit|given out|radiat","Emitted by the star"]],2,"Luminosity is the total power emitted by a star, measured in watts."],
+["Explain why a red giant is very luminous even though its surface is cool.",[["(large|huge|big|enormous).{0,20}(radius|surface|size)|radius.{0,20}(large|huge)","It has a very large radius (surface area)"],["L *= *4πr|r²|r\\^2|surface area","Luminosity depends on r² (surface area)"],["(outweigh|more than|compensat|despite)","The large area outweighs the low temperature"]],2,"L = 4πr²σT⁴. A red giant's radius is so large that its huge surface area outweighs its low surface temperature."]
+]
+});
+
+TP("qt","Quanta and waves","Introduction to quantum theory",{
+terms:[
+["black-body radiation","Radiation emitted by an ideal absorber/emitter; its spectrum depends only on temperature."],
+["ultraviolet catastrophe","The classical prediction that a black body would emit infinite energy at short wavelengths, which does not happen."],
+["de Broglie wavelength","The wavelength associated with a moving particle, λ = h/p."],
+["Bohr model","A model of the atom where electrons orbit in allowed paths with quantised angular momentum, mvr = nh/2π."],
+["Heisenberg uncertainty principle","The position and momentum of a particle cannot both be known exactly at the same time: Δx Δp ≥ h/4π."],
+["quantum tunnelling","A particle passing through a barrier that it does not classically have enough energy to cross."]
+],
+tf:[
+["Electron diffraction is evidence that particles have wave properties.","Electron diffraction shows that electrons are only particles.","Diffraction is a wave property."],
+["A particle with more momentum has a shorter de Broglie wavelength.","A particle with more momentum has a longer de Broglie wavelength.","λ = h/p."],
+["In the Bohr model, angular momentum is quantised.","In the Bohr model, electrons can orbit at any radius.","mvr = nh/2π, n = 1, 2, 3..."],
+["The more precisely a particle's position is known, the less precisely its momentum can be known.","The position and momentum of a particle can both be measured exactly with better equipment.","This is a fundamental limit, not an equipment limit."],
+["Quantum tunnelling explains alpha decay.","Alpha particles escape the nucleus because they have more energy than the barrier.","They tunnel through the barrier."]
+],
+mc:[
+["What is the de Broglie wavelength of an electron moving at 2.0 × 10⁶ m s⁻¹?","3.6 × 10⁻¹⁰ m",[["3.6 × 10⁻⁴ m","Use the mass of an electron, 9.11 × 10⁻³¹ kg."],["1.2 × 10⁻²¹ m","That multiplies by v instead of dividing."],["3.3 × 10⁻⁴⁰ m","Divide h by mv."]],"λ = h/mv = 6.63 × 10⁻³⁴ ÷ (9.11 × 10⁻³¹ × 2.0 × 10⁶) = 3.6 × 10⁻¹⁰ m.","p"],
+["Why do we not notice the wave nature of a moving football?","Its de Broglie wavelength is far too small to detect.",[["It is not moving fast enough to have a wavelength.","All moving objects have a wavelength."],["Footballs do not have momentum.","They do."],["Its wavelength is too large.","Large momentum gives a tiny wavelength."]],"λ = h/p, and a football's p is huge compared with h.","h"],
+["The position of an electron is known to within 1.0 × 10⁻¹⁰ m. What is the minimum uncertainty in its momentum?","5.3 × 10⁻²⁵ kg m s⁻¹",[["6.6 × 10⁻²⁴ kg m s⁻¹","Use h/4π, not h."],["6.6 × 10⁻⁴⁴ kg m s⁻¹","Divide by Δx."],["5.3 × 10⁻⁴⁵ kg m s⁻¹","Divide by Δx, do not multiply."]],"Δp = h ÷ (4πΔx) = 6.63 × 10⁻³⁴ ÷ (4π × 1.0 × 10⁻¹⁰) = 5.3 × 10⁻²⁵ kg m s⁻¹.","p"],
+["What problem with classical physics did the ultraviolet catastrophe show?","Classical theory predicted infinite energy at short wavelengths, which is not observed.",[["Classical theory could not explain gravity.","That is not the ultraviolet catastrophe."],["Ultraviolet light could not be produced.","It can be produced."],["Black bodies emit no ultraviolet.","They do, but finitely."]],"Planck solved it by assuming energy is emitted in quanta, E = hf.","h"],
+["In the Bohr model, how many de Broglie wavelengths fit round the n = 3 orbit?","3",[["1","n gives the number of wavelengths."],["6","That would be n = 6."],["9","That is n²."]],"2πr = nλ, so n = 3 wavelengths fit.","h"],
+["What does quantum tunnelling allow in the Sun?","Protons to fuse at lower temperatures than classical physics predicts.",[["Light to escape faster.","Tunnelling is not about light speed."],["Neutrons to decay.","That is beta decay."],["The Sun to rotate.","Unrelated."]],"Tunnelling lets protons get through the Coulomb barrier.",""]
+],
+gap:[
+["The de Broglie wavelength of a particle is λ = h ÷ [p]. Electron [diffraction] shows that particles behave as waves.",["E","refraction"],"Wave-particle duality applies to matter too."],
+["The [uncertainty] principle states that Δx Δp ≥ h/4π. Quantum [tunnelling] lets particles pass through barriers.",["equivalence","bouncing"],"Two key quantum ideas."]
+],
+sort:[
+["Sort these: evidence for the wave nature or the particle nature?",{"Wave nature":["electron diffraction","interference of light"],"Particle nature":["the photoelectric effect","black-body radiation explained by quanta","Compton scattering"]},"Both models are needed."],
+["Sort these: classical or quantum idea?",{"Classical":["energy can take any value","exact position and momentum together","orbits of any radius"],"Quantum":["energy comes in packets","Δx Δp ≥ h/4π","quantised angular momentum"]},"Quantum theory replaced classical ideas at small scales."]
+],
+order:[
+["Put these particles in order of de Broglie wavelength at the same speed, longest first.",["electron","proton","alpha particle","tennis ball"],"λ = h/mv: heavier means shorter λ."],
+["Put the steps in order to find an electron's speed in the Bohr model.",["Write mvr = nh/2π.","Substitute the electron mass, the orbit radius and n.","Rearrange to v = nh/(2πmr).","Calculate v."],"Quantised angular momentum."]
+],
+build:[
+["Explain how electron diffraction provides evidence for the wave nature of particles.",["Electrons are fired at a thin crystal or graphite target.","They produce a pattern of rings on a screen.","Diffraction patterns are only produced by waves.","So electrons must have wave properties, with λ = h/p."],["The rings are caused by electrons bouncing off each other.","Diffraction shows that electrons are particles."],"Diffraction is a wave property."],
+["Explain the Heisenberg uncertainty principle.",["Particles have wave properties.","A wave localised in a small region is made up of many wavelengths, so many momenta.","The more precisely the position is known, the less precisely the momentum is known.","Δx Δp ≥ h/4π sets the limit."],["The uncertainty is caused by poor equipment.","Position and momentum can both be known exactly."],"A fundamental limit."]
+],
+spot:[
+["Find the de Broglie wavelength of a proton with momentum 1.0 × 10⁻²³ kg m s⁻¹.",["λ = h/p","λ = 6.63 × 10⁻³⁴ × 1.0 × 10⁻²³","λ = 6.6 × 10⁻⁵⁷ m","This is very small."],1,"Divide: λ = 6.63 × 10⁻³⁴ ÷ 1.0 × 10⁻²³ = 6.6 × 10⁻¹¹ m."],
+["Describe the Bohr model.",["Electrons orbit the nucleus in fixed orbits.","Angular momentum is quantised: mvr = nh/2π.","Electrons radiate energy continuously as they orbit.","Photons are emitted when electrons move between orbits."],2,"In the Bohr model, electrons in allowed orbits do not radiate. They only emit when they change orbit."]
+],
+write:[
+["State what is meant by quantum tunnelling.",[["particle","A particle"],["(pass|go|travel|move).{0,20}through","Passes through"],["barrier","A barrier"],["(not enough|insufficient|less).{0,20}energy|classically","That it would not classically have enough energy to cross"]],3,"Quantum tunnelling is when a particle passes through a potential barrier that, classically, it does not have enough energy to overcome."],
+["Explain why the de Broglie wavelength of an electron can be similar to atomic spacing but that of a car cannot.",[["λ *= *h ?\\/ ?p|h ?\\/ ?mv|momentum","λ = h/p"],["(electron|small mass).{0,40}(small momentum|small mass|light)|electron.{0,40}(long|large)","The electron has a tiny momentum, giving a larger wavelength"],["car.{0,40}(large|huge|big).{0,20}(momentum|mass)|tiny wavelength|very small wavelength","The car has huge momentum, so a tiny wavelength"]],2,"λ = h/p. An electron's tiny momentum gives a wavelength around 10⁻¹⁰ m, similar to atomic spacing. A car's huge momentum gives a wavelength far too small to detect."]
+]
+});
+
+TP("pf","Quanta and waves","Particles from space",{
+terms:[
+["cosmic rays","High-energy particles, mostly protons, arriving at the Earth from space."],
+["solar wind","A stream of charged particles, mainly protons and electrons, flowing out from the Sun."],
+["helical path","The spiral path of a charged particle moving at an angle to a magnetic field."],
+["aurora","Light emitted when charged particles from the solar wind excite atoms in the upper atmosphere near the poles."],
+["magnetosphere","The region around the Earth controlled by its magnetic field."],
+["air shower","The cascade of secondary particles produced when a cosmic ray hits the atmosphere."]
+],
+tf:[
+["A charged particle moving at right angles to a magnetic field moves in a circle.","A charged particle moving at right angles to a magnetic field moves in a straight line.","The magnetic force is always perpendicular to the velocity."],
+["The magnetic force on a moving charge does no work on it.","The magnetic force speeds up a moving charge.","The force is perpendicular to the motion, so the speed does not change."],
+["A particle moving at an angle to a magnetic field follows a helical path.","A particle moving at an angle to a magnetic field follows a straight line.","The parallel component is unaffected; the perpendicular component gives circular motion."],
+["Aurorae are mostly seen near the poles.","Aurorae are mostly seen at the equator.","Charged particles spiral along field lines into the atmosphere near the poles."],
+["The Earth's magnetic field protects us from much of the solar wind.","The Earth's magnetic field attracts all of the solar wind to the surface.","Most charged particles are deflected."]
+],
+mc:[
+["A proton moves at 3.0 × 10⁶ m s⁻¹ at right angles to a 0.50 T field. What is the force on it?","2.4 × 10⁻¹³ N",[["1.5 × 10⁶ N","Include the charge."],["4.8 × 10⁻¹³ N","Check: 1.6 × 10⁻¹⁹ × 3.0 × 10⁶ × 0.50."],["2.4 × 10⁻²⁶ N","Multiply, do not divide."]],"F = qvB = 1.6 × 10⁻¹⁹ × 3.0 × 10⁶ × 0.50 = 2.4 × 10⁻¹³ N.","p"],
+["A charged particle moves in a circle in a magnetic field. Which expression gives the radius?","r = mv/(qB)",[["r = qB/(mv)","Upside down."],["r = mvqB","That is not a radius."],["r = v/(qB)","Include the mass."]],"qvB = mv²/r, so r = mv/(qB).","p"],
+["An electron and a proton enter the same field at the same speed. How do their paths compare?","They curve in opposite directions, and the electron's circle is much smaller.",[["Same direction, same radius.","Opposite charges curve opposite ways; masses differ."],["Opposite directions, same radius.","The proton is much heavier."],["The electron goes straight.","It is charged, so it is deflected."]],"r = mv/qB; the electron has much less mass.","h"],
+["Why does the speed of a charged particle in a uniform magnetic field stay constant?","The force is always at right angles to the velocity, so no work is done.",[["There is no force on it.","There is a force, F = qvB."],["The field slows it down and speeds it up equally.","The force never acts along the motion."],["It loses energy as light.","Not in this simple case."]],"Perpendicular force changes direction only.","h"],
+["What causes the colours in an aurora?","Charged particles excite atoms in the atmosphere, which emit light as electrons drop energy levels.",[["Sunlight reflecting off ice.","It is emission, not reflection."],["The magnetic field glowing.","Fields do not glow."],["Cosmic rays heating clouds.","It is atomic emission."]],"Different gases give different colours.",""],
+["A particle enters a magnetic field at an angle. What path does it follow?","a helix",[["a circle","Only if it enters at right angles."],["a straight line","Only if it moves parallel to the field."],["a parabola","That is the path in a uniform electric field."]],"Circular motion plus steady motion along the field.",""]
+],
+gap:[
+["The force on a charge moving at right angles to a magnetic field is F = [qvB]. It acts at right angles to the [velocity], so it makes the particle move in a [circle].",["QV","field","straight line"],"Central force: qvB = mv²/r."],
+["The solar wind is a stream of [charged] particles. Near the poles they cause [aurorae].",["neutral","eclipses"],"The Earth's magnetic field guides them."]
+],
+sort:[
+["Sort the paths of charged particles in a uniform magnetic field.",{"Circle":["moving at right angles to the field"],"Helix":["moving at an angle to the field"],"Straight line":["moving parallel to the field"]},"Only the perpendicular component is affected."],
+["Sort these: from the Sun or from beyond the solar system?",{"From the Sun":["solar wind","coronal mass ejections"],"Mostly from beyond the solar system":["high-energy cosmic rays"]},"Most very energetic cosmic rays come from outside the solar system."]
+],
+order:[
+["Put these events in order for an aurora.",["The Sun emits charged particles in the solar wind.","They reach the Earth's magnetosphere.","They spiral along magnetic field lines towards the poles.","They collide with and excite atoms in the upper atmosphere.","The atoms emit light."],"Field lines guide particles to the poles."],
+["Put these in order of the radius of their circular path at the same speed in the same field, smallest first.",["electron","proton","alpha particle"],"r = mv/qB: alpha has 4 times the mass but only twice the charge of a proton."]
+],
+build:[
+["Explain why a charged particle moving at right angles to a uniform magnetic field moves in a circle.",["The magnetic force F = qvB acts at right angles to the velocity.","So the force changes the direction but not the speed.","The size of the force stays constant.","A constant force always at right angles to the motion is a central force, giving circular motion."],["The force acts in the same direction as the velocity.","The field pulls the particle towards the poles."],"Perpendicular constant force."],
+["Explain why charged particles from the Sun are more likely to reach the atmosphere near the poles.",["The Earth's magnetic field deflects moving charged particles.","Particles spiral along the magnetic field lines.","Near the poles the field lines come down into the atmosphere.","So the particles are guided into the atmosphere there."],["The poles are closer to the Sun.","The poles have no magnetic field."],"Field lines funnel particles down at the poles."]
+],
+spot:[
+["Derive the radius of a charged particle's circular path in a magnetic field.",["The magnetic force provides the central force.","qvB = mv²/r","r = qB/(mv)","So heavier or faster particles have bigger circles."],2,"Rearranging gives r = mv/(qB)."],
+["Describe the motion of a proton entering a magnetic field at 30° to the field lines.",["Split the velocity into components parallel and perpendicular to the field.","The parallel component is unchanged.","The perpendicular component gives circular motion.","The overall path is a straight line."],3,"Circular motion plus steady drift along the field gives a helix."]
+],
+write:[
+["Explain why the magnetic force on a moving charged particle does not change its speed.",[["perpendicular|right angles|90","The force is at right angles to the velocity"],["no work|work done.{0,10}(zero|is 0)","So no work is done"],["kinetic energy.{0,30}(constant|same|unchanged)|direction","So only the direction changes / kinetic energy is constant"]],2,"The force is always at right angles to the velocity, so no work is done on the particle. Its kinetic energy, and so its speed, stays the same; only its direction changes."],
+["State what is meant by the solar wind.",[["(charged|ions|protons|electrons|plasma)","Charged particles"],["sun|solar","From the Sun"],["stream|flow|continuous","A stream"]],2,"The solar wind is a continuous stream of charged particles, mainly protons and electrons, flowing outwards from the Sun."]
+]
+});
+
+TP("shm","Quanta and waves","Simple harmonic motion",{
+terms:[
+["simple harmonic motion","Motion in which the unbalanced force (and acceleration) is proportional to the displacement and directed towards the equilibrium position: a = −ω²y."],
+["amplitude","The maximum displacement from the equilibrium position."],
+["angular frequency","ω = 2πf, used to describe SHM."],
+["damping","The reduction in amplitude of an oscillation due to energy loss, for example from friction."],
+["critical damping","Damping that returns the system to equilibrium in the shortest time without overshooting."],
+["equilibrium position","The position where the unbalanced force on the oscillating object is zero."]
+],
+tf:[
+["In SHM the acceleration is always directed towards the equilibrium position.","In SHM the acceleration is always in the direction of motion.","a = −ω²y: the minus sign means towards equilibrium."],
+["The speed is greatest at the equilibrium position.","The speed is greatest at maximum displacement.","At maximum displacement the object is momentarily at rest."],
+["The acceleration is greatest at maximum displacement.","The acceleration is greatest at the equilibrium position.","a is proportional to y."],
+["The period of SHM does not depend on the amplitude.","Bigger oscillations always take longer.","For SHM, T is independent of amplitude."],
+["The total energy of an undamped SHM system is constant.","The total energy of an undamped SHM system is greatest at the equilibrium position.","Energy swaps between Eₖ and Eₚ; the total stays the same."]
+],
+mc:[
+["An object in SHM has ω = 4.0 rad s⁻¹. What is its acceleration when its displacement is 0.050 m?","−0.80 m s⁻²",[["−0.20 m s⁻²","Square ω."],["−3.2 m s⁻²","Check: 16 × 0.050."],["+0.80 m s⁻²","The acceleration is opposite to the displacement."]],"a = −ω²y = −16 × 0.050 = −0.80 m s⁻².","p"],
+["An object in SHM has amplitude 0.10 m and ω = 5.0 rad s⁻¹. What is its maximum speed?","0.50 m s⁻¹",[["2.5 m s⁻¹","That is the maximum acceleration."],["0.020 m s⁻¹","Multiply ω and A."],["0.25 m s⁻¹","Check: v(max) = ωA."]],"v(max) = ωA = 5.0 × 0.10 = 0.50 m s⁻¹.","p"],
+["Where in SHM is the kinetic energy greatest?","at the equilibrium position",[["at maximum displacement","The speed is zero there."],["halfway to maximum displacement","The speed is still increasing towards the centre."],["it is the same everywhere","Eₖ changes throughout."]],"Maximum speed at y = 0.",""],
+["Which graph shows SHM?","acceleration against displacement: a straight line through the origin with a negative gradient",[["a straight line with a positive gradient","The acceleration is opposite to the displacement."],["a horizontal line","Acceleration would not depend on displacement."],["a curve","a ∝ −y gives a straight line."]],"a = −ω²y.","h"],
+["A car's suspension uses shock absorbers. What kind of damping is best?","critical damping",[["no damping","The car would bounce for ages."],["light damping","It would still oscillate."],["very heavy damping","It would return to equilibrium too slowly."]],"Critical damping returns to equilibrium fastest without oscillating.","h"],
+["What is the period of an oscillation with ω = 6.28 rad s⁻¹?","1.0 s",[["6.28 s","T = 2π/ω."],["0.16 s","That is 1/ω."],["39 s","Divide, do not multiply."]],"T = 2π ÷ ω = 2π ÷ 6.28 = 1.0 s.","p"]
+],
+gap:[
+["In SHM, the acceleration is proportional to the [displacement] and directed towards the [equilibrium] position: a = −[ω²]y.",["velocity","edge","ω"],"The defining equation of SHM."],
+["[Damping] reduces the amplitude of an oscillation. [Critical] damping returns the system to equilibrium quickest without overshooting.",["Doping","Light"],"Used in car suspensions."]
+],
+sort:[
+["Sort these quantities by where they are maximum in SHM.",{"Maximum at equilibrium":["speed","kinetic energy"],"Maximum at maximum displacement":["acceleration","potential energy","restoring force"]},"They swap over each cycle."],
+["Sort these: SHM or not SHM?",{"SHM (approximately)":["a mass on a spring","a pendulum with small swings","a vibrating tuning fork"],"Not SHM":["a ball bouncing on the floor","a car driving round a track","a pendulum with very large swings"]},"SHM needs a ∝ −y."]
+],
+order:[
+["Put these stages of one SHM cycle in order, starting at maximum positive displacement.",["maximum positive displacement, at rest","passing through equilibrium at maximum speed","maximum negative displacement, at rest","passing through equilibrium in the other direction","back at maximum positive displacement"],"One full period."],
+["Put these types of damping in order of how long the system takes to settle, quickest first.",["critical damping","heavy damping","light damping","no damping"],"Critical is quickest; no damping never settles."]
+],
+build:[
+["Explain how energy changes during one oscillation of a mass on a spring in SHM.",["At maximum displacement the mass is at rest, so all the energy is potential energy.","Moving towards equilibrium, potential energy changes to kinetic energy.","At equilibrium the speed is greatest, so the energy is all kinetic.","The total energy stays constant if there is no damping."],["Energy is created at the equilibrium position.","The total energy is greatest at maximum displacement."],"Eₚ and Eₖ swap; the total is constant."],
+["Explain what is meant by simple harmonic motion.",["The object oscillates about an equilibrium position.","The unbalanced force is proportional to the displacement.","The force (and acceleration) always acts towards the equilibrium position.","So a = −ω²y."],["The acceleration is constant.","The force acts away from the equilibrium position."],"a ∝ −y."]
+],
+spot:[
+["Find the maximum acceleration of an object in SHM with A = 0.20 m and f = 2.0 Hz.",["ω = 2πf = 12.6 rad s⁻¹","a(max) = ω²A","a(max) = 12.6 × 0.20","a(max) = 2.5 m s⁻²"],2,"ω must be squared: a(max) = 12.6² × 0.20 = 32 m s⁻²."],
+["Describe the motion of a mass at maximum displacement in SHM.",["Its velocity is zero.","Its acceleration is at its maximum.","Its acceleration is directed away from the equilibrium position.","Its potential energy is at its maximum."],2,"The acceleration in SHM always acts towards the equilibrium position."]
+],
+write:[
+["Define simple harmonic motion.",[["(acceleration|force).{0,30}proportional.{0,20}displacement|proportional to.{0,20}displacement","Acceleration (or force) is proportional to displacement"],["(towards|opposite).{0,30}(equilibrium|centre|rest position|it)|opposite direction|minus|−ω","Directed towards the equilibrium position"]],2,"SHM is motion in which the acceleration (or unbalanced force) is directly proportional to the displacement from the equilibrium position and is always directed towards it: a = −ω²y."],
+["Explain what is meant by critical damping.",[["(shortest|quickest|minimum) time|as quickly as possible|fastest","In the shortest time"],["(without|no).{0,20}(oscillat|overshoot)","Without oscillating"],["equilibrium|rest","Returns to equilibrium"]],2,"Critical damping returns the system to its equilibrium position in the shortest possible time without any oscillation."]
+]
+});
+
+TP("wv","Quanta and waves","Waves",{
+terms:[
+["travelling wave","A wave that transfers energy from one place to another, described by y = A sin 2π(ft − x/λ)."],
+["phase difference","How far one point on a wave is ahead of or behind another, measured in radians: φ = 2πx/λ."],
+["stationary wave","A wave pattern formed by the interference of two identical waves travelling in opposite directions."],
+["node","A point on a stationary wave where the amplitude is always zero."],
+["antinode","A point on a stationary wave where the amplitude is a maximum."],
+["intensity","The energy of a wave is proportional to its amplitude squared: E = kA²."]
+],
+tf:[
+["The energy of a wave is proportional to the square of its amplitude.","The energy of a wave is proportional to its amplitude.","E = kA²."],
+["Points one wavelength apart on a travelling wave are in phase.","Points one wavelength apart are in antiphase.","φ = 2π, a whole cycle."],
+["The distance between adjacent nodes is half a wavelength.","The distance between adjacent nodes is one wavelength.","Node to node is λ/2."],
+["A stationary wave does not transfer energy along the medium.","A stationary wave transfers energy in both directions.","Energy is stored, not carried along."],
+["In y = A sin 2π(ft − x/λ), the wave travels in the positive x direction.","In y = A sin 2π(ft − x/λ), the wave travels in the negative x direction.","A minus sign means travelling in the +x direction."]
+],
+mc:[
+["A wave is y = 0.30 sin 2π(50t − 2.0x). What is its speed?","25 m s⁻¹",[["100 m s⁻¹","That multiplies f by 2.0; λ = 1/2.0."],["50 m s⁻¹","That is the frequency."],["0.30 m s⁻¹","That is the amplitude."]],"f = 50 Hz, λ = 1/2.0 = 0.50 m, so v = fλ = 25 m s⁻¹.","p"],
+["Two points on a wave are 0.15 m apart. The wavelength is 0.60 m. What is the phase difference?","π/2 rad",[["π rad","That would be half a wavelength apart."],["2π rad","That would be a whole wavelength apart."],["0.25 rad","Multiply by 2π."]],"φ = 2πx/λ = 2π × 0.15 ÷ 0.60 = π/2.","p"],
+["The amplitude of a wave is doubled. What happens to its energy?","It is four times bigger.",[["It doubles.","E ∝ A²."],["It stays the same.","Amplitude affects energy."],["It halves.","Bigger amplitude, more energy."]],"E = kA².",""],
+["How is a stationary wave formed?","Two waves of the same frequency and amplitude travel in opposite directions and interfere.",[["One wave reflects off a moving object.","That gives a Doppler shift."],["A wave slows down and stops.","It is an interference pattern."],["Two waves travel in the same direction.","They must travel in opposite directions."]],"Superposition of incident and reflected waves.","h"],
+["On a stationary wave, adjacent nodes are 0.40 m apart. What is the wavelength?","0.80 m",[["0.40 m","Node to node is half a wavelength."],["0.20 m","Multiply by 2."],["1.6 m","Check: 2 × 0.40."]],"λ = 2 × 0.40 = 0.80 m.","p"],
+["Which describes points between two adjacent nodes on a stationary wave?","They all oscillate in phase, with different amplitudes.",[["They all have the same amplitude.","Amplitude varies from zero to maximum."],["They are all out of phase with each other.","Between adjacent nodes they move together."],["They do not move.","Only nodes are still."]],"Points in one loop move up and down together.","h"]
+],
+gap:[
+["A stationary wave has [nodes] where there is no displacement and [antinodes] where the amplitude is greatest. Adjacent nodes are [half] a wavelength apart.",["peaks","crests","one"],"Formed by two waves travelling in opposite directions."],
+["The phase difference between two points on a wave is φ = 2πx ÷ [λ]. The energy of a wave is proportional to [amplitude] squared.",["f","frequency"],"φ in radians."]
+],
+sort:[
+["Sort these: travelling wave or stationary wave?",{"Travelling wave":["transfers energy along the medium","all points have the same amplitude","phase changes steadily along the wave"],"Stationary wave":["has nodes and antinodes","no net energy transfer","points between adjacent nodes move in phase"]},"Compare the two types."],
+["Sort these phase differences.",{"In phase":["0","2π rad"],"In antiphase":["π rad"],"Quarter of a cycle":["π/2 rad"]},"φ = 2πx/λ."]
+],
+order:[
+["Put the steps in order to find the speed of a wave from y = A sin 2π(ft − x/λ).",["Compare the equation with the general form.","Read off the frequency f.","Read off or calculate the wavelength λ.","Calculate v = fλ."],"Match the terms."],
+["Put these separations in order of phase difference, smallest first (λ = 1.0 m).",["0.10 m","0.25 m","0.50 m","0.75 m"],"φ = 2πx/λ."]
+],
+build:[
+["Explain how a stationary wave forms on a string fixed at both ends.",["A wave travels along the string and reflects at the fixed end.","The reflected wave travels back with the same frequency and amplitude.","The two waves superpose.","At some points they always cancel (nodes) and at others they reinforce (antinodes)."],["The wave stops moving when it reaches the end.","The nodes are where the string is fixed only."],"Superposition of incident and reflected waves."],
+["Explain why the energy of a wave increases a lot when its amplitude increases slightly.",["The energy of a wave is proportional to the square of its amplitude.","E = kA².","Doubling the amplitude gives four times the energy.","So small changes in amplitude give larger changes in energy."],["Energy is proportional to frequency only.","Amplitude has no effect on energy."],"Square relationship."]
+],
+spot:[
+["A wave is y = 0.05 sin 2π(20t − 4x). Find its wavelength.",["Compare with y = A sin 2π(ft − x/λ).","f = 20 Hz.","1/λ = 4, so λ = 4 m.","The amplitude is 0.05 m."],2,"1/λ = 4 m⁻¹, so λ = 0.25 m."],
+["Describe a stationary wave.",["It is formed by two waves travelling in opposite directions.","It has nodes and antinodes.","The distance between a node and the next antinode is half a wavelength.","It does not transfer energy along the medium."],2,"Node to adjacent antinode is a quarter of a wavelength."]
+],
+write:[
+["Explain what is meant by a node on a stationary wave.",[["(zero|no|always 0).{0,20}(amplitude|displacement)|does not (move|vibrate|oscillate)|stationary point","A point of zero amplitude (no vibration)"],["(cancel|destructive|antiphase|out of phase)","Waves always cancel there"]],1,"A node is a point where the two waves always cancel (destructive interference), so the amplitude is always zero."],
+["State the relationship between the energy of a wave and its amplitude.",[["(square|²|\\^2|kA)","Energy is proportional to amplitude squared"],["proportional|E *= *k","Proportional"]],1,"The energy of a wave is directly proportional to the square of its amplitude: E = kA²."]
+]
+});
+
+TP("if","Quanta and waves","Interference",{
+terms:[
+["coherent","Waves with a constant phase relationship."],
+["optical path difference","The geometrical path difference multiplied by the refractive index of the material."],
+["division of amplitude","Splitting a wave into two parts by partial reflection, as in thin films and wedges."],
+["division of wavefront","Using different parts of the same wavefront as two sources, as in Young's slits."],
+["thin film interference","Interference between light reflected from the top and bottom surfaces of a thin film."],
+["non-reflecting coating","A thin film, d = λ/4n, on a lens that causes destructive interference of reflected light."]
+],
+tf:[
+["There is a phase change of π on reflection from a more optically dense medium.","There is a phase change of π on every reflection.","Only when reflecting off a denser medium."],
+["Young's slits use division of wavefront.","Young's slits use division of amplitude.","Two slits sample one wavefront."],
+["Increasing the slit separation in Young's slits makes the fringes closer together.","Increasing the slit separation spreads the fringes further apart.","Δx = λD/d."],
+["A non-reflecting coating has thickness λ/4n.","A non-reflecting coating has thickness λ/2n.","Round trip λ/2 in the film gives destructive interference."],
+["Wedge fringes are equally spaced.","Wedge fringes get closer together towards the thin end.","The thickness increases uniformly, so the fringes are equally spaced."]
+],
+mc:[
+["Young's slits 0.50 mm apart with a screen 2.0 m away give fringes 2.5 mm apart. What is the wavelength?","625 nm",[["2.5 μm","Check the units: mm."],["156 nm","Multiply Δx by d, then divide by D."],["6.25 nm","Check the powers of ten."]],"λ = Δx d/D = 2.5 × 10⁻³ × 0.50 × 10⁻³ ÷ 2.0 = 6.25 × 10⁻⁷ m.","p"],
+["What thickness of coating (n = 1.38) is needed to stop reflection of 550 nm light?","100 nm",[["400 nm","Divide by 4n."],["199 nm","That uses 2n."],["138 nm","Check: 550 ÷ (4 × 1.38)."]],"d = λ/4n = 550 ÷ 5.52 = 100 nm.","p"],
+["Why does a soap film show different colours?","Different wavelengths interfere constructively at different film thicknesses.",[["The soap is dyed.","The colours are interference effects."],["Light is refracted into a spectrum, like a prism.","It is interference, not dispersion."],["The film absorbs some colours.","Absorption is not the cause."]],"Thin film interference depends on λ and thickness.","h"],
+["An air wedge is made with a thicker spacer. What happens to the fringes?","They get closer together.",[["They spread out.","Δx = λl/2d: larger d, smaller Δx."],["They disappear.","They are still visible."],["Nothing changes.","d affects Δx."]],"Δx ∝ 1/d.","h"],
+["Light travels 2.0 μm through glass of n = 1.5. What is the optical path length?","3.0 μm",[["1.3 μm","Multiply by n."],["2.0 μm","That is the geometrical path."],["3.5 μm","Check: 1.5 × 2.0."]],"Optical path = n × geometrical path.","p"],
+["Why is a laser useful for Young's slits?","Its light is coherent and monochromatic.",[["It is very bright.","Brightness helps, but coherence is the key."],["It has many wavelengths.","Monochromatic means one wavelength."],["It does not diffract.","It does diffract through the slits."]],"Coherent light gives a steady pattern.",""]
+],
+gap:[
+["Young's slits use division of [wavefront]. Thin films and wedges use division of [amplitude].",["frequency","speed"],"Two ways of making coherent sources."],
+["A non-reflecting coating has a thickness of λ ÷ [4n]. Reflected waves from the two surfaces are in [antiphase] and cancel.",["2n","phase"],"Destructive interference of reflected light."]
+],
+sort:[
+["Sort these interference methods.",{"Division of wavefront":["Young's double slits","diffraction grating"],"Division of amplitude":["thin film (soap bubble)","air wedge","non-reflecting coating"]},"Two ways to get coherent sources."],
+["Sort these changes to Young's slits.",{"Fringes further apart":["longer wavelength","larger slit-to-screen distance","smaller slit separation"],"Fringes closer together":["shorter wavelength","smaller slit-to-screen distance","larger slit separation"]},"Δx = λD/d."]
+],
+order:[
+["Put the steps in order to measure a wavelength with Young's slits.",["Shine a laser through two narrow slits onto a distant screen.","Measure the slit separation d and the slit-to-screen distance D.","Measure across several fringes and divide to find Δx.","Calculate λ = Δx d/D."],"Measure many fringes to reduce uncertainty."],
+["Put these coatings in order of thickness, thinnest first (same n).",["for violet light","for blue light","for green light","for red light"],"d = λ/4n."]
+],
+build:[
+["Explain how a non-reflecting coating reduces reflection from a lens.",["Light reflects from both the top and bottom of the coating.","The coating is λ/4n thick, so the optical path difference is λ/2.","Both reflections are from denser media, so both have a phase change of π, which cancels.","The two reflected waves are in antiphase and interfere destructively."],["The coating absorbs the reflected light.","The coating makes the lens refract less."],"Destructive interference of the two reflections."],
+["Explain how an air wedge produces equally spaced fringes.",["Light reflects from the bottom of the top slide and the top of the bottom slide.","The path difference depends on the thickness of air at that point.","The thickness increases uniformly along the wedge.","So bright fringes occur at equal intervals: Δx = λl/2d."],["The fringes come from refraction in the glass.","The fringes get closer together at the thick end."],"Uniform thickness change gives equal spacing."]
+],
+spot:[
+["Find the fringe separation for λ = 600 nm, D = 1.5 m, d = 0.30 mm.",["Δx = λD/d","Δx = 600 × 10⁻⁹ × 1.5 ÷ 0.30","Δx = 3.0 × 10⁻⁶ m","Δx = 3.0 μm"],1,"d must be in metres: 0.30 × 10⁻³ m, giving Δx = 3.0 × 10⁻³ m = 3.0 mm."],
+["Explain why there is a phase change in thin film interference.",["Light reflects from the top surface of the film.","This is a reflection from a more optically dense medium.","There is a phase change of π/2.","Light reflecting from the bottom surface has no phase change."],2,"The phase change on reflection from a denser medium is π (half a wavelength)."]
+],
+write:[
+["Explain what is meant by division of amplitude.",[["(split|divid|partial|part).{0,30}(reflect|transmit)|partially reflect","A wave is partly reflected and partly transmitted"],["(same|one) (wave|source|beam)","From the same wave"],["coherent|interfere","Giving two coherent waves that interfere"]],2,"Division of amplitude is when one wave is split into two by partial reflection and transmission; the two parts are coherent and can interfere."],
+["State the condition for a non-reflecting coating to work.",[["λ ?\\/ ?4n|quarter|4n","Thickness λ/4n"],["(destructive|cancel|antiphase|half a wavelength|λ ?\\/ ?2)","Reflected waves cancel"]],2,"The coating must be λ/4n thick so that the light reflected from its two surfaces has an optical path difference of λ/2 and interferes destructively."]
+]
+});
+
+TP("pol","Quanta and waves","Polarisation",{
+terms:[
+["plane polarised","A transverse wave whose oscillations are in one plane only."],
+["polarising filter","A filter that only lets through oscillations in one plane."],
+["Brewster's angle","The angle of incidence at which reflected light is completely plane polarised: n = tan θB."],
+["transverse wave","A wave in which the oscillations are at right angles to the direction of travel."],
+["longitudinal wave","A wave in which the oscillations are along the direction of travel."],
+["analyser","A second polarising filter used to detect polarised light."]
+],
+tf:[
+["Only transverse waves can be polarised.","Sound waves can be polarised.","Sound is longitudinal."],
+["At Brewster's angle, the reflected and refracted rays are at 90° to each other.","At Brewster's angle, the reflected ray travels along the surface.","θB + θ(refraction) = 90°."],
+["Light reflected from water at Brewster's angle is plane polarised.","Light reflected from water is never polarised.","Polaroid sunglasses use this to reduce glare."],
+["Rotating a polariser in polarised light makes the intensity vary.","Rotating a polariser has no effect on polarised light.","Maximum when aligned, minimum when crossed."],
+["Polarisation is evidence that light is a transverse wave.","Polarisation shows that light is longitudinal.","Only transverse waves can be polarised."]
+],
+mc:[
+["What is Brewster's angle for glass of refractive index 1.50?","56.3°",[["33.7°","That is the angle of refraction."],["41.8°","That is the critical angle."],["1.50°","n = tan θB."]],"θB = tan⁻¹(1.50) = 56.3°.","p"],
+["Light passes through two polarising filters at right angles. What comes out?","no light",[["half the light","Crossed filters block it."],["all the light","The second filter blocks the first's plane."],["light of a different colour","Colour does not change."]],"The second filter's plane is at 90° to the light.","h"],
+["Why do Polaroid sunglasses reduce glare from water?","Light reflected from water is partly plane polarised, and the lenses block that plane.",[["They block all light from below.","They block one plane of polarisation."],["They absorb ultraviolet.","That is not why glare is reduced."],["They make light longitudinal.","Light stays transverse."]],"Reflected glare is mostly horizontally polarised.",""],
+["Which type of wave cannot be polarised?","sound waves in air",[["radio waves","They are transverse."],["microwaves","Transverse electromagnetic waves."],["waves on a rope","Transverse."]],"Sound is longitudinal.",""],
+["At Brewster's angle the angle of refraction is 35°. What is Brewster's angle?","55°",[["35°","That is the refraction angle."],["45°","Check: 90° − 35°."],["125°","Angles add to 90°."]],"θB + θr = 90°.","p"]
+],
+gap:[
+["Only [transverse] waves can be polarised. [Sound] waves in air cannot be polarised.",["longitudinal","Light"],"Polarisation needs oscillation at right angles to the motion."],
+["At Brewster's angle, n = tan θB, and the reflected light is completely [plane] polarised. The reflected and refracted rays are at [90°].",["circularly","45°"],"Used to measure refractive index."]
+],
+sort:[
+["Sort these waves.",{"Can be polarised":["light","radio waves","waves on a string","microwaves"],"Cannot be polarised":["sound in air","ultrasound in water"]},"Transverse vs longitudinal."],
+["Sort the intensity through two polarisers.",{"Maximum":["filters aligned (0°)"],"Zero":["filters crossed (90°)"],"In between":["filters at 45°"]},"Rotating the analyser changes the intensity."]
+],
+order:[
+["Put the steps in order to find a material's refractive index using Brewster's angle.",["Shine light onto the surface of the material.","View the reflected light through a polarising filter.","Change the angle of incidence until the reflected light is blocked completely at one rotation of the filter.","Measure this angle, θB.","Calculate n = tan θB."],"At θB the reflection is fully polarised."],
+["Put these materials in order of Brewster's angle, smallest first.",["water (n = 1.33)","Perspex (n = 1.49)","glass (n = 1.51)","diamond (n = 2.42)"],"tan θB = n."]
+],
+build:[
+["Explain how polarisation shows that light is a transverse wave.",["A polarising filter only lets through oscillations in one plane.","When a second filter is rotated, the light intensity changes and can drop to zero.","This only happens if the oscillations are at right angles to the direction of travel.","So light must be a transverse wave."],["Polarisation slows light down.","Longitudinal waves can also be blocked by crossed filters."],"Only transverse waves can be polarised."],
+["Explain why the reflected light from a surface at Brewster's angle is plane polarised.",["Incident unpolarised light has oscillations in all planes.","At Brewster's angle, the reflected and refracted rays are at 90°.","Oscillations in the plane of incidence cannot be sent in the reflected direction.","So only oscillations parallel to the surface are reflected: the light is plane polarised."],["All the light is reflected at Brewster's angle.","The reflected light becomes longitudinal."],"Only one plane survives reflection."]
+],
+spot:[
+["Find the refractive index of a material with Brewster's angle 58°.",["n = tan θB","n = tan 58°","n = sin 58°","n = 1.6"],2,"Use tan, not sin: n = tan 58° = 1.6."],
+["Describe what happens as an analyser is rotated through 360° in plane polarised light.",["The intensity changes.","There are two positions of maximum intensity.","There are two positions of zero intensity.","The maxima are 45° apart."],3,"The maxima are 180° apart; maxima and minima are 90° apart."]
+],
+write:[
+["State what is meant by plane polarised light.",[["(one|single) plane|only one direction","Oscillations in one plane only"],["oscillat|vibrat|electric field","Oscillations"]],2,"Plane polarised light has its oscillations in one plane only."],
+["Explain why sound cannot be polarised.",[["longitudinal","Sound is longitudinal"],["(along|parallel|same direction).{0,30}(travel|motion|propagat)","Oscillations along the direction of travel"],["(only|just) transverse|transverse","Only transverse waves can be polarised"]],2,"Sound is longitudinal: its oscillations are along the direction of travel, so there is no plane to select. Only transverse waves can be polarised."]
+]
+});
+
+TP("fld","Electromagnetism","Fields",{
+terms:[
+["electric field strength","The force per unit positive charge at a point, E = F/Q, in N C⁻¹ or V m⁻¹."],
+["electrostatic potential","The work done in bringing unit positive charge from infinity to a point, V = Q/4πε₀r."],
+["Coulomb's law","The force between two point charges is proportional to the product of the charges and inversely proportional to the square of their separation."],
+["permittivity of free space","ε₀ = 8.85 × 10⁻¹² F m⁻¹, the constant in Coulomb's law."],
+["magnetic induction","B, the strength of a magnetic field, measured in tesla."],
+["tesla","The magnetic induction that gives a force of 1 N on 1 m of wire carrying 1 A at right angles to the field."],
+["electron volt","The energy gained by an electron accelerated through a potential difference of 1 V: 1.6 × 10⁻¹⁹ J."]
+],
+tf:[
+["Electric field strength around a point charge is inversely proportional to r².","Electric field strength around a point charge is inversely proportional to r.","E = Q/4πε₀r²; potential uses r."],
+["Electrostatic potential around a point charge is inversely proportional to r.","Electrostatic potential is inversely proportional to r².","V = Q/4πε₀r."],
+["Field strength is a vector; potential is a scalar.","Potential is a vector; field strength is a scalar.","Add potentials as numbers, field strengths as vectors."],
+["The magnetic field around a long straight wire is inversely proportional to the distance from the wire.","The magnetic field around a wire is inversely proportional to the distance squared.","B = μ₀I/2πr."],
+["The force on a current-carrying wire is greatest when the wire is at right angles to the field.","The force on a wire is greatest when the wire is parallel to the field.","F = IlB sin θ, with sin 90° = 1."]
+],
+mc:[
+["Two charges of +2.0 μC and +3.0 μC are 0.10 m apart. What is the force between them?","5.4 N",[["0.54 N","Square the distance."],["54 N","Check the powers of ten."],["5.4 × 10⁻¹² N","Include 1/4πε₀ ≈ 9 × 10⁹."]],"F = Q₁Q₂/4πε₀r² = 2.0 × 10⁻⁶ × 3.0 × 10⁻⁶ ÷ (4π × 8.85 × 10⁻¹² × 0.010) = 5.4 N.","p"],
+["What is the electric field strength 0.20 m from a +4.0 nC charge?","900 N C⁻¹",[["180 N C⁻¹","That is the potential in volts (uses r)."],["4500 N C⁻¹","Square r."],["9.0 N C⁻¹","Check the powers of ten."]],"E = Q/4πε₀r² = 4.0 × 10⁻⁹ ÷ (4π × 8.85 × 10⁻¹² × 0.040) = 900 N C⁻¹.","p"],
+["What is the potential halfway between two equal positive charges?","the sum of the two potentials (non-zero)",[["zero","Potential is a scalar; both contributions are positive."],["the difference of the two potentials","Add them, they are both positive."],["infinite","Only at a charge itself."]],"Potential is a scalar, so add. The field strength there is zero, but the potential is not.","h"],
+["A 0.20 m wire carries 3.0 A at right angles to a 0.50 T field. What is the force on it?","0.30 N",[["3.0 N","Include the length."],["0.033 N","Multiply, do not divide."],["0.15 N","Check: 3.0 × 0.20 × 0.50."]],"F = IlB = 3.0 × 0.20 × 0.50 = 0.30 N.","p"],
+["What is the magnetic induction 0.050 m from a wire carrying 10 A?","4.0 × 10⁻⁵ T",[["2.0 × 10⁻⁵ T","Check: μ₀I/2πr."],["1.3 × 10⁻⁴ T","Divide by 2π."],["4.0 × 10⁻⁷ T","Check the powers of ten."]],"B = μ₀I/2πr = 4π × 10⁻⁷ × 10 ÷ (2π × 0.050) = 4.0 × 10⁻⁵ T.","p"],
+["Two parallel wires carry currents in the same direction. What happens?","They attract.",[["They repel.","Currents in opposite directions repel."],["There is no force.","Each wire is in the other's field."],["They rotate.","The force is along the line between them."]],"Each feels a force from the other's magnetic field.","h"],
+["Which is the unit of electric field strength?","V m⁻¹",[["V m","E = V/d."],["N C","N C⁻¹ is correct, not N C."],["J C⁻¹","That is the volt."]],"N C⁻¹ and V m⁻¹ are equivalent.",""]
+],
+gap:[
+["The force between two point charges is F = Q₁Q₂ ÷ 4πε₀[r²]. The electric field strength is E = Q ÷ 4πε₀[r²] and the potential is V = Q ÷ 4πε₀[r].",["r³","√r","r⁴"],"Field strength and force go as 1/r²; potential as 1/r."],
+["The magnetic induction around a long straight wire is B = μ₀I ÷ [2πr]. The force on a wire in a field is F = IlB [sin] θ.",["4πr²","cos"],"B is measured in tesla."]
+],
+sort:[
+["Sort these: vector or scalar?",{"Vector":["electric field strength","magnetic induction","electrostatic force"],"Scalar":["electrostatic potential","charge","potential energy"]},"Add vectors with directions; add scalars as numbers."],
+["Sort these by how they depend on distance r from a point charge.",{"∝ 1/r²":["electric field strength","force on a second charge"],"∝ 1/r":["electrostatic potential"]},"Know which uses r and which uses r²."]
+],
+order:[
+["Put the steps in order to find the resultant field at a point due to two charges.",["Calculate the field strength from each charge separately.","Draw each field as a vector pointing away from positive charges.","Add the vectors, taking directions into account.","Give the size and direction of the resultant."],"Field strength is a vector."],
+["Put these in order of the force on a 0.10 m wire carrying 2.0 A in a 0.50 T field, smallest first.",["wire parallel to the field","wire at 30° to the field","wire at 60° to the field","wire at 90° to the field"],"F = IlB sin θ."]
+],
+build:[
+["Explain why the electrostatic potential between two equal positive charges is not zero at the midpoint even though the field strength is.",["Field strength is a vector.","At the midpoint the two fields are equal in size and opposite in direction, so they cancel.","Potential is a scalar.","Both potentials are positive, so they add."],["Potential and field strength are always both zero together.","The potential cancels because the charges are equal."],"Vectors cancel; scalars add."],
+["Explain why two parallel wires carrying current in the same direction attract.",["Each current produces a magnetic field around its wire.","Each wire sits in the other wire's magnetic field.","A current in a magnetic field feels a force, F = IlB.","For currents in the same direction, the forces point towards each other."],["The wires are attracted by electric charges on them.","Like currents repel."],"Each wire in the other's field."]
+],
+spot:[
+["Find the potential 0.30 m from a +6.0 nC charge.",["V = Q/4πε₀r","V = 6.0 × 10⁻⁹ ÷ (4π × 8.85 × 10⁻¹² × 0.30²)","V = 600 V","Potential is a scalar."],1,"Potential uses r, not r²: V = 180 V."],
+["Find the force on a 0.50 m wire carrying 4.0 A at 30° to a 0.20 T field.",["F = IlB sin θ","F = 4.0 × 0.50 × 0.20 × cos 30°","F = 0.35 N","The force is at right angles to both the wire and the field."],1,"Use sin θ: F = 4.0 × 0.50 × 0.20 × sin 30° = 0.20 N."]
+],
+write:[
+["Define the electrostatic potential at a point.",[["work|energy","Work done"],["unit (positive )?charge|1 ?C|per coulomb|one coulomb","On unit positive charge"],["infinity","From infinity"]],3,"The electrostatic potential at a point is the work done in bringing unit positive charge from infinity to that point."],
+["State what is meant by electric field strength.",[["force","Force"],["(unit|per|one|1).{0,10}(positive )?(charge|coulomb)","Per unit positive charge"]],2,"Electric field strength is the force per unit positive charge at a point in the field, E = F/Q."]
+]
+});
+
+TP("cir","Electromagnetism","Circuits",{
+terms:[
+["time constant","t = RC, the time for a charging capacitor's voltage to rise to 63% of its final value (or fall to 37% when discharging)."],
+["capacitive reactance","The opposition of a capacitor to alternating current, X_C = 1/2πfC."],
+["inductance","The property of a coil that opposes changes in current; measured in henry (H)."],
+["self-inductance","The induced EMF in a coil caused by a change of current in the same coil."],
+["back EMF","The induced EMF in an inductor that opposes the change in current causing it."],
+["inductive reactance","The opposition of an inductor to alternating current, X_L = 2πfL."]
+],
+tf:[
+["The capacitive reactance decreases as the frequency increases.","The capacitive reactance increases as the frequency increases.","X_C = 1/2πfC."],
+["The inductive reactance increases as the frequency increases.","The inductive reactance decreases as the frequency increases.","X_L = 2πfL."],
+["A larger time constant means a capacitor charges more slowly.","A larger time constant means a capacitor charges more quickly.","t = RC."],
+["The induced EMF in an inductor opposes the change in current.","The induced EMF in an inductor always helps the current.","Lenz's law: ε = −L dI/dt."],
+["An inductor stores energy in its magnetic field, E = ½LI².","An inductor stores energy as charge on its plates.","That is a capacitor."]
+],
+mc:[
+["What is the time constant of a 470 μF capacitor and a 10 kΩ resistor?","4.7 s",[["47 s","Check: 470 × 10⁻⁶ × 10 000."],["0.47 s","Check the powers of ten."],["4.7 × 10⁻⁸ s","Multiply R and C, do not divide."]],"t = RC = 10 000 × 470 × 10⁻⁶ = 4.7 s.","p"],
+["What is the reactance of a 10 μF capacitor at 50 Hz?","320 Ω",[["3.1 × 10⁻³ Ω","That is 2πfC, not its reciprocal."],["32 Ω","Check: 1 ÷ (2π × 50 × 10 × 10⁻⁶)."],["2000 Ω","Include 2π."]],"X_C = 1/2πfC = 1 ÷ (2π × 50 × 10 × 10⁻⁶) = 320 Ω.","p"],
+["The current through a 0.50 H inductor changes at 40 A s⁻¹. What is the size of the induced EMF?","20 V",[["80 V","Multiply L by dI/dt."],["0.0125 V","That divides."],["40 V","Include L."]],"ε = L dI/dt = 0.50 × 40 = 20 V.","p"],
+["A lamp in series with an inductor is connected to a DC supply. The switch is closed. What happens to the lamp?","It takes a short time to reach full brightness.",[["It lights fully at once.","The back EMF slows the growth of current."],["It never lights.","With DC the current eventually reaches its maximum."],["It flashes and goes out.","That would happen with a capacitor."]],"The back EMF opposes the rising current.","h"],
+["What happens to the current through a capacitor connected to an AC supply when the frequency is increased?","It increases.",[["It decreases.","Reactance falls, so current rises."],["It stays the same.","X_C depends on f."],["It becomes zero.","AC passes through a capacitor circuit."]],"X_C = 1/2πfC falls as f rises.","h"],
+["How much energy is stored in a 2.0 H inductor carrying 3.0 A?","9.0 J",[["18 J","Do not forget ½."],["3.0 J","Square the current."],["6.0 J","That is LI."]],"E = ½LI² = ½ × 2.0 × 3.0² = 9.0 J.","p"]
+],
+gap:[
+["For a capacitor, X_C = 1 ÷ [2πfC]. For an inductor, X_L = [2πfL].",["2πf/C","f/L"],"Opposite frequency dependence."],
+["The time constant of an RC circuit is t = [RC]. After one time constant, a charging capacitor reaches [63]% of its final voltage.",["R/C","37"],"A larger time constant means slower charging."]
+],
+sort:[
+["Sort these changes: does the reactance increase or decrease?",{"Reactance increases":["higher frequency for an inductor","lower frequency for a capacitor","larger inductance"],"Reactance decreases":["higher frequency for a capacitor","lower frequency for an inductor","larger capacitance"]},"X_C = 1/2πfC, X_L = 2πfL."],
+["Sort these: capacitor or inductor?",{"Capacitor":["stores energy in an electric field","blocks DC once charged","E = ½CV²"],"Inductor":["stores energy in a magnetic field","opposes changes in current","E = ½LI²"]},"Compare the two components."]
+],
+order:[
+["Put these in order of reactance at 50 Hz, smallest first.",["1000 μF capacitor","100 μF capacitor","10 μF capacitor","1 μF capacitor"],"X_C = 1/2πfC: bigger C, smaller X_C."],
+["Put the steps in order to find the time constant from a discharge graph.",["Find the starting voltage V₀.","Calculate 0.37V₀.","Read off the time when the voltage falls to 0.37V₀.","This time is the time constant RC."],"One time constant: 37% left."]
+],
+build:[
+["Explain why an inductor delays the rise of current when a DC circuit is switched on.",["When the switch is closed, the current starts to increase.","The changing current changes the magnetic field in the coil.","This induces a back EMF that opposes the change (Lenz's law).","So the current rises gradually to its final value."],["The inductor has a very high resistance.","The inductor stores charge."],"Back EMF opposes the change."],
+["Explain why the current in a capacitor circuit increases as the AC frequency increases.",["The capacitor charges and discharges every half cycle.","At higher frequency it charges and discharges more often each second.","More charge flows per second, so the current is larger.","So the reactance, X_C = 1/2πfC, is smaller."],["Higher frequency makes the capacitor larger.","The capacitor blocks AC at high frequency."],"More charge per second."]
+],
+spot:[
+["Find the reactance of a 0.20 H inductor at 100 Hz.",["X_L = 2πfL","X_L = 2π × 100 ÷ 0.20","X_L = 3140 Ω","Reactance is measured in ohms."],1,"Multiply by L: X_L = 2π × 100 × 0.20 = 126 Ω."],
+["Describe how the time constant affects a charging capacitor.",["t = RC.","A larger resistance gives a larger time constant.","A larger time constant means the capacitor charges more quickly.","After one time constant, the voltage is 63% of the final value."],2,"A larger time constant means slower charging."]
+],
+write:[
+["Explain what is meant by the back EMF in an inductor.",[["induced","An induced EMF"],["(oppos)","That opposes"],["(change|changing).{0,20}current|dI ?\\/ ?dt","The change in current"]],3,"The back EMF is the EMF induced in an inductor by a changing current through it; it opposes the change in current (Lenz's law)."],
+["State how capacitive reactance depends on frequency.",[["(decrease|smaller|falls|less|inversely)","Decreases as frequency increases"],["1 ?\\/ ?(2πfC|f)|inversely proportional","Inversely proportional, X_C = 1/2πfC"]],1,"Capacitive reactance is inversely proportional to frequency, X_C = 1/2πfC, so it decreases as frequency increases."]
+]
+});
+
+TP("emr","Electromagnetism","Electromagnetic radiation",{
+terms:[
+["electromagnetic wave","A transverse wave of oscillating electric and magnetic fields at right angles to each other and to the direction of travel."],
+["speed of light","c = 1/√(ε₀μ₀) = 3.00 × 10⁸ m s⁻¹ in a vacuum."],
+["permeability of free space","μ₀ = 4π × 10⁻⁷ H m⁻¹."],
+["permittivity of free space","ε₀ = 8.85 × 10⁻¹² F m⁻¹."],
+["unification","Showing that two apparently different forces are parts of one theory, such as electricity and magnetism."]
+],
+tf:[
+["The speed of light can be calculated from ε₀ and μ₀.","The speed of light cannot be linked to electric and magnetic constants.","c = 1/√(ε₀μ₀)."],
+["In an electromagnetic wave, the electric and magnetic fields are at right angles.","In an electromagnetic wave, the electric and magnetic fields are parallel.","They are perpendicular to each other and to the direction of travel."],
+["All electromagnetic waves travel at the same speed in a vacuum.","Gamma rays travel faster than radio waves in a vacuum.","All travel at c."],
+["Electromagnetic waves do not need a medium.","Electromagnetic waves need air to travel through.","They travel through a vacuum."],
+["Maxwell's equations unified electricity and magnetism.","Newton's laws unified electricity and magnetism.","Maxwell showed light is an electromagnetic wave."]
+],
+mc:[
+["Which calculation gives the speed of light?","1/√(ε₀μ₀)",[["√(ε₀μ₀)","Take the reciprocal."],["ε₀μ₀","Take the square root of the reciprocal."],["ε₀/μ₀","That has the wrong units."]],"1/√(8.85 × 10⁻¹² × 4π × 10⁻⁷) = 3.00 × 10⁸ m s⁻¹.","p"],
+["How are the fields in an electromagnetic wave arranged?","E and B are at right angles to each other and to the direction of travel.",[["E and B are parallel.","They are perpendicular."],["E is along the direction of travel.","Electromagnetic waves are transverse."],["B is along the direction of travel.","Both fields are transverse."]],"Electromagnetic waves are transverse.",""],
+["What did Maxwell's work show about light?","It is an electromagnetic wave.",[["It is a stream of particles only.","That came from quantum theory later."],["It needs a medium called the ether.","Experiments found no ether."],["It travels at infinite speed.","It travels at c."]],"The predicted speed of electromagnetic waves matched the speed of light.","h"]
+],
+gap:[
+["The speed of light in a vacuum is c = 1 ÷ √([ε₀μ₀]). Electromagnetic waves consist of oscillating [electric] and [magnetic] fields.",["ε₀/μ₀","gravitational","nuclear"],"Maxwell's prediction."]
+],
+sort:[
+["Sort these constants by unit.",{"F m⁻¹":["ε₀"],"H m⁻¹":["μ₀"],"m s⁻¹":["c"]},"Know the constants on the data sheet."]
+],
+order:[
+["Put these electromagnetic waves in order of frequency, lowest first.",["radio","microwave","infrared","visible","ultraviolet","X-ray"],"All travel at c."]
+],
+build:[
+["Describe the structure of an electromagnetic wave.",["It is made of an oscillating electric field and an oscillating magnetic field.","The two fields are at right angles to each other.","Both are at right angles to the direction of travel, so the wave is transverse.","It travels at c = 1/√(ε₀μ₀) in a vacuum."],["The electric field oscillates along the direction of travel.","It needs a medium to travel through."],"Two transverse fields at right angles."]
+],
+spot:[
+["Calculate c from ε₀ and μ₀.",["c = 1/√(ε₀μ₀)","ε₀μ₀ = 8.85 × 10⁻¹² × 4π × 10⁻⁷","ε₀μ₀ = 1.11 × 10⁻¹⁷","c = 1/ε₀μ₀ = 9.0 × 10¹⁶ m s⁻¹"],3,"Take the square root: c = 1/√(1.11 × 10⁻¹⁷) = 3.0 × 10⁸ m s⁻¹."]
+],
+write:[
+["State the relationship between the speed of light and the permittivity and permeability of free space.",[["1 ?\\/ ?√|square root|√ ?\\(?ε|reciprocal","c = 1/√(ε₀μ₀)"],["ε|permittivity","Includes ε₀"],["μ|permeability","Includes μ₀"]],2,"c = 1/√(ε₀μ₀): the speed of light equals one over the square root of the product of the permittivity and permeability of free space."]
+]
+});
+
+TP("skills","Investigating physics","Uncertainties and experimental methods",{
+terms:[
+["absolute uncertainty","The uncertainty in a value, in the same units as the value."],
+["fractional uncertainty","The absolute uncertainty divided by the value."],
+["combining uncertainties","For products and quotients, ΔW/W = √((ΔX/X)² + (ΔY/Y)² + ...)."],
+["uncertainty in a power","If W = Xⁿ, the fractional uncertainty in W is n × the fractional uncertainty in X."],
+["error bars","Lines on a graph showing the uncertainty in each plotted point."],
+["linearising","Choosing what to plot so that a relationship gives a straight-line graph."],
+["precision","How close repeated measurements are to each other."],
+["accuracy","How close a measurement is to the true value."]
+],
+tf:[
+["Uncertainties in products are combined by adding fractional uncertainties in quadrature.","Uncertainties in products are combined by simply adding absolute uncertainties.","ΔW/W = √(Σ(ΔX/X)²)."],
+["If a value is squared, its fractional uncertainty doubles.","If a value is squared, its fractional uncertainty is squared.","Δ(X²)/X² = 2ΔX/X."],
+["Systematic errors affect accuracy; random errors affect precision.","Random errors affect accuracy; systematic errors affect precision.","Repeats improve precision; calibration improves accuracy."],
+["A graph of T² against l for a pendulum should be a straight line through the origin.","A graph of T against l for a pendulum is a straight line through the origin.","T = 2π√(l/g) gives T² ∝ l."],
+["Uncertainties in sums are combined by adding absolute uncertainties in quadrature.","Uncertainties in sums are combined by adding fractional uncertainties.","For W = X + Y, ΔW = √(ΔX² + ΔY²)."]
+],
+mc:[
+["V = (10.0 ± 0.3) V and I = (2.0 ± 0.08) A. What is the percentage uncertainty in R = V/I?","5%",[["7%","That adds them directly. Combine in quadrature."],["4%","That is only the current's uncertainty."],["1%","Check: 3% and 4%."]],"√(3² + 4²) = 5%.","p"],
+["A length is (2.00 ± 0.02) m. What is the percentage uncertainty in its square?","2%",[["1%","Squaring doubles the percentage."],["4%","Double, do not square, the percentage."],["0.01%","That squares the fraction."]],"1% × 2 = 2%.","p"],
+["T = 2π√(l/g). What should be plotted to get a straight line through the origin?","T² against l",[["T against l","That gives a curve."],["T against l²","That is not linear."],["T² against l²","That is not linear either."]],"T² = (4π²/g) l.","h"],
+["What do error bars that do not all touch a best-fit line suggest?","The uncertainties may be underestimated, or the relationship is not as expected.",[["The best fit line is perfect.","Error bars missing the line suggest a problem."],["There are no uncertainties.","Error bars show uncertainties."],["The data is precise and accurate.","Not if points miss the line."]],"A good fit should pass through most error bars.","h"],
+["A student repeats a measurement many times. What does this improve?","precision (reduces random uncertainty)",[["accuracy","Repeats do not remove systematic error."],["the calibration of the meter","Calibration is a separate check."],["the resolution of the scale","Resolution is fixed by the instrument."]],"Averaging reduces random scatter.",""],
+["W = X + Y where ΔX = 0.3 and ΔY = 0.4. What is ΔW?","0.5",[["0.7","Combine in quadrature."],["0.1","Do not subtract."],["0.25","Check: √(0.09 + 0.16)."]],"ΔW = √(0.3² + 0.4²) = 0.5.","p"]
+],
+gap:[
+["For W = XY, the [fractional] uncertainties are combined in [quadrature]. For W = Xⁿ, the fractional uncertainty is [n] times that in X.",["absolute","series","n²"],"These are on the relationships sheet."],
+["[Precision] describes how close repeated readings are. [Accuracy] describes how close a value is to the true value.",["Resolution","Calibration"],"Random vs systematic."]
+],
+sort:[
+["Sort these improvements.",{"Improves precision":["repeat readings and average","use an instrument with better resolution"],"Improves accuracy":["calibrate the instrument","correct for a zero error","check against a known standard"]},"Precision: random. Accuracy: systematic."],
+["Sort these relationships by what to plot for a straight line through the origin.",{"Plot y against x²":["Eₖ = ½mv² (Eₖ against v²)"],"Plot y against 1/x":["X_C = 1/2πfC (X_C against 1/f)"],"Plot y² against x":["T = 2π√(l/g) (T² against l)"]},"Linearise the relationship."]
+],
+order:[
+["Put the steps in order to find the uncertainty in a calculated value.",["Find the absolute uncertainty in each measurement.","Convert each into a fractional (or percentage) uncertainty.","Multiply by the power for any squared or cubed quantity.","Combine in quadrature.","Convert back to an absolute uncertainty in the result."],"Fractional uncertainties for products and powers."],
+["Put the steps in order to find g from a pendulum experiment.",["Measure the period T for a range of lengths l.","Calculate T² for each length.","Plot T² against l and draw the line of best fit.","Find the gradient, which equals 4π²/g.","Calculate g = 4π² ÷ gradient."],"Linearise, then use the gradient."]
+],
+build:[
+["Explain how to reduce the uncertainty in the period of a pendulum.",["Time several oscillations, for example 10, rather than one.","Divide by the number of oscillations.","This reduces the effect of reaction time on each period.","Repeat and average to reduce random uncertainty."],["Use a heavier bob.","Time half an oscillation."],"More oscillations, more repeats."],
+["Explain the difference between accuracy and precision.",["Accuracy is how close a measurement is to the true value.","It is affected by systematic uncertainties.","Precision is how close repeated measurements are to each other.","It is affected by random uncertainties."],["Precision means getting the right answer.","More decimal places always means more accurate."],"Two different ideas."]
+],
+spot:[
+["Find the percentage uncertainty in v² if v = (4.0 ± 0.2) m s⁻¹.",["Percentage uncertainty in v = 0.2 ÷ 4.0 × 100 = 5%.","For v², multiply by the power.","Percentage uncertainty in v² = 5% × 5% = 25%.","So v² = 16 ± 1.6 m² s⁻²."],2,"Multiply by the power (2): 10%. Then v² = (16 ± 1.6) m² s⁻²."],
+["Combine 3% and 4% uncertainties for a product.",["Use fractional uncertainties.","Combine in quadrature.","√(3 + 4) = 2.6%","The uncertainty in the product is 2.6%."],2,"Square each first: √(3² + 4²) = 5%."]
+],
+write:[
+["State how fractional uncertainties are combined when two quantities are multiplied.",[["quadrature|square root of.{0,20}sum|√|pythag|squares","Added in quadrature"],["fractional|percentage","Fractional (or percentage) uncertainties"]],2,"Add the fractional (or percentage) uncertainties in quadrature: ΔW/W = √((ΔX/X)² + (ΔY/Y)²)."],
+["Explain why a student might plot T² against l rather than T against l.",[["straight line|linear","To get a straight line"],["gradient","So the gradient can be used"],["T *= *2π|T² *∝ *l|proportional|4π² ?\\/ ?g","Because T² is proportional to l"]],2,"T = 2π√(l/g), so T² = (4π²/g)l. Plotting T² against l gives a straight line, and g can be found from the gradient."]
+]
+});
+
+TP("words","Investigating physics","Exam technique and open-ended answers",{
+terms:[
+["show that","Write the relationship, substitute values and show that it leads to the given answer, including the final value."],
+["derive","Start from given relationships and use algebra to reach the required one, showing each step."],
+["explain","Give reasons, using physics, for why or how something happens."],
+["comment on","An open-ended task: discuss the physics, which can include agreeing, disagreeing, limits and evaluation."],
+["justify","Give a reason that supports your answer or choice."],
+["estimate","Give an approximate value using sensible assumptions."]
+],
+tf:[
+["In a 'derive' question you must show every algebraic step.","In a 'derive' question you only need to write the final equation.","Each step earns marks."],
+["Open-ended answers are marked on the quality of the physics understanding shown.","Open-ended answers are marked on length.","Good understanding matters more than writing a lot."],
+["Showing a final answer with too many significant figures can lose a mark.","Significant figures never affect marks.","Round sensibly."],
+["Calculus notation such as ds/dt can be used in answers.","You must never use calculus notation in an answer.","AH answers can use calculus."],
+["A 'justify' answer that only gives a conclusion with no reason gains no marks.","A 'justify' answer only needs the conclusion.","The reason is the point."]
+],
+mc:[
+["A question says 'Derive an expression for the radius of the orbit of a charged particle in a magnetic field.' What should you start with?","Equate the magnetic force qvB to the central force mv²/r.",[["Write r = mv/qB straight away.","That skips the derivation."],["Use F = ma only.","The central force is needed."],["Use E = mc².","Not relevant."]],"Start with physics principles, then rearrange.","h"],
+["What is the best structure for an open-ended answer?","Identify the relevant physics, state the principles and apply them clearly to the situation.",[["Write every equation you know.","Only relevant physics earns marks."],["Copy the question.","Restating gains no marks."],["Write one word.","Too little to show understanding."]],"Show a good understanding of the physics.",""],
+["In an evaluation question, which statement shows good understanding?","Repeating readings reduces random uncertainty but cannot remove a systematic error.",[["Repeating readings makes the result accurate.","Repeats improve precision, not accuracy."],["Better meters remove all errors.","They reduce reading uncertainty only."],["Uncertainties do not matter at AH.","They matter a great deal."]],"Be precise with accuracy and precision.","h"],
+["A 'show that' question gives the answer 2.5 × 10⁵ m s⁻¹. What must your final line show?","the calculated value, e.g. 2.48 × 10⁵ m s⁻¹, to more figures than given",[["just 'shown'","Write the value."],["the given value copied","You must show you got it."],["nothing; stop at the substitution","The final value is needed."]],"Show the value you calculated.","h"]
+],
+gap:[
+["In a [derive] question, show each step from the starting relationships. In a [show] [that] question, the final line must give the value.",["state","name","prove"],"Both need full working."]
+],
+sort:[
+["Sort these command words.",{"Short answer":["state","name"],"Reasoned answer":["explain","justify","comment on"],"Working needed":["calculate","derive","show that"]},"Read the command word first."]
+],
+order:[
+["Put these stages of planning an open-ended answer in order.",["Read the situation and pick out the physics involved.","List the key principles and relationships.","Apply each principle to the situation, including limits of any model.","Check that every sentence is relevant physics."],"Quality, not quantity."]
+],
+build:[
+["Build a good answer: 'Comment on the statement that centrifugal force throws passengers outwards on a bend.'",["In the ground frame, there is no outward force.","The passengers tend to keep moving in a straight line (Newton's first law).","The bus turns, so the seat or wall must push them towards the centre (central force).","In the rotating frame of the bus, a fictitious centrifugal force is used to describe this."],["Centrifugal force is a real force in all frames.","The passengers are pushed out by gravity."],"State the physics, consider frames of reference."]
+],
+spot:[
+["Derive v = √(GM/r) for a satellite in a circular orbit.",["Gravity provides the central force.","GMm/r² = mv²/r","Cancel m and one r.","v = GM/r"],3,"Take the square root: v² = GM/r, so v = √(GM/r)."]
+],
+write:[
+["What is the difference between 'derive' and 'calculate'?",[["derive.{0,80}(algebra|expression|equation|relationship|symbol|step)","Derive: use algebra to reach a relationship"],["calculate.{0,60}(number|value|numerical|answer)","Calculate: find a numerical value"]],2,"'Derive' means using algebra from given relationships to reach a required expression. 'Calculate' means finding a numerical value with units."]
+]
+});
+
+
+const TYPES={K:"Key words",TF:"True or false",M:"Multiple choice",H:"Hinge question",P:"Problem solving",G:"Fill the gaps",S:"Sort",O:"Put in order",B:"Build an answer",X:"Spot the mistake",W:"Written answer"};
+const PRESETS=[["All types",Object.keys(TYPES)],["Literacy",["K","G","B","X","W"]],["Knowledge",["K","TF","M","H"]],["Problem solving",["P","H","O","W","S"]]];
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+const strip=s=>String(s).replace(/<[^>]+>/g,"").trim().toLowerCase();
+
+/* expand topic data into items */
+function expand(t){
+  const items=[];let n=0;
+  const add=o=>{o.id=t.key+"."+(++n);o.topic=t.key;items.push(o);};
+  /* originals first, then later additions, so existing question numbers never change */
+  [t.d,t.x,t.x2].forEach(d=>{if(d)expandPart(d,add);});
+  return items;
+}
+function expandPart(d,add){
+  const terms=d.terms||[];
+  const others=i=>[1,2,3].map(k=>terms[(i+k)%terms.length]);
+  terms.forEach(([w,df],i)=>add({kind:"mc",type:"K",q:`Which word or phrase means this?<div class="stmt">${df}</div>`,right:w,wrong:others(i).map(o=>[o[0],`<b>${o[0]}</b> means: ${o[1]}`]),expl:`<b>${w}</b> means: ${df}`}));
+  terms.forEach(([w,df],i)=>add({kind:"mc",type:"K",q:`What does <b>${w}</b> mean?`,right:df,wrong:others(i).map(o=>[o[1],`That is the meaning of <b>${o[0]}</b>.`]),expl:`<b>${w}</b> means: ${df}`}));
+  (d.tf||[]).forEach(([tr,fa,why])=>{
+    add({kind:"tf",type:"TF",s:tr,ans:true,expl:why});
+    add({kind:"tf",type:"TF",s:fa,ans:false,expl:`${why}<p>The true version: <b>${tr}</b></p>`});
+  });
+  (d.mc||[]).forEach(([q,right,wrong,expl,f])=>add({kind:"mc",type:f==="h"?"H":f==="p"?"P":"M",q,right,wrong,expl}));
+  (d.gap||[]).forEach(([text,extra,expl])=>{
+    const parts=text.split(/\[([^\]]+)\]/);
+    add({kind:"gap",type:"G",parts,ans:parts.filter((_,i)=>i%2),extra,expl});
+  });
+  (d.sort||[]).forEach(([q,cats,expl])=>add({kind:"sort",type:"S",q,cats:Object.keys(cats),things:Object.entries(cats).flatMap(([c,arr])=>arr.map(x=>[x,c])),expl}));
+  (d.order||[]).forEach(([q,steps,expl])=>add({kind:"order",type:"O",q,steps,expl}));
+  (d.build||[]).forEach(([q,good,bad,model])=>add({kind:"build",type:"B",q,good,bad,expl:model}));
+  (d.spot||[]).forEach(([q,sents,wrongI,fix])=>add({kind:"spot",type:"X",q,sents,wrongI,expl:fix}));
+  (d.write||[]).forEach(([q,pts,need,model])=>add({kind:"write",type:"W",q,pts:pts.map(([r,p])=>[new RegExp(r,"i"),p]),need,expl:model}));
+}
+const ALL=[],BYID={};
+TOPICS.forEach(t=>{t.items=expand(t);t.items.forEach(it=>{ALL.push(it);BYID[it.id]=it;});});
+const TOPIC=Object.fromEntries(TOPICS.map(t=>[t.key,t]));
+const qnum=it=>+it.id.split(".").pop();
+
+/* storage */
+const KEY="ahtheory.v1";
+let store={p:{},types:Object.keys(TYPES),skip:false,sel:[]};
+try{const s=JSON.parse(localStorage.getItem(KEY)||"null");if(s)store={...store,...s};}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(store));}catch(e){}};
+store.types=store.types.filter(k=>TYPES[k]);if(!store.types.length)store.types=Object.keys(TYPES);
+store.sel=store.sel.filter(k=>TOPIC[k]);
+
+/* countdown */
+function tick(){const ms=new Date("2027-05-04T09:00:00+01:00")-new Date();const el=$("#cdt");if(ms<=0){el.textContent="Good luck";return;}
+  const d=Math.floor(ms/864e5),h=Math.floor(ms/36e5)%24,m=Math.floor(ms/6e4)%60;
+  el.innerHTML=`<span>${d}<small>days</small></span><span>${h}<small>hours</small></span><span>${m}<small>mins</small></span>`;}
+tick();setInterval(tick,30000);
+
+/* ===== home ===== */
+function progBar(items){const n=items.length||1;let g=0,a=0,r=0;items.forEach(it=>{const v=store.p[it.id];if(v==="g")g++;else if(v==="a")a++;else if(v==="r")r++;});
+  return {html:`<div class="prog"><i class="g" style="width:${g/n*100}%"></i><i class="p" style="width:${a/n*100}%"></i><i class="n" style="width:${r/n*100}%"></i></div>`,g,a,r};}
+function usable(items){return items.filter(it=>store.types.includes(it.type)&&!(store.skip&&store.p[it.id]==="g"));}
+function renderHome(){
+  $("#presets").innerHTML=PRESETS.map(([n,ks],i)=>{const on=ks.length===store.types.length&&ks.every(k=>store.types.includes(k));return `<button class="tchip" data-pre="${i}" aria-pressed="${on}">${n}</button>`;}).join("");
+  const counts={};ALL.forEach(it=>counts[it.type]=(counts[it.type]||0)+1);
+  $("#types").innerHTML=Object.entries(TYPES).map(([k,n])=>`<button class="tchip" data-type="${k}" aria-pressed="${store.types.includes(k)}">${n}<small>${counts[k]||0}</small></button>`).join("");
+  const pre=PRESETS.find(([n,ks])=>ks.length===store.types.length&&ks.every(k=>store.types.includes(k)));
+  $("#qtypeSum").textContent=pre?pre[0]:`${store.types.length} of ${Object.keys(TYPES).length} types`;
+  $("#skipGot").checked=store.skip;
+  const units=[...new Set(TOPICS.map(t=>t.unit))];
+  $("#mixTopics").innerHTML=`<div class="mixchips">${units.map(u=>`<div class="mu"><b>${u}</b>${TOPICS.filter(t=>t.unit===u).map(t=>`<button class="tchip" data-sel="${t.key}" aria-pressed="${store.sel.includes(t.key)}">${t.name}</button>`).join("")}</div>`).join("")}</div>`;
+  $("#units").innerHTML=units.map(u=>`<section class="unit"><h2>${u}</h2><div class="tiles">${TOPICS.filter(t=>t.unit===u).map(t=>{const pb=progBar(t.items);
+    return `<button class="tile" data-topic="${t.key}"><span class="nm">${t.name}</span><span class="cnt">${pb.g+pb.a} of ${t.items.length} correct</span>${pb.html}</button>`;}).join("")}</div></section>`).join("");
+  const pool=usable(ALL.filter(it=>store.sel.includes(it.topic)));
+  $("#selMsg").textContent=store.sel.length?`${store.sel.length} topic${store.sel.length>1?"s":""} · ${pool.length} questions available`:"No topics ticked yet";
+  $("#startBtn").disabled=!pool.length;
+  const miss=ALL.filter(it=>store.p[it.id]==="r"||store.p[it.id]==="a").length;
+  $("#redoBtn").textContent=miss?`Redo my mistakes (${miss})`:"Redo my mistakes";$("#redoBtn").disabled=!miss;
+  $("#foot").textContent=`${ALL.length} questions across ${TOPICS.length} topics. Progress is saved in this browser only.`;
+}
+document.addEventListener("click",e=>{
+  const sl=e.target.closest("[data-sel]");if(sl){const k=sl.dataset.sel;store.sel=store.sel.includes(k)?store.sel.filter(x=>x!==k):[...store.sel,k];save();renderHome();return;}
+  const t=e.target.closest("[data-topic]");if(t){renderMenu(TOPIC[t.dataset.topic]);return;}
+  const qb=e.target.closest(".qb");if(qb&&curT){startSingle(curT.items[+qb.dataset.i]);return;}
+  const ty=e.target.closest("[data-type]");if(ty){const k=ty.dataset.type;store.types=store.types.includes(k)?store.types.filter(x=>x!==k):[...store.types,k];if(!store.types.length)store.types=[k];save();renderHome();return;}
+  const pr=e.target.closest("[data-pre]");if(pr){store.types=PRESETS[+pr.dataset.pre][1].slice();save();renderHome();}
+});
+$("#skipGot").onchange=e=>{store.skip=e.target.checked;save();renderHome();};
+$("#selAll").onclick=()=>{store.sel=TOPICS.map(t=>t.key);save();renderHome();};
+$("#selNone").onclick=()=>{store.sel=[];save();renderHome();};
+$("#resetBtn").onclick=()=>{$("#resetAsk").hidden=false;};
+$("#resetNo").onclick=()=>{$("#resetAsk").hidden=true;};
+$("#resetYes").onclick=()=>{store.p={};save();$("#resetAsk").hidden=true;renderHome();};
+$("#startBtn").onclick=()=>{const n=+$("#nq").value;startSet(usable(ALL.filter(it=>store.sel.includes(it.topic))),n,"set");};
+$("#redoBtn").onclick=()=>startSet(ALL.filter(it=>store.p[it.id]==="r"||store.p[it.id]==="a"),0,"redo");
+
+/* ===== topic menu ===== */
+let curT=null;
+function renderMenu(t){
+  curT=t;$("#munit").textContent=t.unit;$("#mtitle").textContent=t.name;
+  let g=0,a=0,r=0;t.items.forEach(it=>{const v=store.p[it.id];if(v==="g")g++;else if(v==="a")a++;else if(v==="r")r++;});
+  $("#mstat").textContent=`${t.items.length} questions · ${g} right first time · ${a} on second try · ${r} shown`;
+  const groups=[];t.items.forEach((it,i)=>{let gr=groups.find(x=>x.type===it.type);if(!gr){gr={type:it.type,list:[]};groups.push(gr);}gr.list.push(i);});
+  $("#mcols").innerHTML=groups.map(gr=>`<section class="col"><h2>${TYPES[gr.type]}</h2><div class="msg">${gr.list.length} question${gr.list.length>1?"s":""}</div><div class="qs">${gr.list.map(i=>`<button class="qb ${store.p[t.items[i].id]||""}" data-i="${i}">${i+1}</button>`).join("")}</div></section>`).join("");
+  show("menu");
+}
+$("#mback").onclick=()=>{show("home");renderHome();};
+$("#mstart").onclick=()=>{const t=curT;const it=t.items.find(x=>store.p[x.id]!=="g")||t.items[0];startSingle(it);};
+function startSingle(it){Q={single:true,list:[{it,retry:false}],i:0,res:{},mode:"single"};show("quiz");renderQ();}
+function stepSingle(d){const t=TOPIC[Q.list[0].it.topic],n=t.items.length;let i=t.items.indexOf(Q.list[0].it);
+  for(let k=0;k<n;k++){i=(i+d+n)%n;if(!(store.skip&&store.p[t.items[i].id]==="g"))break;}
+  Q.list=[{it:t.items[i],retry:false}];renderQ();}
+$("#prev").onclick=()=>stepSingle(-1);
+$("#rand").onclick=()=>{const t=TOPIC[Q.list[0].it.topic];const pool=t.items.filter(x=>x!==Q.list[0].it&&!(store.skip&&store.p[x.id]==="g"));if(!pool.length)return;Q.list=[{it:pool[Math.floor(Math.random()*pool.length)],retry:false}];renderQ();};
+
+/* ===== session ===== */
+let Q=null;
+function show(id){["home","menu","quiz","summary"].forEach(s=>$("#"+s).hidden=s!==id);window.scrollTo(0,0);}
+/* spread kinds so the set doesn't clump: shuffle then avoid same type twice in a row where possible */
+function mix(arr){const a=shuffle(arr);for(let i=1;i<a.length;i++){if(a[i].type===a[i-1].type){const j=a.findIndex((x,k)=>k>i&&x.type!==a[i-1].type);if(j>0)[a[i],a[j]]=[a[j],a[i]];}}return a;}
+function startSet(pool,n,mode){
+  let list=mix(pool);if(n)list=list.slice(0,n);
+  if(!list.length)return;
+  Q={list:list.map(it=>({it,retry:false})),i:0,res:{},mode,pool};
+  show("quiz");renderQ();
+}
+function finishItem(result){
+  const e=Q.list[Q.i],id=e.it.id;
+  if(e.retry){if(result!=="r")store.p[id]="a";}
+  else{store.p[id]=result;Q.res[id]=result;}
+  save();
+  if(result==="r"&&!e.retry&&!Q.single){Q.list.splice(Math.min(Q.i+4,Q.list.length),0,{it:e.it,retry:true});}
+}
+
+let cur=null,tries=0,done=false;
+function renderQ(){
+  const e=Q.list[Q.i],it=e.it;tries=0;done=false;
+  $("#qtopic").innerHTML=`${TOPIC[it.topic].name} · <span class="qn">Q${qnum(it)}</span>`;
+  const S=!!Q.single;$("#qpos").hidden=S;$(".qprog").hidden=S;$("#finishNow").hidden=S;$("#prev").hidden=!S;$("#rand").hidden=!S;
+  $("#qtype").textContent=TYPES[it.type]+(e.retry?" · again":"");
+  $("#qtype").className="chip"+(it.type==="H"||it.type==="P"?" h":"");
+  $("#qpos").textContent=`${Q.i+1} / ${Q.list.length}`;
+  $("#qbarfill").style.width=`${Q.i/Q.list.length*100}%`;
+  $("#fb").hidden=true;$("#why").hidden=true;$("#next").hidden=!S;$("#skip").hidden=S;
+  $("#check").textContent="Check";
+  const box=$("#qbox");box.innerHTML="";
+  cur=KINDS[it.kind](it,box);
+  $("#check").hidden=!cur.check;$("#check").disabled=!!cur.check;
+  if(cur.ready)cur.ready(v=>{$("#check").disabled=!v;});
+  window.scrollTo(0,0);
+}
+function feedback(cls,head,body){const f=$("#fb");f.className="fb "+cls;f.innerHTML=head+(body?`<span>${body}</span>`:"");f.hidden=false;}
+function showWhy(it,extra){const w=$("#why");w.className="mi";w.innerHTML=`<span class="lbl">The physics</span>${extra||""}${it.expl}`;w.hidden=false;}
+function settle(result,it,msg,extra){
+  done=true;finishItem(result);
+  if(result==="g")feedback("ok","Correct",msg);
+  else if(result==="a")feedback("mid","Correct on the second try",msg);
+  else feedback("no","Not this time",msg);
+  showWhy(it,extra);
+  $("#check").hidden=true;$("#skip").hidden=true;$("#next").hidden=false;$("#next").focus({preventScroll:true});
+}
+/* called by kinds: ok=true/false, wrongMsg shown when retry allowed */
+function attempt(ok,it,{maxTries=2,hint="",revealMsg="",extra=""}={}){
+  tries++;
+  if(ok){settle(tries===1?"g":"a",it,"",extra);cur.lock&&cur.lock(true);return;}
+  if(tries<maxTries){feedback("no","Not quite. Try again.",hint);cur.retry&&cur.retry();return;}
+  cur.lock&&cur.lock(false);settle("r",it,revealMsg||hint,extra);
+}
+$("#check").onclick=()=>{if(cur&&cur.check&&!done)cur.check();};
+$("#next").onclick=()=>{if(Q.single){stepSingle(1);return;}Q.i++;if(Q.i>=Q.list.length)summary();else renderQ();};
+$("#skip").onclick=()=>{Q.list.push(Q.list.splice(Q.i,1)[0]);if(Q.list.length===1){summary();return;}renderQ();};
+$("#back").onclick=()=>{if(Q.single)renderMenu(TOPIC[Q.list[0].it.topic]);else{show("home");renderHome();}};
+$("#finishNow").onclick=()=>{if(Object.keys(Q.res).length)summary();else{show("home");renderHome();}};
+document.addEventListener("keydown",e=>{if($("#quiz").hidden)return;if(e.key==="Enter"&&e.target.tagName!=="TEXTAREA"){if(!done&&!$("#check").hidden&&!$("#check").disabled){e.preventDefault();$("#check").click();}else if(done&&!$("#next").hidden){e.preventDefault();$("#next").click();}}});
+
+function summary(){
+  show("summary");const ids=Object.keys(Q.res);const v=ids.map(i=>Q.res[i]);
+  const g=v.filter(x=>x==="g").length,a=v.filter(x=>x==="a").length,r=v.filter(x=>x==="r").length;
+  $("#sscore").textContent=`${g+a} / ${ids.length}`;
+  $("#summary .eyebrow").textContent=Q.i<Q.list.length?`Finished early · ${ids.length} of ${new Set(Q.list.map(x=>x.it.id)).size} questions answered`:"Set finished";
+  $("#sline").textContent=`${g} right first time · ${a} on the second try · ${r} answer shown`;
+  const byT={};ids.forEach(id=>{const t=BYID[id].topic;(byT[t]=byT[t]||[]).push(Q.res[id]);});
+  const missRef={};ids.filter(id=>Q.res[id]==="r").forEach(id=>{const t=BYID[id].topic;(missRef[t]=missRef[t]||[]).push(qnum(BYID[id]));});
+  $("#slist").innerHTML=Object.entries(byT).map(([t,arr])=>{const ok=arr.filter(x=>x!=="r").length;const col=ok===arr.length?"var(--good)":ok>=arr.length/2?"var(--part)":"var(--bad)";return `<div class="sl"><i style="background:${col}"></i><span>${TOPIC[t].name}: ${ok} of ${arr.length}${missRef[t]?` · missed Q${missRef[t].sort((x,y)=>x-y).join(", Q")}`:""}</span></div>`;}).join("");
+  const missed=ids.filter(id=>Q.res[id]==="r").map(id=>BYID[id]);
+  $("#smiss").hidden=!missed.length;
+  $("#smiss").onclick=()=>startSet(missed,0,"redo");
+  $("#sagain").onclick=()=>{if(Q.mode==="set")startSet(usable(ALL.filter(it=>store.sel.includes(it.topic))),+$("#nq").value,"set");else{show("home");renderHome();}};
+  $("#sagain").hidden=Q.mode!=="set";
+}
+$("#shome").onclick=()=>{show("home");renderHome();};
+
+/* ===== question kinds ===== */
+const L="ABCDEFG";
+const KINDS={
+  mc(it,box){
+    const opts=shuffle([[it.right,null],...it.wrong]);
+    box.innerHTML=`<div class="qtext">${it.q}</div><div class="opts">${opts.map((o,i)=>`<button class="opt" data-i="${i}"><span class="k">${L[i]}</span><span>${o[0]}</span></button>`).join("")}</div>`;
+    const btns=[...box.querySelectorAll(".opt")];
+    btns.forEach(b=>b.onclick=()=>{if(done)return;const o=opts[+b.dataset.i];
+      if(o[1]===null){b.classList.add("ok");btns.forEach(x=>x.disabled=true);attempt(true,it);}
+      else{b.classList.add("no");b.disabled=true;
+        const rb=btns.find(x=>opts[+x.dataset.i][1]===null);
+        attempt(false,it,{hint:o[1],revealMsg:o[1]});
+        if(done){rb.classList.add("ok");btns.forEach(x=>{x.disabled=true;if(!x.classList.contains("ok")&&!x.classList.contains("no"))x.classList.add("dim");});}}
+    });
+    return {};
+  },
+  tf(it,box){
+    box.innerHTML=`<div class="qtext">Is this statement true or false?</div><div class="stmt">${it.s}</div><div class="tf"><button class="opt" data-v="1">True</button><button class="opt" data-v="0">False</button></div>`;
+    const btns=[...box.querySelectorAll(".opt")];
+    btns.forEach(b=>b.onclick=()=>{if(done)return;const v=b.dataset.v==="1";btns.forEach(x=>x.disabled=true);
+      b.classList.add(v===it.ans?"ok":"no");if(v!==it.ans)btns.find(x=>(x.dataset.v==="1")===it.ans).classList.add("ok");
+      attempt(v===it.ans,it,{maxTries:1,revealMsg:`The statement is ${it.ans?"true":"false"}.`});});
+    return {};
+  },
+  gap(it,box){
+    const words=shuffle([...it.ans,...it.extra]);
+    const fill=it.ans.map(()=>null);let sel=0;let ready=()=>{};
+    box.innerHTML=`<div class="qtext" style="margin-bottom:6px">Fill each gap with a word from the list.</div><p class="gaptext">${it.parts.map((p,i)=>i%2?`<button class="slot" data-s="${(i-1)/2}">&nbsp;</button>`:p).join("")}</p><div class="bank">${words.map((w,i)=>`<button class="word" data-w="${i}">${w}</button>`).join("")}</div>`;
+    const slots=[...box.querySelectorAll(".slot")],wb=[...box.querySelectorAll(".word")];
+    const draw=()=>{slots.forEach((s,i)=>{s.innerHTML=fill[i]===null?"&nbsp;":words[fill[i]];s.classList.toggle("fill",fill[i]!==null);s.classList.toggle("cur",i===sel&&!done);});
+      wb.forEach((b,i)=>b.disabled=done||fill.includes(i));ready(fill.every(x=>x!==null));};
+    slots.forEach((s,i)=>s.onclick=()=>{if(done)return;if(fill[i]!==null){fill[i]=null;}sel=i;s.classList.remove("ok","no");draw();});
+    wb.forEach((b,i)=>b.onclick=()=>{if(done)return;let k=fill[sel]===null?sel:fill.findIndex(x=>x===null);if(k<0)return;fill[k]=i;slots[k].classList.remove("ok","no");const nx=fill.findIndex(x=>x===null);sel=nx<0?k:nx;draw();});
+    draw();
+    return {ready:f=>{ready=f;draw();},
+      check(){const res=fill.map((w,i)=>strip(words[w])===strip(it.ans[i]));
+        res.forEach((r,i)=>{slots[i].classList.toggle("ok",r);slots[i].classList.toggle("no",!r);});
+        const ok=res.every(Boolean);const nw=res.filter(r=>!r).length;
+        attempt(ok,it,{hint:`${nw} gap${nw>1?"s are":" is"} wrong. Tap a red gap to clear it.`,revealMsg:"The red gaps are shown with the right word below."});
+        draw();
+        if(done&&!ok){res.forEach((r,i)=>{if(!r)slots[i].innerHTML=`<s>${words[fill[i]]}</s> ${it.ans[i]}`;});}}};
+  },
+  sort(it,box){
+    const things=shuffle(it.things);const pick=things.map(()=>null);let ready=()=>{};
+    box.innerHTML=`<div class="qtext">${it.q}</div><div class="sitems">${things.map(([t],i)=>`<div class="sitem" data-i="${i}"><div class="st">${t}</div><div class="sb">${it.cats.map((c,j)=>`<button data-c="${j}" aria-pressed="false">${c}</button>`).join("")}</div><div class="fix" hidden></div></div>`).join("")}</div>`;
+    const rows=[...box.querySelectorAll(".sitem")];
+    rows.forEach((r,i)=>r.querySelectorAll("[data-c]").forEach(b=>b.onclick=()=>{if(done)return;pick[i]=+b.dataset.c;r.classList.remove("ok","no");r.querySelectorAll("[data-c]").forEach(x=>x.setAttribute("aria-pressed",x===b));ready(pick.every(x=>x!==null));}));
+    return {ready:f=>ready=f,
+      check(){const res=things.map(([t,c],i)=>it.cats[pick[i]]===c);
+        rows.forEach((r,i)=>{r.classList.toggle("ok",res[i]);r.classList.toggle("no",!res[i]);});
+        const nw=res.filter(x=>!x).length;
+        attempt(!nw,it,{hint:`${nw} ${nw>1?"are":"is"} in the wrong group. Change the red ones.`});
+        if(done&&nw)rows.forEach((r,i)=>{if(!res[i]){const f=r.querySelector(".fix");f.textContent="Belongs in: "+things[i][1];f.hidden=false;}});
+        if(done)rows.forEach(r=>r.querySelectorAll("button").forEach(b=>b.disabled=true));}};
+  },
+  order(it,box){return seqKind(it,box,shuffle(it.steps.map((s,i)=>({s,i}))),"Tap the steps in the right order.","Your order appears here");},
+  build(it,box){return seqKind(it,box,shuffle([...it.good.map((s,i)=>({s,i,g:true})),...it.bad.map(s=>({s,g:false}))]),"Tap the sentences that make a full, correct answer. Leave out the wrong ones.","Your answer builds up here");},
+  spot(it,box){
+    box.innerHTML=`<div class="qtext">${it.q}</div><div class="inst">A pupil wrote this answer. One sentence has a physics mistake. Tap it.</div><div class="ans">${it.sents.map((s,i)=>`<button class="sent" data-i="${i}">${s}</button>`).join("")}</div>`;
+    const btns=[...box.querySelectorAll(".sent")];
+    btns.forEach(b=>b.onclick=()=>{if(done)return;const i=+b.dataset.i;
+      if(i===it.wrongI){b.classList.add("ok");btns.forEach(x=>x.disabled=true);attempt(true,it);}
+      else{b.classList.add("no");b.disabled=true;attempt(false,it,{hint:"That sentence is correct physics. Look again.",revealMsg:"The highlighted sentence is the wrong one."});
+        if(done){btns[it.wrongI].classList.add("was");btns.forEach(x=>x.disabled=true);}}});
+    return {};
+  },
+  write(it,box){
+    let stage=0,ready=()=>{};
+    box.innerHTML=`<div class="qtext">${it.q}</div><div class="inst">Write your answer in full sentences. Then compare it with the marking points.</div><textarea id="wta" spellcheck="true" placeholder="Type your answer here"></textarea><div id="wpts"></div>`;
+    const ta=box.querySelector("textarea");ta.oninput=()=>ready(ta.value.trim().split(/\s+/).length>=3);
+    $("#check").textContent="Mark my answer";
+    const c={ready:f=>ready=f,
+      check(){
+        if(stage===0){stage=1;ta.readOnly=true;const txt=ta.value;
+          const got=it.pts.map(([re])=>re.test(txt));
+          box.querySelector("#wpts").innerHTML=`<div class="lbl2">Marking points · ${it.need} needed for full marks</div><div class="msg" style="margin-top:4px">Ticked points were found in your answer. If you clearly made a point that was missed, tick it yourself. Be honest.</div><div class="pts">${it.pts.map(([,p],i)=>`<div class="pt${got[i]?" got":""}"><input type="checkbox" id="wp${i}" ${got[i]?"checked":""}><label for="wp${i}">${p}</label></div>`).join("")}</div>`;
+          box.querySelectorAll(".pt input").forEach(x=>x.onchange=()=>x.parentNode.classList.toggle("got",x.checked));
+          $("#check").textContent="Confirm my mark";return;}
+        const n=[...box.querySelectorAll(".pt input")].filter(x=>x.checked).length;
+        box.querySelectorAll(".pt input").forEach(x=>x.disabled=true);
+        $("#check").textContent="Check";
+        tries=0;attempt(n>=it.need,it,{maxTries:1,revealMsg:`You made ${n} of the ${it.need} points needed.`,extra:"<b>Model answer:</b> "});
+      }};
+    return c;
+  }
+};
+/* shared: tap-to-sequence for order and build */
+function seqKind(it,box,pieces,inst,empty){
+  let chosen=[];let ready=()=>{};const isBuild=it.kind==="build";
+  box.innerHTML=`<div class="qtext">${it.q}</div><div class="inst">${inst}</div><div class="built" data-empty="${empty}"></div><div class="lbl2">${isBuild?"Sentences to choose from":"Steps"}</div><div class="pool"></div>`;
+  const built=box.querySelector(".built"),pool=box.querySelector(".pool");
+  const draw=()=>{
+    built.innerHTML=chosen.map((p,k)=>`<button class="piece" data-c="${k}"><span class="n">${k+1}</span><span>${p.s}</span></button>`).join("");
+    pool.innerHTML=pieces.map((p,k)=>chosen.includes(p)?"":`<button class="piece" data-p="${k}"><span class="n">+</span><span>${p.s}</span></button>`).join("");
+    built.querySelectorAll("[data-c]").forEach(b=>b.onclick=()=>{if(done)return;chosen.splice(+b.dataset.c,1);draw();});
+    pool.querySelectorAll("[data-p]").forEach(b=>b.onclick=()=>{if(done)return;chosen.push(pieces[+b.dataset.p]);draw();});
+    ready(isBuild?chosen.length>0:chosen.length===pieces.length);
+  };
+  draw();
+  return {ready:f=>{ready=f;draw();},
+    check(){
+      let ok,hint;
+      if(isBuild){const nGood=it.good.length;const gotGood=chosen.filter(p=>p.g).length,gotBad=chosen.filter(p=>!p.g).length;
+        ok=gotGood===nGood&&!gotBad;
+        hint=gotBad?`${gotBad} of your sentences ${gotBad>1?"are":"is"} wrong physics. Tap to remove ${gotBad>1?"them":"it"}.`:`Your answer is missing ${nGood-gotGood} sentence${nGood-gotGood>1?"s":""}.`;
+        if(gotBad&&gotGood<nGood)hint+=` It is also missing ${nGood-gotGood}.`;
+      }else{ok=chosen.every((p,k)=>p.i===k);const right=chosen.filter((p,k)=>p.i===k).length;hint=`${right} of ${pieces.length} are in the right place. Tap a step to take it out.`;}
+      attempt(ok,it,{hint});
+      if(done){
+        if(!ok){built.innerHTML=`<div class="lbl2" style="margin:0">Correct ${isBuild?"answer":"order"}</div>`+(isBuild?it.good:it.steps).map((s,k)=>`<div class="piece ok"><span class="n">${k+1}</span><span>${s}</span></div>`).join("");}
+        else built.querySelectorAll(".piece").forEach(b=>{b.classList.add("ok");b.disabled=true;});
+        pool.querySelectorAll(".piece").forEach(b=>{b.disabled=true;});
+        if(isBuild&&!ok)pool.querySelectorAll(".piece").forEach(b=>{if(!pieces[+b.dataset.p].g)b.classList.add("no");});
+      }
+    }};
+}
+renderHome();
+</script>
+
+</body>
+</html>
