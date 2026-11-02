@@ -1,0 +1,885 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Advanced Higher Physics Equation Bank</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: same instrument-panel look as the Question Bank; formula tiles grouped by course area, one exam "sheet" per question with an answer bar beneath */
+:root{
+  --bg:#edf0f4; --surface:#ffffff; --ink:#152031; --muted:#56627a; --line:#cfd6e2;
+  --accent:#2549a8; --accent-ink:#ffffff; --tile:#e2e8f2; --mark:#8f4a0c; --mark-bg:#fbf1e4;
+  --good:#1f7a3a; --good-bg:#e3f3e8; --part:#946300; --part-bg:#fbf1d6; --bad:#a8322b; --bad-bg:#f9e3e1;
+  --sheet:#ffffff; --sheet-ink:#152031;
+  --f-body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f141c; --surface:#171e2a; --ink:#e3e8f1; --muted:#97a3b8; --line:#2b3546;
+  --accent:#7da0f2; --accent-ink:#0b1630; --tile:#1c2533; --mark:#f2ae6e; --mark-bg:#2c2016;
+  --good:#6fd08d; --good-bg:#173323; --part:#e8c15a; --part-bg:#33290f; --bad:#f08a82; --bad-bg:#3a1c1a;
+  --sheet:#1b2230; --sheet-ink:#e3e8f1; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f141c; --surface:#171e2a; --ink:#e3e8f1; --muted:#97a3b8; --line:#2b3546;
+  --accent:#7da0f2; --accent-ink:#0b1630; --tile:#1c2533; --mark:#f2ae6e; --mark-bg:#2c2016;
+  --good:#6fd08d; --good-bg:#173323; --part:#e8c15a; --part-bg:#33290f; --bad:#f08a82; --bad-bg:#3a1c1a;
+  --sheet:#1b2230; --sheet-ink:#e3e8f1; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font:16px/1.5 var(--f-body)}
+.wrap{max-width:60rem;margin:0 auto;padding-block:20px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px 16px;margin-bottom:18px}
+h1{font-size:1.65rem;line-height:1.2;margin:0;text-wrap:balance}
+h2{text-wrap:balance}
+.eyebrow{font:600 .72rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.unit{margin-top:22px}
+.unit h2{font:600 .78rem var(--f-mono);margin:0 0 10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+.tile{all:unset;box-sizing:border-box;cursor:pointer;background:var(--tile);border:1px solid var(--line);border-radius:6px;padding:12px;display:grid;grid-template-rows:1fr auto auto;gap:6px;min-height:92px}
+.tile:hover{border-color:var(--accent)}
+.tile:focus-visible,button:focus-visible,select:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.tile .eq{font:600 1.05rem var(--f-mono);color:var(--accent);line-height:1.3}
+.cnt{font:500 .72rem var(--f-mono);color:var(--muted)}
+.eq sub,.eq sup,.qtext sub,.qtext sup,.mi sub,.mi sup{font-size:.7em}
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.1;font-size:.94em;margin:0 2px}
+.frac>span:first-child{border-bottom:1px solid currentColor;padding:0 3px}
+.frac>span:last-child{padding:0 3px}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+button.b{font:700 .9rem var(--f-body);border-radius:6px;padding:9px 14px;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+button.b:hover{border-color:var(--accent)}
+button.b.pri{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+button.b:disabled{opacity:.45;cursor:default}
+button.b.sm{padding:6px 10px;font-size:.82rem}
+button.b.ghost{background:transparent;border-color:transparent;color:var(--muted)}
+button.b.ghost:hover{border-color:var(--line);color:var(--ink)}
+button.b.danger{color:var(--bad)}
+select,input[type=text]{font:inherit;padding:9px 10px;border-radius:6px;border:1px solid var(--line);background:var(--surface);color:var(--ink);max-width:100%}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px;margin-top:14px}
+.panel h2{margin:0 0 8px;font-size:1.1rem}
+.filters{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:.92rem}
+.filters label{display:inline-flex;gap:6px;align-items:center;cursor:pointer}
+.msg{font-size:.86rem;color:var(--muted)}
+.row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;align-items:center}
+.prog{height:5px;border-radius:3px;background:var(--line);overflow:hidden;display:flex}
+.prog i{display:block;height:100%}.prog .g{background:var(--good)}.prog .p{background:var(--part)}.prog .n{background:var(--bad)}
+.countdown{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:6px 14px;background:var(--accent);color:var(--accent-ink);border-radius:6px;padding:10px 14px;margin-bottom:16px}
+.cdl{font-weight:700}
+.cdt{display:flex;gap:12px;font:600 1rem var(--f-mono);font-variant-numeric:tabular-nums}
+.cdt span{display:inline-flex;flex-direction:column;align-items:center;line-height:1.1}
+.cdt small{font:500 .62rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;opacity:.85}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:14px}
+.col{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px;min-width:0}
+.col h2{margin:0 0 4px;font-size:1.05rem}
+.qs{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.qb{font:600 .8rem var(--f-mono);min-width:2.6rem;padding:6px 7px;border-radius:4px;border:1px solid var(--line);background:var(--tile);color:var(--ink);cursor:pointer;text-align:center;font-variant-numeric:tabular-nums}
+.qb small{font-weight:500;opacity:.8;margin-left:3px}
+.qb small sub{font-size:.75em}
+.qb:hover{border-color:var(--accent)}
+.qb.g{background:var(--good-bg);border-color:var(--good);color:var(--good)}
+.qb.a{background:var(--part-bg);border-color:var(--part);color:var(--part)}
+.qb.r{background:var(--bad-bg);border-color:var(--bad);color:var(--bad)}
+.key{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.8rem;color:var(--muted);margin-top:8px}
+.key i{display:inline-block;width:.8rem;height:.8rem;border-radius:2px;vertical-align:-1px;margin-right:4px;border:1px solid}
+.qbar{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:12px}
+.qtitle{font-weight:700;font-size:1.02rem}
+.qtitle .eq{font-family:var(--f-mono);color:var(--accent)}
+.qspace{flex:1}
+@media (max-width:480px){.qspace{display:none}.qtitle{flex:1 1 60%;min-width:0}}
+.chip{font:600 .72rem var(--f-mono);padding:3px 8px;border-radius:4px;background:var(--tile);border:1px solid var(--line);color:var(--muted)}
+.sheet{background:var(--sheet);color:var(--sheet-ink);border:1px solid var(--line);border-radius:4px;padding:18px 18px 20px}
+.qhead{font:600 .8rem var(--f-mono);color:var(--muted);margin-bottom:6px}
+.qtext{font-size:1.12rem;line-height:1.6;max-width:62ch;margin:0}
+.nv{white-space:nowrap}
+.marks{font:600 .85rem var(--f-mono);text-align:right;color:var(--muted);margin-top:6px}
+.ansbar{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,11rem) auto;gap:8px;margin-top:12px;align-items:end}
+.ansbar label{display:grid;gap:4px;font-size:.8rem;color:var(--muted);min-width:0}
+.ansbar input{font:600 1.15rem var(--f-mono);width:100%;box-sizing:border-box}
+.ansbar select{font:600 1rem var(--f-mono);width:100%;box-sizing:border-box;padding:10px}
+@media (max-width:480px){.ansbar{grid-template-columns:minmax(0,1fr) minmax(0,8.5rem)}.ansbar .go{grid-column:1/-1}}
+.fb{margin-top:10px;padding:10px 12px;border-radius:6px;border:1px solid var(--line);font-weight:700}
+.fb.ok{background:var(--good-bg);border-color:var(--good);color:var(--good)}
+.fb.mid{background:var(--part-bg);border-color:var(--part);color:var(--part)}
+.fb.no{background:var(--bad-bg);border-color:var(--bad);color:var(--bad)}
+.mi{background:var(--mark-bg);border:1px solid var(--line);border-radius:4px;padding:14px 16px;margin-top:12px}
+.mi .lbl{font:600 .75rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--mark)}
+.mrow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:7px 0;border-bottom:1px dashed var(--line);font:500 1.08rem var(--f-mono);overflow-x:auto}
+.mrow:last-of-type{border-bottom:0}
+.mrow b{font-size:.85rem;color:var(--mark)}
+.acc{margin:8px 0 0;font-size:.88rem;color:var(--muted)}
+.acc span{font-family:var(--f-mono);color:var(--ink);white-space:nowrap}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(560px,100%);box-sizing:border-box;background:var(--surface);border-left:1px solid var(--line);z-index:20;overflow-y:auto;padding:16px;padding-top:calc(16px + env(safe-area-inset-top,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-bottom:calc(16px + env(safe-area-inset-bottom,0px));box-shadow:-8px 0 30px rgba(0,0,0,.18)}
+.rels{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:4px 14px;font:500 .95rem var(--f-mono)}
+.rels div{padding:7px 8px;border-bottom:1px solid var(--line)}
+.rels sub,.rels sup{font-size:.7em}
+table.dt{border-collapse:collapse;width:100%;font-size:.92rem;margin-top:6px}
+table.dt td,table.dt th{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left}
+table.dt td:last-child{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.tlist{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px}
+.tlist label{display:flex;gap:6px;align-items:center;font:500 .88rem var(--f-mono);padding:5px 6px;border:1px solid var(--line);border-radius:4px;background:var(--tile);cursor:pointer}
+.seglbl{font:600 .72rem var(--f-mono);color:var(--muted);margin:12px 0 6px;letter-spacing:.06em;text-transform:uppercase}
+.score{font:600 2rem var(--f-mono)}
+.confirm{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+.foot{color:var(--muted);font-size:.78rem;margin-top:28px;max-width:70ch}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <div class="countdown"><span class="cdl">Advanced Higher Physics exam · Tuesday 4 May 2027, 9:00 am</span><span class="cdt" id="cdt"></span></div>
+
+  <div id="home">
+    <header class="top">
+      <div><div class="eyebrow">Advanced Higher Physics · relationships sheet</div><h1>Equation practice</h1></div>
+      <div class="bar"><button class="b" data-sheet="data">Data sheet</button><button class="b" data-sheet="rel">Relationships</button></div>
+    </header>
+    <div class="panel">
+      <h2>Practice settings</h2>
+      <div class="filters">
+        <label><input type="checkbox" id="skipGot"> Skip questions I got right first time</label>
+      </div>
+      <div class="bar" style="margin-top:10px"><button class="b pri" id="mixBtn">Mixed practice across formulas</button><span class="msg" id="overall"></span></div>
+    </div>
+    <div id="units"></div>
+    <div class="panel">
+      <h2>How answers are marked</h2>
+      <p class="msg" style="margin:0;max-width:70ch">Type your number and choose a unit. Your answer is right if it is rounded to the same number of significant figures as the least precise value in the question, or one fewer, or up to two more. You can use any sensible prefix, so 2.4 kJ and 2400 J are both fine. For large or small numbers type 3.0e8 or 3.0x10^8.</p>
+      <div class="key"><span><i style="background:var(--good-bg);border-color:var(--good)"></i>Right first time</span><span><i style="background:var(--part-bg);border-color:var(--part)"></i>Right after another try</span><span><i style="background:var(--bad-bg);border-color:var(--bad)"></i>Answer shown</span></div>
+      <div class="bar" style="margin-top:12px"><button class="b sm danger" id="resetBtn">Reset all progress</button></div>
+      <div class="confirm" id="resetAsk" hidden><span class="msg">Clear every result on this device?</span><button class="b sm danger" id="resetYes">Yes, clear it</button><button class="b sm" id="resetNo">Cancel</button></div>
+    </div>
+    <p class="foot">Progress is saved in this browser only. Questions are fixed, so number 12 for a formula is the same question every time.</p>
+  </div>
+
+  <div id="menu" hidden>
+    <div class="row"><button class="b" id="mback">← Formulas</button><div class="bar"><button class="b" data-sheet="data">Data sheet</button><button class="b" data-sheet="rel">Relationships</button></div></div>
+    <div class="eyebrow" id="munit" style="margin-top:16px"></div>
+    <h1 id="mtitle" class="eq" style="font-family:var(--f-mono)"></h1>
+    <div class="bar" style="margin-top:10px"><button class="b pri" id="mstart">Start</button><span class="msg" id="mstat"></span></div>
+    <div class="cols" id="mcols"></div>
+  </div>
+
+  <div id="mix" hidden>
+    <div class="row"><button class="b" id="xback">← Formulas</button></div>
+    <h1 style="margin-top:14px">Mixed practice</h1>
+    <div class="panel">
+      <div class="bar" style="margin-bottom:6px"><button class="b sm" id="xall">Select all</button><button class="b sm" id="xnone">Clear</button></div>
+      <div id="xtopics"></div>
+    </div>
+    <div class="panel">
+      <div class="filters">
+        <label><input type="checkbox" id="xk0" checked> Non-rearranging</label>
+        <label><input type="checkbox" id="xk1" checked> Rearranging</label>
+        <label><input type="checkbox" id="xk2" checked> Random</label>
+        <label>Questions <select id="xn"><option>5</option><option selected>10</option><option>20</option><option>30</option></select></label>
+      </div>
+      <div class="bar" style="margin-top:10px"><button class="b pri" id="xstart">Start</button><span class="msg" id="xmsg"></span></div>
+    </div>
+  </div>
+
+  <div id="quiz" hidden>
+    <div class="qbar">
+      <button class="b sm" id="back" aria-label="Back">←</button>
+      <span class="qtitle"><span class="eq" id="qeq"></span> · Q<span id="qnum"></span></span>
+      <span class="chip" id="qsec"></span>
+      <span class="qspace"></span>
+      <span class="msg" id="qpos"></span>
+      <button class="b sm ghost" data-sheet="data">Data sheet</button>
+      <button class="b sm ghost" data-sheet="rel">Relationships</button>
+    </div>
+    <div class="sheet">
+      <p class="qtext" id="qtext"></p>
+      <div class="marks">3</div>
+    </div>
+    <form class="ansbar" id="aform" autocomplete="off">
+      <label for="ain">Answer<input type="text" id="ain" inputmode="text" spellcheck="false" placeholder="e.g. 2.4"></label>
+      <label for="aunit">Unit<select id="aunit"></select></label>
+      <button class="b pri go" type="submit" id="acheck">Check</button>
+    </form>
+    <div id="fb" class="fb" hidden></div>
+    <div id="sol" hidden></div>
+    <div class="row" style="margin-top:14px">
+      <button class="b" id="showAns">Show answer</button>
+      <div class="bar"><button class="b" id="prev">Previous</button><button class="b" id="rand">Random</button><button class="b pri" id="next">Next</button></div>
+    </div>
+  </div>
+
+  <div id="summary" hidden>
+    <h1>Practice finished</h1>
+    <div class="panel"><div class="score" id="sscore"></div><div id="slist" class="msg"></div>
+    <div class="bar" style="margin-top:12px"><button class="b pri" id="sagain">Another set</button><button class="b" id="shome">Formulas</button></div></div>
+  </div>
+</div>
+
+<div class="drawer" id="drawer" hidden>
+  <div class="row"><h2 style="margin:0;font-size:1.15rem" id="dtitle"></h2><button class="b sm" id="dclose">Close</button></div>
+  <div id="dbody" style="margin-top:12px"></div>
+</div>
+
+<script>
+/* ---------- helpers ---------- */
+const $=id=>document.getElementById(id);
+function hash(s){let h=1779033703^s.length;for(let i=0;i<s.length;i++){h=Math.imul(h^s.charCodeAt(i),3432918353);h=h<<13|h>>>19}return()=>{h=Math.imul(h^h>>>16,2246822507);h=Math.imul(h^h>>>13,3266489909);return(h^=h>>>16)>>>0}}
+function rng(seed){const sd=hash(seed);let a=sd();return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const pick=(r,a)=>a[Math.floor(r()*a.length)];
+const rl=(r,a,b)=>a*Math.pow(b/a,r());
+const sfp=r=>r()<0.5?2:3;
+const frac=(a,b)=>`<span class="frac"><span>${a}</span><span>${b}</span></span>`;
+const art=w=>/^[aeiou]/i.test(w)?'an':'a';
+const cap=s=>s.charAt(0).toUpperCase()+s.slice(1);
+const list=a=>a.length<2?a.join(''):a.slice(0,-1).join(', ')+' and '+a[a.length-1];
+function fmt(v,sf){
+  if(v===0)return{t:'0',h:'0'};
+  const a=Math.abs(v);
+  if(a>=1e5||a<1e-3){let e=Math.floor(Math.log10(a));let m=(v/Math.pow(10,e)).toPrecision(sf);if(Math.abs(+m)>=10){e++;m=(v/Math.pow(10,e)).toPrecision(sf)}
+    return{t:m,h:`${String(m).replace('-','−')} × 10<sup>${e<0?'−'+(-e):e}</sup>`}}
+  let s=v.toPrecision(sf);if(/e/.test(s))s=String(+s);return{t:s,h:s.replace('-','−')}}
+function cntSF(t){t=String(t).replace(/^[-−+]/,'');if(t.includes('.'))return Math.max(1,t.replace('.','').replace(/^0+/,'').length);const s=t.replace(/^0+/,'').replace(/0+$/,'');return Math.max(1,s.length)}
+function tC(r,lo,hi){let n,k=0;do{n=Math.round(lo+(hi-lo)*r());k++}while(k<80&&(Math.abs(n)<11||n%10===0||(n+273)%10===0));return n}
+const ESER=[12,15,18,22,27,33,39,47,56,68,82];
+const resE=(r,lo,hi)=>{let v,k=0;do{v=pick(r,ESER)*pick(r,[1,10,100,1000]);k++}while(k<60&&(v<lo||v>hi));return v};
+
+/* ---------- units ---------- */
+const UL=[
+['—',{none:[1,0]}],
+['m',{len:[1,0]}],['km',{len:[1e3,0]}],['cm',{len:[1e-2,0]}],['mm',{len:[1e-3,0]}],['µm',{len:[1e-6,0]}],['nm',{len:[1e-9,0]}],
+['s',{time:[1,0]}],['ms',{time:[1e-3,0]}],['µs',{time:[1e-6,0]}],['min',{time:[60,0]}],['h',{time:[3600,0]}],
+['m s⁻¹',{spd:[1,0]}],['m s⁻²',{acc:[1,0]}],
+['kg',{mass:[1,0]}],['g',{mass:[1e-3,0]}],
+['N',{force:[1,0]}],['kN',{force:[1e3,0]}],['kg m s⁻¹',{mom:[1,0]}],['N s',{mom:[1,0]}],['N kg⁻¹',{gfs:[1,0]}],
+['J',{energy:[1,0]}],['kJ',{energy:[1e3,0]}],['MJ',{energy:[1e6,0]}],['mJ',{energy:[1e-3,0]}],['µJ',{energy:[1e-6,0]}],
+['W',{power:[1,0]}],['kW',{power:[1e3,0]}],['MW',{power:[1e6,0]}],
+['m²',{area:[1,0]}],['cm²',{area:[1e-4,0]}],
+['C',{charge:[1,0]}],['mC',{charge:[1e-3,0]}],['µC',{charge:[1e-6,0]}],['nC',{charge:[1e-9,0]}],
+['A',{cur:[1,0]}],['mA',{cur:[1e-3,0]}],['µA',{cur:[1e-6,0]}],
+['V',{volt:[1,0]}],['kV',{volt:[1e3,0]}],['mV',{volt:[1e-3,0]}],
+['Ω',{res:[1,0]}],['kΩ',{res:[1e3,0]}],['MΩ',{res:[1e6,0]}],
+['Hz',{freq:[1,0]}],['kHz',{freq:[1e3,0]}],['MHz',{freq:[1e6,0]}],['GHz',{freq:[1e9,0]}],['F',{cap:[1,0]}],['mF',{cap:[1e-3,0]}],['µF',{cap:[1e-6,0]}],['nF',{cap:[1e-9,0]}],['pF',{cap:[1e-12,0]}],['W m⁻²',{irr:[1,0]}],['mW m⁻²',{irr:[1e-3,0]}],['kW m⁻²',{irr:[1e3,0]}],['s⁻¹',{hub:[1,0]}],['°',{ang:[1,0]}],['rad',{rad:[1,0]}],['rad s⁻¹',{angv:[1,0]}],['rad s⁻²',{anga:[1,0]}],['N m',{torq:[1,0]}],['kg m²',{mi:[1,0]}],['kg m² s⁻¹',{angm:[1,0]}],['J kg⁻¹',{gpot:[1,0]}],['K',{temp:[1,0]}],['T',{magb:[1,0]}],['mT',{magb:[1e-3,0]}],['µT',{magb:[1e-6,0]}],['N C⁻¹',{efld:[1,0]}],['V m⁻¹',{efld:[1,0]}],['kV m⁻¹',{efld:[1e3,0]}],['H',{ind:[1,0]}],['mH',{ind:[1e-3,0]}],['A s⁻¹',{didt:[1,0]}]];
+const U={};UL.forEach(([l,d])=>U[l]=d);
+const BASE={none:'—',len:'m',time:'s',spd:'m s⁻¹',acc:'m s⁻²',mass:'kg',force:'N',gfs:'N kg⁻¹',energy:'J',power:'W',shc:'J kg⁻¹ °C⁻¹',lat:'J kg⁻¹',tabs:'K',dT:'°C',press:'Pa',area:'m²',vol:'m³',charge:'C',cur:'A',volt:'V',res:'Ω',freq:'Hz',act:'Bq',dose:'Gy',heq:'Sv',hrate:'Sv h⁻¹',mom:'kg m s⁻¹',cap:'F',irr:'W m⁻²',hub:'s⁻¹',ang:'°',rad:'rad',angv:'rad s⁻¹',anga:'rad s⁻²',torq:'N m',mi:'kg m²',angm:'kg m² s⁻¹',gpot:'J kg⁻¹',temp:'K',magb:'T',efld:'N C⁻¹',ind:'H',didt:'A s⁻¹'};
+const PFX={magb:['mT','µT'],ind:['mH'],energy:['kJ','MJ','mJ','µJ'],mass:['g'],len:['km','cm','mm','nm'],time:['min','ms','µs'],force:['kN'],mom:['N s'],cap:['mF','µF','nF'],charge:['mC','µC','nC'],irr:['mW m⁻²','kW m⁻²'],power:['kW','MW'],press:['kPa'],area:['cm²'],vol:['cm³','l'],cur:['mA','µA'],volt:['kV','mV'],res:['kΩ','MΩ'],freq:['kHz','MHz','GHz'],act:['kBq','MBq'],dose:['mGy','µGy'],heq:['mSv','µSv'],tabs:['°C']};
+const ul=u=>u==='—'?'':u;
+
+/* ---------- objects ---------- */
+// name, mass range kg, speed range m/s, acceleration range m/s²
+const OBJ=[['car',800,1600,8,32,0.8,4],['cyclist',60,95,3,12,0.3,2],['runner',50,90,2.5,9,0.4,3],['lorry',3500,38000,6,25,0.3,1.5],['train',40000,400000,10,55,0.2,1.2],['skateboarder',40,80,2,8,0.3,2],['bus',9000,18000,5,20,0.4,1.8],['drone',0.8,6,2,18,0.5,5],['boat',300,5000,2,14,0.2,1.5],['trolley',0.5,2.5,0.2,3,0.2,2]];
+const TRAVEL=OBJ.filter(o=>!['trolley','skateboarder'].includes(o[0]));
+const PLANETS=[['Mercury',3.7],['Venus',8.9],['Mars',3.7],['Jupiter',23],['Saturn',9.0],['Uranus',8.7],['Neptune',11],['the Moon',1.6]];
+const SHC=[['water',4180],['aluminium',902],['copper',386],['iron',480],['lead',128],['alcohol',2350],['glycerol',2400]];
+const LAT=[['ice','water','fusion','melt','melts',3.34e5,'melting point'],['water','water','vaporisation','turn into steam','turns into steam',22.6e5,'boiling point'],['alcohol','alcohol','vaporisation','vaporise','vaporises',11.2e5,'boiling point'],['aluminium','aluminium','fusion','melt','melts',3.95e5,'melting point'],['copper','copper','fusion','melt','melts',2.05e5,'melting point'],['glycerol','glycerol','vaporisation','vaporise','vaporises',8.30e5,'boiling point']];
+const RAD=[['alpha particles',20],['beta particles',1],['gamma rays',1],['fast neutrons',10],['slow neutrons',3],['X-rays',1]];
+const DEV=[['kettle',1800,3000],['lamp',5,100],['heater',500,3000],['hair dryer',800,2200],['microwave oven',600,1200],['phone charger',5,20],['toaster',800,1500],['television',60,250]];
+
+/* ---------- formulas ---------- */
+const F=[];
+function add(o){o.all=[o.subj,...o.rearr];o.nr=Math.max(20,5*o.rearr.length);o.n=40+o.nr;F.push(o)}
+const pl=c=>"";
+const RM='Rotational motion and astrophysics',QW='Quanta and waves',EM='Electromagnetism';
+const deg=x=>x*Math.PI/180,rad=x=>x*180/Math.PI;
+const CL=3e8,GC=6.67e-11,HP=6.63e-34,E0=8.85e-12,MU0=4*Math.PI*1e-7,SIG=5.67e-8,ME=9.11e-31,QE=1.6e-19;
+const sgn=S=>String(S).trim().startsWith('-')||String(S).trim().startsWith('−');
+const ROT=[['wheel',0.5,40],['turntable',0.3,8],['flywheel',5,200],['bicycle wheel',2,30],['fan blade',5,150],['spinning top',10,200],['centrifuge',50,600],['merry-go-round',0.2,3]];
+
+
+const ORB=[['the Earth',5.97e24,6.6e6,4.3e7],['Mars',6.42e23,3.5e6,2.0e7],['Jupiter',1.90e27,7.5e7,2.0e9],['the Moon',7.35e22,1.8e6,8e6],['Saturn',5.68e26,6.2e7,1.5e9]];
+const CIRC=[['car going round a bend',800,1600,10,30,30,200],['cyclist on a circular track',60,95,5,15,15,60],['ball on a string',0.05,0.5,2,10,0.3,1.5],['train on a curved track',40000,300000,15,40,300,1500],['stone in a sling',0.05,0.3,10,25,0.5,1.2],['child on a roundabout',20,50,1,4,1,3]];
+const BODY=[['the Earth',6.0e24,6.4e6],['the Moon',7.3e22,1.7e6],['Mars',6.42e23,3.39e6],['Jupiter',1.90e27,7.0e7],['the Sun',2.0e30,6.955e8]];
+const OSC=[['mass on a spring',0.01,0.15,2,15],['pendulum bob',0.02,0.3,1,6],['tuning fork prong',1e-4,1e-3,1500,3000],['loudspeaker cone',1e-4,5e-3,200,2000],['car on its suspension',0.01,0.08,4,12]];
+const LAMS=[633,589,532,656,486,450,405];
+
+add({id:'vuat',area:RM,eq:'v = u + at',vars:{v:['v','final velocity','spd'],u:['u','initial velocity','spd'],a:['a','acceleration','acc'],t:['t','time','time']},subj:'v',rearr:['u','a','t'],
+ gen(r,u){const V={},sf={},c={},hide=[];const o=pick(r,OBJ);c.o=o[0];V.a=rl(r,o[5],o[6]);V.t=rl(r,2,20);
+  if(u!=='u'&&r()<0.3){V.u=0;hide.push('u');c.rest=1}else V.u=rl(r,Math.max(0.5,o[3]*0.4),o[4]*0.7);
+  V.v=V.u+V.a*V.t;['v','u','a','t'].forEach(k=>sf[k]=sfp(r));if(u==='u'){sf.v=3;sf.a=3}return{V,sf,c,hide}},
+ solve:{v:V=>V.u+V.a*V.t,u:V=>V.v-V.a*V.t,a:V=>(V.v-V.u)/V.t,t:V=>(V.v-V.u)/V.a},
+ sub:S=>`${S.v} = ${S.u} + (${S.a} × ${S.t})`,
+ q(G,u,c){const o=c.o,A=cap(art(o))+' '+o;
+  if(c.rest){if(u==='v')return`${A} starts from rest and accelerates uniformly at ${G.a} for ${G.t}. Calculate the final velocity of the ${o}.`;if(u==='a')return`${A} accelerates uniformly from rest to ${G.v} in ${G.t}. Calculate the acceleration of the ${o}.`;return`${A} accelerates uniformly from rest to ${G.v} with an acceleration of ${G.a}. Calculate the time taken.`}
+  if(u==='v')return`${A} travelling at ${G.u} accelerates uniformly at ${G.a} for ${G.t}. Calculate the final velocity of the ${o}.`;
+  if(u==='u')return`${A} accelerates uniformly at ${G.a} for ${G.t}, reaching a velocity of ${G.v}. Calculate the initial velocity of the ${o}.`;
+  if(u==='a')return`${A} accelerates uniformly from ${G.u} to ${G.v} in ${G.t}. Calculate the acceleration of the ${o}.`;
+  return`${A} accelerates uniformly from ${G.u} to ${G.v} with an acceleration of ${G.a}. Calculate the time taken.`}});
+
+add({id:'suat',area:RM,eq:'s = ut + ½at<sup>2</sup>',vars:{s:['s','displacement','len'],u:['u','initial velocity','spd'],a:['a','acceleration','acc'],t:['t','time','time']},subj:'s',rearr:['u','a'],
+ gen(r,u){const V={},sf={},c={},hide=[];c.m=u==='s'||u==='a'?pick(r,['obj','obj','drop']):'obj';
+  if(c.m==='drop'){V.u=0;hide.push('u');if(u==='a')V.a=rl(r,1.6,25);else{V.a=9.8;hide.push('a')}V.t=rl(r,0.3,3.5);c.o=pick(r,['stone','ball','coin','key'])}
+  else{const o=pick(r,OBJ);c.o=o[0];V.a=rl(r,o[5],o[6]);V.t=rl(r,2,15);
+   if(u!=='u'&&r()<0.3){V.u=0;hide.push('u');c.rest=1}else V.u=rl(r,Math.max(0.5,o[3]*0.3),o[4]*0.6)}
+  V.s=V.u*V.t+0.5*V.a*V.t*V.t;['s','u','a','t'].forEach(k=>sf[k]=sfp(r));sf.a=c.m==='drop'?2:sf.a;if(u!=='s')sf.s=3;return{V,sf,c,hide}},
+ solve:{s:V=>V.u*V.t+0.5*V.a*V.t*V.t,u:V=>(V.s-0.5*V.a*V.t*V.t)/V.t,a:V=>2*(V.s-V.u*V.t)/(V.t*V.t)},
+ sub:S=>`${S.s} = (${S.u} × ${S.t}) + (½ × ${S.a} × ${S.t}<sup>2</sup>)`,
+ q(G,u,c){const o=c.o,A=cap(art(o))+' '+o;
+  if(c.m==='drop')return u==='s'?`${A} is dropped from rest and falls for ${G.t}. The effects of air resistance can be ignored. Calculate the vertical displacement of the ${o}.`:`On another planet, ${art(o)} ${o} is dropped from rest and falls ${G.s} in ${G.t}. Calculate the acceleration due to gravity on this planet.`;
+  if(c.rest){if(u==='s')return`${A} starts from rest and accelerates uniformly at ${G.a} for ${G.t}. Calculate the displacement of the ${o}.`;return`${A} starts from rest and travels ${G.s} in ${G.t} with uniform acceleration. Calculate the acceleration of the ${o}.`}
+  if(u==='s')return`${A} travelling at ${G.u} accelerates uniformly at ${G.a} for ${G.t}. Calculate the displacement of the ${o} during this time.`;
+  if(u==='u')return`${A} accelerates uniformly at ${G.a} for ${G.t}. It travels ${G.s} in this time. Calculate the initial velocity of the ${o}.`;
+  return`${A} travelling at ${G.u} accelerates uniformly. It travels ${G.s} in ${G.t}. Calculate the acceleration of the ${o}.`}});
+
+add({id:'v2u2',area:RM,eq:'v<sup>2</sup> = u<sup>2</sup> + 2as',vars:{v:['v','final velocity','spd'],u:['u','initial velocity','spd'],a:['a','acceleration','acc'],s:['s','displacement','len']},subj:'v',rearr:['u','a','s'],
+ gen(r,u){const V={},sf={},c={},hide=[];const o=pick(r,OBJ);c.o=o[0];V.a=rl(r,o[5],o[6]);V.s=rl(r,5,300);
+  if(u!=='u'&&r()<0.3){V.u=0;hide.push('u');c.rest=1}else V.u=rl(r,Math.max(0.5,o[3]*0.3),o[4]*0.6);
+  V.v=Math.sqrt(V.u*V.u+2*V.a*V.s);['v','u','a','s'].forEach(k=>sf[k]=sfp(r));if(u==='u'){sf.v=3;sf.a=3;sf.s=3}return{V,sf,c,hide}},
+ solve:{v:V=>Math.sqrt(V.u*V.u+2*V.a*V.s),u:V=>Math.sqrt(V.v*V.v-2*V.a*V.s),a:V=>(V.v*V.v-V.u*V.u)/(2*V.s),s:V=>(V.v*V.v-V.u*V.u)/(2*V.a)},
+ sub:S=>`${S.v}<sup>2</sup> = ${S.u}<sup>2</sup> + (2 × ${S.a} × ${S.s})`,
+ q(G,u,c){const o=c.o,A=cap(art(o))+' '+o;
+  if(c.rest){if(u==='v')return`${A} starts from rest and accelerates uniformly at ${G.a} over a distance of ${G.s}. Calculate its final velocity.`;if(u==='a')return`${A} accelerates uniformly from rest to ${G.v} over a distance of ${G.s}. Calculate the acceleration of the ${o}.`;return`${A} accelerates uniformly from rest to ${G.v} with an acceleration of ${G.a}. Calculate the distance travelled.`}
+  if(u==='v')return`${A} travelling at ${G.u} accelerates uniformly at ${G.a} over a distance of ${G.s}. Calculate its final velocity.`;
+  if(u==='u')return`${A} accelerates uniformly at ${G.a} over a distance of ${G.s}, reaching ${G.v}. Calculate the initial velocity of the ${o}.`;
+  if(u==='a')return`${A} accelerates uniformly from ${G.u} to ${G.v} over a distance of ${G.s}. Calculate the acceleration of the ${o}.`;
+  return`${A} accelerates uniformly from ${G.u} to ${G.v} with an acceleration of ${G.a}. Calculate the distance travelled.`}});
+
+add({id:'wat',area:RM,eq:'ω = ω<sub>0</sub> + αt',vars:{w:['ω','final angular velocity','angv'],w0:['ω<sub>0</sub>','initial angular velocity','angv'],a:['α','angular acceleration','anga'],t:['t','time','time']},subj:'w',rearr:['w0','a','t'],
+ gen(r,u){const V={},sf={},c={},hide=[];const o=pick(r,ROT);c.o=o[0];V.t=rl(r,1.5,20);
+  if(u!=='w0'&&r()<0.3){V.w0=0;hide.push('w0');c.rest=1}else V.w0=rl(r,o[1],o[2]*0.6);
+  V.a=rl(r,o[2]*0.02,o[2]*0.4)/V.t*3;V.w=V.w0+V.a*V.t;['w','w0','a','t'].forEach(k=>sf[k]=sfp(r));if(u==='w0'){sf.w=3;sf.a=3;sf.t=3}return{V,sf,c,hide}},
+ solve:{w:V=>V.w0+V.a*V.t,w0:V=>V.w-V.a*V.t,a:V=>(V.w-V.w0)/V.t,t:V=>(V.w-V.w0)/V.a},
+ sub:S=>`${S.w} = ${S.w0} + (${S.a} × ${S.t})`,
+ q(G,u,c){const o=c.o;
+  if(c.rest){if(u==='w')return`A ${o} starts from rest and has a constant angular acceleration of ${G.a} for ${G.t}. Calculate its final angular velocity.`;if(u==='a')return`A ${o} accelerates uniformly from rest to an angular velocity of ${G.w} in ${G.t}. Calculate its angular acceleration.`;return`A ${o} accelerates uniformly from rest to ${G.w} with an angular acceleration of ${G.a}. Calculate the time taken.`}
+  if(u==='w')return`A ${o} rotating at ${G.w0} has a constant angular acceleration of ${G.a} for ${G.t}. Calculate its final angular velocity.`;
+  if(u==='w0')return`A ${o} has a constant angular acceleration of ${G.a} for ${G.t}, reaching ${G.w}. Calculate its initial angular velocity.`;
+  if(u==='a')return`The angular velocity of a ${o} increases uniformly from ${G.w0} to ${G.w} in ${G.t}. Calculate its angular acceleration.`;
+  return`The angular velocity of a ${o} increases uniformly from ${G.w0} to ${G.w} with an angular acceleration of ${G.a}. Calculate the time taken.`}});
+
+add({id:'thw',area:RM,eq:'θ = ω<sub>0</sub>t + ½αt<sup>2</sup>',vars:{th:['θ','angular displacement','rad'],w0:['ω<sub>0</sub>','initial angular velocity','angv'],a:['α','angular acceleration','anga'],t:['t','time','time']},subj:'th',rearr:['w0','a'],
+ gen(r,u){const V={},sf={},c={},hide=[];const o=pick(r,ROT);c.o=o[0];V.t=rl(r,1.5,15);
+  if(u!=='w0'&&r()<0.3){V.w0=0;hide.push('w0');c.rest=1}else V.w0=rl(r,o[1],o[2]*0.6);
+  V.a=rl(r,o[2]*0.02,o[2]*0.3)/V.t*3;V.th=V.w0*V.t+0.5*V.a*V.t*V.t;['th','w0','a','t'].forEach(k=>sf[k]=sfp(r));if(u!=='th')sf.th=3;return{V,sf,c,hide}},
+ solve:{th:V=>V.w0*V.t+0.5*V.a*V.t*V.t,w0:V=>(V.th-0.5*V.a*V.t*V.t)/V.t,a:V=>2*(V.th-V.w0*V.t)/(V.t*V.t)},
+ sub:S=>`${S.th} = (${S.w0} × ${S.t}) + (½ × ${S.a} × ${S.t}<sup>2</sup>)`,
+ q(G,u,c){const o=c.o;
+  if(c.rest)return u==='th'?`A ${o} starts from rest and has a constant angular acceleration of ${G.a} for ${G.t}. Calculate the angular displacement in this time.`:`A ${o} starts from rest and turns through ${G.th} in ${G.t} with constant angular acceleration. Calculate the angular acceleration.`;
+  if(u==='th')return`A ${o} rotating at ${G.w0} has a constant angular acceleration of ${G.a} for ${G.t}. Calculate the angular displacement in this time.`;
+  if(u==='w0')return`A ${o} has a constant angular acceleration of ${G.a}. It turns through ${G.th} in ${G.t}. Calculate its initial angular velocity.`;
+  return`A ${o} rotating at ${G.w0} accelerates uniformly and turns through ${G.th} in ${G.t}. Calculate its angular acceleration.`}});
+
+add({id:'w2',area:RM,eq:'ω<sup>2</sup> = ω<sub>0</sub><sup>2</sup> + 2αθ',vars:{w:['ω','final angular velocity','angv'],w0:['ω<sub>0</sub>','initial angular velocity','angv'],a:['α','angular acceleration','anga'],th:['θ','angular displacement','rad']},subj:'w',rearr:['w0','a','th'],
+ gen(r,u){const V={},sf={},c={},hide=[];const o=pick(r,ROT);c.o=o[0];V.a=rl(r,o[2]*0.01,o[2]*0.2);V.th=rl(r,5,400);
+  if(u!=='w0'&&r()<0.3){V.w0=0;hide.push('w0');c.rest=1}else V.w0=rl(r,o[1],o[2]*0.6);
+  if(u==='w0')V.th=Math.min(V.th,V.w0*V.w0/V.a);
+  V.w=Math.sqrt(V.w0*V.w0+2*V.a*V.th);['w','w0','a','th'].forEach(k=>sf[k]=sfp(r));if(u==='w0'){sf.w=3;sf.a=3;sf.th=3}return{V,sf,c,hide}},
+ solve:{w:V=>Math.sqrt(V.w0*V.w0+2*V.a*V.th),w0:V=>Math.sqrt(V.w*V.w-2*V.a*V.th),a:V=>(V.w*V.w-V.w0*V.w0)/(2*V.th),th:V=>(V.w*V.w-V.w0*V.w0)/(2*V.a)},
+ sub:S=>`${S.w}<sup>2</sup> = ${S.w0}<sup>2</sup> + (2 × ${S.a} × ${S.th})`,
+ q(G,u,c){const o=c.o;
+  if(c.rest){if(u==='w')return`A ${o} starts from rest with a constant angular acceleration of ${G.a}. Calculate its angular velocity after it has turned through ${G.th}.`;if(u==='a')return`A ${o} accelerates uniformly from rest to ${G.w} while turning through ${G.th}. Calculate its angular acceleration.`;return`A ${o} accelerates uniformly from rest to ${G.w} with an angular acceleration of ${G.a}. Calculate the angular displacement.`}
+  if(u==='w')return`A ${o} rotating at ${G.w0} has a constant angular acceleration of ${G.a}. Calculate its angular velocity after it has turned through ${G.th}.`;
+  if(u==='w0')return`A ${o} has a constant angular acceleration of ${G.a}. After turning through ${G.th} its angular velocity is ${G.w}. Calculate its initial angular velocity.`;
+  if(u==='a')return`The angular velocity of a ${o} increases uniformly from ${G.w0} to ${G.w} while it turns through ${G.th}. Calculate its angular acceleration.`;
+  return`The angular velocity of a ${o} increases uniformly from ${G.w0} to ${G.w} with an angular acceleration of ${G.a}. Calculate the angular displacement.`}});
+
+add({id:'vrw',area:RM,eq:'v = rω',vars:{v:['v','tangential speed','spd'],r:['r','radius','len'],w:['ω','angular velocity','angv']},subj:'v',rearr:['r','w'],
+ gen(r){const V={},sf={},c={};const o=pick(r,[['point on the rim of a wheel',0.2,0.8,5,60],['child on a roundabout',0.8,3,0.5,3],['satellite in orbit',6.6e6,4.2e7,7e-5,1.2e-3],['point on a CD',0.02,0.06,20,55],['tip of a wind turbine blade',20,60,0.5,3]]);c.o=o[0];V.r=rl(r,o[1],o[2]);V.w=rl(r,o[3],o[4]);V.v=V.r*V.w;['v','r','w'].forEach(k=>sf[k]=sfp(r));return{V,sf,c}},
+ solve:{v:V=>V.r*V.w,r:V=>V.v/V.w,w:V=>V.v/V.r},
+ sub:S=>`${S.v} = ${S.r} × ${S.w}`,
+ q(G,u,c){const o=c.o;if(u==='v')return`A ${o} moves in a circle of radius ${G.r} with an angular velocity of ${G.w}. Calculate its tangential speed.`;
+  if(u==='r')return`A ${o} moves in a circle with an angular velocity of ${G.w} and a tangential speed of ${G.v}. Calculate the radius of the circle.`;
+  return`A ${o} moves in a circle of radius ${G.r} with a tangential speed of ${G.v}. Calculate its angular velocity.`}});
+
+add({id:'fcv',area:RM,eq:`F = ${frac('mv<sup>2</sup>','r')}`,vars:{F:['F','central force','force'],m:['m','mass','mass'],v:['v','speed','spd'],r:['r','radius','len']},subj:'F',rearr:['m','v','r'],
+ gen(r){const V={},sf={},c={};const o=pick(r,CIRC);c.o=o[0];V.m=rl(r,o[1],o[2]);V.v=rl(r,o[3],o[4]);V.r=rl(r,o[5],o[6]);V.F=V.m*V.v*V.v/V.r;['F','m','v','r'].forEach(k=>sf[k]=sfp(r));return{V,sf,c}},
+ solve:{F:V=>V.m*V.v*V.v/V.r,m:V=>V.F*V.r/(V.v*V.v),v:V=>Math.sqrt(V.F*V.r/V.m),r:V=>V.m*V.v*V.v/V.F},
+ sub:S=>`${S.F} = ${frac(S.m+' × '+S.v+'<sup>2</sup>',S.r)}`,
+ q(G,u,c){const o=c.o.split(' ')[0],w=c.o;
+  if(u==='F')return`A ${w}: the mass is ${G.m}, the speed is ${G.v} and the radius of the circular path is ${G.r}. Calculate the central force needed.`;
+  if(u==='m')return`A ${w}: the speed is ${G.v}, the radius of the circular path is ${G.r} and the central force is ${G.F}. Calculate the mass.`;
+  if(u==='v')return`A ${w}: the mass is ${G.m}, the radius of the circular path is ${G.r} and the central force is ${G.F}. Calculate the speed.`;
+  return`A ${w}: the mass is ${G.m}, the speed is ${G.v} and the central force is ${G.F}. Calculate the radius of the circular path.`}});
+
+add({id:'fmrw',area:RM,eq:'F = mrω<sup>2</sup>',vars:{F:['F','central force','force'],m:['m','mass','mass'],r:['r','radius','len'],w:['ω','angular velocity','angv']},subj:'F',rearr:['m','r','w'],
+ gen(r){const V={},sf={},c={};const o=pick(r,[['sample in a centrifuge',0.002,0.05,0.05,0.15,100,600],['ball on a string',0.05,0.5,0.3,1.5,2,12],['passenger on a fairground ride',50,100,3,10,0.5,2],['coin on a turntable',0.003,0.01,0.05,0.15,2,6]]);c.o=o[0];V.m=rl(r,o[1],o[2]);V.r=rl(r,o[3],o[4]);V.w=rl(r,o[5],o[6]);V.F=V.m*V.r*V.w*V.w;['F','m','r','w'].forEach(k=>sf[k]=sfp(r));return{V,sf,c}},
+ solve:{F:V=>V.m*V.r*V.w*V.w,m:V=>V.F/(V.r*V.w*V.w),r:V=>V.F/(V.m*V.w*V.w),w:V=>Math.sqrt(V.F/(V.m*V.r))},
+ sub:S=>`${S.F} = ${S.m} × ${S.r} × ${S.w}<sup>2</sup>`,
+ q(G,u,c){const w=c.o;
+  if(u==='F')return`For a ${w}: mass ${G.m}, radius ${G.r}, angular velocity ${G.w}. Calculate the central force.`;
+  if(u==='m')return`For a ${w}: radius ${G.r}, angular velocity ${G.w}, central force ${G.F}. Calculate the mass.`;
+  if(u==='r')return`For a ${w}: mass ${G.m}, angular velocity ${G.w}, central force ${G.F}. Calculate the radius of the circular path.`;
+  return`For a ${w}: mass ${G.m}, radius ${G.r}, central force ${G.F}. Calculate the angular velocity.`}});
+
+add({id:'tfr',area:RM,eq:'T = Fr',vars:{T:['T','torque','torq'],F:['F','force','force'],r:['r','perpendicular distance from the axis','len']},subj:'T',rearr:['F','r'],
+ gen(r){const V={},sf={},c={};const o=pick(r,[['spanner',20,300,0.1,0.4],['door handle',5,40,0.6,0.9],['bicycle pedal',100,600,0.15,0.18],['steering wheel',10,60,0.15,0.2],['cord wound round a pulley',2,20,0.005,0.05]]);c.o=o[0];V.F=rl(r,o[1],o[2]);V.r=rl(r,o[3],o[4]);V.T=V.F*V.r;['T','F','r'].forEach(k=>sf[k]=sfp(r));return{V,sf,c}},
+ solve:{T:V=>V.F*V.r,F:V=>V.T/V.r,r:V=>V.T/V.F},
+ sub:S=>`${S.T} = ${S.F} × ${S.r}`,
+ q(G,u,c){const o=c.o;if(u==='T')return`A force of ${G.F} is applied at right angles to a ${o}, ${G.r} from the axis of rotation. Calculate the torque.`;
+  if(u==='F')return`A torque of ${G.T} is produced by a force applied at right angles to a ${o}, ${G.r} from the axis. Calculate the force.`;
+  return`A force of ${G.F} applied at right angles to a ${o} produces a torque of ${G.T}. Calculate the perpendicular distance from the axis.`}});
+
+add({id:'tia',area:RM,eq:'T = Iα',vars:{T:['T','unbalanced torque','torq'],I:['I','moment of inertia','mi'],a:['α','angular acceleration','anga']},subj:'T',rearr:['I','a'],
+ gen(r){const V={},sf={},c={};const o=pick(r,[['flywheel',2,50,0.5,8],['turntable',0.01,0.2,0.5,5],['wheel',0.05,2,1,15],['wind turbine rotor',1e6,6e7,0.002,0.05],['disc',0.005,0.1,1,20]]);c.o=o[0];V.I=rl(r,o[1],o[2]);V.a=rl(r,o[3],o[4]);V.T=V.I*V.a;['T','I','a'].forEach(k=>sf[k]=sfp(r));return{V,sf,c}},
+ solve:{T:V=>V.I*V.a,I:V=>V.T/V.a,a:V=>V.T/V.I},
+ sub:S=>`${S.T} = ${S.I} × ${S.a}`,
+ q(G,u,c){const o=c.o;if(u==='T')return`A ${o} has a moment of inertia of ${G.I}. Calculate the unbalanced torque needed to give it an angular acceleration of ${G.a}.`;
+  if(u==='I')return`An unbalanced torque of ${G.T} gives a ${o} an angular acceleration of ${G.a}. Calculate its moment of inertia.`;
+  return`An unbalanced torque of ${G.T} acts on a ${o} with a moment of inertia of ${G.I}. Calculate its angular acceleration.`}});
+
+add({id:'liw',area:RM,eq:'L = Iω',vars:{L:['L','angular momentum','angm'],I:['I','moment of inertia','mi'],w:['ω','angular velocity','angv']},subj:'L',rearr:['I','w'],
+ gen(r){const V={},sf={},c={};const o=pick(r,[['ice skater',1,5,3,30],['turntable',0.01,0.2,2,8],['flywheel',2,50,10,200],['spinning top',1e-5,1e-4,30,200],['diver',5,15,2,12]]);c.o=o[0];V.I=rl(r,o[1],o[2]);V.w=rl(r,o[3],o[4]);V.L=V.I*V.w;['L','I','w'].forEach(k=>sf[k]=sfp(r));return{V,sf,c}},
+ solve:{L:V=>V.I*V.w,I:V=>V.L/V.w,w:V=>V.L/V.I},
+ sub:S=>`${S.L} = ${S.I} × ${S.w}`,
+ q(G,u,c){const o=c.o;if(u==='L')return`A ${o} has a moment of inertia of ${G.I} and rotates at ${G.w}. Calculate its angular momentum.`;
+  if(u==='I')return`A ${o} rotating at ${G.w} has an angular momentum of ${G.L}. Calculate its moment of inertia.`;
+  return`A ${o} with a moment of inertia of ${G.I} has an angular momentum of ${G.L}. Calculate its angular velocity.`}});
+
+add({id:'erot',area:RM,eq:'E<sub>k</sub> = ½Iω<sup>2</sup>',vars:{E:['E<sub>k</sub>','rotational kinetic energy','energy'],I:['I','moment of inertia','mi'],w:['ω','angular velocity','angv']},subj:'E',rearr:['I','w'],
+ gen(r){const V={},sf={},c={};const o=pick(r,[['flywheel',2,50,10,200],['turntable',0.01,0.2,2,8],['wheel',0.05,2,5,60],['wind turbine rotor',1e6,6e7,0.5,3],['disc',0.005,0.1,5,60]]);c.o=o[0];V.I=rl(r,o[1],o[2]);V.w=rl(r,o[3],o[4]);V.E=0.5*V.I*V.w*V.w;['E','I','w'].forEach(k=>sf[k]=sfp(r));return{V,sf,c}},
+ solve:{E:V=>0.5*V.I*V.w*V.w,I:V=>2*V.E/(V.w*V.w),w:V=>Math.sqrt(2*V.E/V.I)},
+ sub:S=>`${S.E} = ½ × ${S.I} × ${S.w}<sup>2</sup>`,
+ q(G,u,c){const o=c.o;if(u==='E')return`A ${o} with a moment of inertia of ${G.I} rotates at ${G.w}. Calculate its rotational kinetic energy.`;
+  if(u==='I')return`A ${o} rotating at ${G.w} has ${G.E} of rotational kinetic energy. Calculate its moment of inertia.`;
+  return`A ${o} with a moment of inertia of ${G.I} has ${G.E} of rotational kinetic energy. Calculate its angular velocity.`}});
+
+add({id:'grav',area:RM,eq:`F = G${frac('m<sub>1</sub>m<sub>2</sub>','r<sup>2</sup>')}`,vars:{F:['F','gravitational force','force'],G:['G','Universal Constant of Gravitation','none'],m1:['m<sub>1</sub>','mass','mass'],m2:['m<sub>2</sub>','mass','mass'],r:['r','distance between centres','len']},subj:'F',rearr:['m2','r'],
+ gen(r,u){const V={},sf={},c={},hide=['G'];V.G=GC;sf.G=3;c.m=pick(r,['orbit','orbit','lab']);
+  if(c.m==='orbit'){const p=pick(r,ORB);c.p=p[0];V.m1=p[1];V.m2=rl(r,200,9000);V.r=rl(r,p[2],p[3]);c.o=pick(r,['satellite','space probe','space station module'])}
+  else{V.m1=rl(r,20,200);V.m2=rl(r,0.5,10);V.r=rl(r,0.08,1.5)}
+  V.F=GC*V.m1*V.m2/(V.r*V.r);['F','m1','m2','r'].forEach(k=>sf[k]=sfp(r));sf.m1=3;return{V,sf,c,hide,fix:['G']}},
+ solve:{F:V=>V.G*V.m1*V.m2/(V.r*V.r),m2:V=>V.F*V.r*V.r/(V.G*V.m1),r:V=>Math.sqrt(V.G*V.m1*V.m2/V.F)},
+ sub:S=>`${S.F} = ${S.G} × ${frac(S.m1+' × '+S.m2,S.r+'<sup>2</sup>')}`,
+ q(G,u,c){if(c.m==='orbit'){const o=c.o;
+   if(u==='F')return`A ${o} of mass ${G.m2} orbits ${c.p}. The mass of ${c.p} is ${G.m1}. The distance between their centres is ${G.r}. Calculate the gravitational force between ${c.p} and the ${o}.`;
+   if(u==='m2')return`A ${o} orbits ${c.p} at a distance of ${G.r} from its centre. The mass of ${c.p} is ${G.m1}. The gravitational force on the ${o} is ${G.F}. Calculate the mass of the ${o}.`;
+   return`A ${o} of mass ${G.m2} orbits ${c.p}. The mass of ${c.p} is ${G.m1}. The gravitational force on the ${o} is ${G.F}. Calculate the distance between the centres of ${c.p} and the ${o}.`}
+  if(u==='F')return`In a laboratory, a lead sphere of mass ${G.m1} is placed so that its centre is ${G.r} from the centre of a small sphere of mass ${G.m2}. Calculate the gravitational force between the spheres.`;
+  if(u==='m2')return`In a laboratory, a lead sphere of mass ${G.m1} attracts a small sphere with a gravitational force of ${G.F}. Their centres are ${G.r} apart. Calculate the mass of the small sphere.`;
+  return`In a laboratory, a lead sphere of mass ${G.m1} attracts a small sphere of mass ${G.m2} with a gravitational force of ${G.F}. Calculate the distance between their centres.`}});
+
+add({id:'gpot',area:RM,eq:`V = −${frac('GM','r')}`,vars:{V:['V','gravitational potential','gpot'],G:['G','Universal Constant of Gravitation','none'],M:['M','mass','mass'],r:['r','distance from the centre','len']},subj:'V',rearr:['M','r'],
+ gen(r){const V={},sf={},c={},hide=['G'];V.G=GC;sf.G=3;const b=pick(r,BODY);c.b=b[0];V.M=b[1];V.r=b[2]*rl(r,1,8);V.V=-GC*V.M/V.r;sf.M=2;sf.r=sfp(r);sf.V=3;return{V,sf,c,hide,fix:['G']}},
+ solve:{V:V=>-V.G*V.M/V.r,M:V=>-V.V*V.r/V.G,r:V=>-V.G*V.M/V.V},
+ sub:S=>`${S.V} = −${frac(S.G+' × '+S.M,S.r)}`,
+ q(G,u,c){const b=c.b;if(u==='V')return`The mass of ${b} is ${G.M}. Calculate the gravitational potential at a distance of ${G.r} from its centre.`;
+  if(u==='M')return`The gravitational potential at a distance of ${G.r} from the centre of a planet is ${G.V}. Calculate the mass of the planet.`;
+  return`The mass of ${b} is ${G.M}. Calculate the distance from its centre where the gravitational potential is ${G.V}.`}});
+
+add({id:'vesc',area:RM,eq:'v = √(2GM/r)',vars:{v:['v','escape velocity','spd'],G:['G','Universal Constant of Gravitation','none'],M:['M','mass','mass'],r:['r','radius','len']},subj:'v',rearr:['M','r'],
+ gen(r){const V={},sf={},c={},hide=['G'];V.G=GC;sf.G=3;const b=pick(r,BODY);c.b=b[0];V.M=b[1]*rl(r,0.5,2);V.r=b[2]*rl(r,0.6,1.6);V.v=Math.sqrt(2*GC*V.M/V.r);sf.M=sfp(r);sf.r=sfp(r);sf.v=3;return{V,sf,c,hide,fix:['G']}},
+ solve:{v:V=>Math.sqrt(2*V.G*V.M/V.r),M:V=>V.v*V.v*V.r/(2*V.G),r:V=>2*V.G*V.M/(V.v*V.v)},
+ sub:S=>`${S.v} = √(${frac('2 × '+S.G+' × '+S.M,S.r)})`,
+ q(G,u){if(u==='v')return`A planet has a mass of ${G.M} and a radius of ${G.r}. Calculate the escape velocity from its surface.`;
+  if(u==='M')return`A planet has a radius of ${G.r}. The escape velocity from its surface is ${G.v}. Calculate the mass of the planet.`;
+  return`A planet has a mass of ${G.M}. The escape velocity from its surface is ${G.v}. Calculate the radius of the planet.`}});
+
+add({id:'rsch',area:RM,eq:`r<sub>Schwarzschild</sub> = ${frac('2GM','c<sup>2</sup>')}`,vars:{rs:['r<sub>Schwarzschild</sub>','Schwarzschild radius','len'],G:['G','Universal Constant of Gravitation','none'],M:['M','mass','mass'],c:['c','speed of light','spd']},subj:'rs',rearr:['M'],
+ gen(r){const V={},sf={},c={},hide=['G','c'];V.G=GC;sf.G=3;V.c=CL;sf.c=3;c.k=pick(r,['star','black hole','galaxy core']);V.M=c.k==='galaxy core'?rl(r,1e35,1e40):rl(r,4e30,6e31);V.rs=2*GC*V.M/(CL*CL);sf.M=sfp(r);sf.rs=sfp(r);return{V,sf,c,hide,fix:['G','c']}},
+ solve:{rs:V=>2*V.G*V.M/(V.c*V.c),M:V=>V.rs*V.c*V.c/(2*V.G)},
+ sub:S=>`${S.rs} = ${frac('2 × '+S.G+' × '+S.M,'('+S.c+')<sup>2</sup>')}`,
+ q(G,u,c){return u==='rs'?`A ${c.k==='star'?'collapsing star':c.k} has a mass of ${G.M}. Calculate its Schwarzschild radius.`:`A black hole has a Schwarzschild radius of ${G.rs}. Calculate its mass.`}});
+
+add({id:'bri',area:RM,eq:`b = ${frac('L','4πd<sup>2</sup>')}`,vars:{b:['b','apparent brightness','irr'],L:['L','luminosity','power'],d:['d','distance','len']},subj:'b',rearr:['L','d'],
+ gen(r){const V={},sf={},c={};V.L=rl(r,1e25,1e31);V.d=rl(r,4e16,5e18);V.b=V.L/(4*Math.PI*V.d*V.d);['b','L','d'].forEach(k=>sf[k]=sfp(r));return{V,sf,c:{s:pick(r,['A star','A distant star','A red giant','A main sequence star'])}}},
+ solve:{b:V=>V.L/(4*Math.PI*V.d*V.d),L:V=>V.b*4*Math.PI*V.d*V.d,d:V=>Math.sqrt(V.L/(4*Math.PI*V.b))},
+ sub:S=>`${S.b} = ${frac(S.L,'4π × ('+S.d+')<sup>2</sup>')}`,
+ q(G,u,c){const s=c.s;if(u==='b')return`${s} has a luminosity of ${G.L} and is ${G.d} from the Earth. Calculate its apparent brightness at the Earth.`;
+  if(u==='L')return`${s} is ${G.d} from the Earth and has an apparent brightness of ${G.b}. Calculate its luminosity.`;
+  return`${s} has a luminosity of ${G.L} and an apparent brightness at the Earth of ${G.b}. Calculate its distance from the Earth.`}});
+
+add({id:'lum',area:RM,eq:'L = 4πr<sup>2</sup>σT<sup>4</sup>',vars:{L:['L','luminosity','power'],r:['r','radius','len'],sig:['σ','Stefan-Boltzmann constant','none'],T:['T','surface temperature','temp']},subj:'L',rearr:['r','T'],
+ gen(r){const V={},sf={},c={},hide=['sig'];V.sig=SIG;sf.sig=3;V.r=rl(r,1e8,5e10);V.T=rl(r,2800,25000);V.L=4*Math.PI*V.r*V.r*SIG*Math.pow(V.T,4);sf.r=sfp(r);sf.T=sfp(r);sf.L=sfp(r);return{V,sf,c:{s:pick(r,['A star','A red giant','A main sequence star','A white dwarf'])},hide,fix:['sig','T']}},
+ solve:{L:V=>4*Math.PI*V.r*V.r*V.sig*Math.pow(V.T,4),r:V=>Math.sqrt(V.L/(4*Math.PI*V.sig*Math.pow(V.T,4))),T:V=>Math.pow(V.L/(4*Math.PI*V.r*V.r*V.sig),0.25)},
+ sub:S=>`${S.L} = 4π × (${S.r})<sup>2</sup> × ${S.sig} × ${S.T}<sup>4</sup>`,
+ q(G,u,c){const s=c.s;if(u==='L')return`${s} has a radius of ${G.r} and a surface temperature of ${G.T}. Calculate its luminosity.`;
+  if(u==='r')return`${s} has a luminosity of ${G.L} and a surface temperature of ${G.T}. Calculate its radius.`;
+  return`${s} has a luminosity of ${G.L} and a radius of ${G.r}. Calculate its surface temperature.`}});
+
+add({id:'ehf',area:QW,eq:'E = hf',vars:{E:['E','energy of a photon','energy'],h:['h','Planck’s constant','none'],f:['f','frequency','freq']},subj:'E',rearr:['f'],
+ gen(r){const V={},sf={},c={},hide=['h'];V.h=HP;sf.h=3;c.k=pick(r,['visible light','ultraviolet radiation','X-rays','infrared radiation','microwaves']);
+  V.f={'visible light':rl(r,4.3e14,7.4e14),'ultraviolet radiation':rl(r,8e14,2e16),'X-rays':rl(r,3e16,3e18),'infrared radiation':rl(r,4e12,3.9e14),'microwaves':rl(r,1.2e9,2.5e11)}[c.k];V.E=HP*V.f;sf.f=sfp(r);sf.E=sfp(r);return{V,sf,c,hide,fix:['h']}},
+ solve:{E:V=>V.h*V.f,f:V=>V.E/V.h},
+ sub:S=>`${S.E} = ${S.h} × ${S.f}`,
+ q(G,u,c){return u==='E'?`A source emits ${c.k} of frequency ${G.f}. Calculate the energy of one photon of this radiation.`:`Each photon of ${c.k} from a source has an energy of ${G.E}. Calculate the frequency of the radiation.`}});
+
+add({id:'dbl',area:QW,eq:`λ = ${frac('h','p')}`,vars:{lam:['λ','de Broglie wavelength','len'],h:['h','Planck’s constant','none'],p:['p','momentum','mom']},subj:'lam',rearr:['p'],
+ gen(r){const V={},sf={},c={},hide=['h'];V.h=HP;sf.h=3;const k=pick(r,[['electron',ME,1e5,5e7],['proton',1.673e-27,1e3,5e6],['neutron',1.675e-27,500,5e5]]);c.k=k[0];V.p=k[1]*rl(r,k[2],k[3]);V.lam=HP/V.p;sf.p=sfp(r);sf.lam=sfp(r);return{V,sf,c,hide,fix:['h']}},
+ solve:{lam:V=>V.h/V.p,p:V=>V.h/V.lam},
+ sub:S=>`${S.lam} = ${frac(S.h,S.p)}`,
+ q(G,u,c){return u==='lam'?`${c.k==='electron'?'An electron':'A '+c.k} has a momentum of ${G.p}. Calculate its de Broglie wavelength.`:`A particle has a de Broglie wavelength of ${G.lam}. Calculate its momentum.`}});
+
+add({id:'bohr',area:QW,eq:`mvr = ${frac('nh','2π')}`,vars:{v:['v','speed of the electron','spd'],m:['m','mass of an electron','mass'],r:['r','orbit radius','len'],n:['n','quantum number','none'],h:['h','Planck’s constant','none']},subj:'v',rearr:['r'],
+ gen(r){const V={},sf={},c={},hide=['m','h'];V.m=ME;sf.m=3;V.h=HP;sf.h=3;V.n=pick(r,[1,2,3,4]);V.r=5.3e-11*V.n*V.n*rl(r,0.97,1.03);V.v=V.n*HP/(2*Math.PI*ME*V.r);sf.n=1;sf.r=3;sf.v=3;return{V,sf,c,hide,exact:['n'],fix:['m','h','n']}},
+ solve:{v:V=>V.n*V.h/(2*Math.PI*V.m*V.r),r:V=>V.n*V.h/(2*Math.PI*V.m*V.v)},
+ sub:S=>`${S.m} × ${S.v} × ${S.r} = ${frac(S.n+' × '+S.h,'2π')}`,
+ q(G,u){return u==='v'?`In the Bohr model, an electron in a hydrogen atom is in the energy level with n = ${G.n}. The radius of its orbit is ${G.r}. Calculate the speed of the electron.`:`In the Bohr model, an electron in a hydrogen atom is in the energy level with n = ${G.n}. Its speed is ${G.v}. Calculate the radius of its orbit.`}});
+
+add({id:'uxp',area:QW,eq:`Δx Δp<sub>x</sub> ≥ ${frac('h','4π')}`,vars:{dp:['Δp<sub>x</sub>','minimum uncertainty in momentum','mom'],dx:['Δx','uncertainty in position','len'],h:['h','Planck’s constant','none']},subj:'dp',rearr:['dx'],
+ gen(r){const V={},sf={},c={},hide=['h'];V.h=HP;sf.h=3;V.dx=rl(r,1e-15,5e-9);V.dp=HP/(4*Math.PI*V.dx);sf.dx=sfp(r);sf.dp=sfp(r);return{V,sf,c:{k:pick(r,['an electron','a proton','a neutron'])},hide,fix:['h']}},
+ solve:{dp:V=>V.h/(4*Math.PI*V.dx),dx:V=>V.h/(4*Math.PI*V.dp)},
+ sub:S=>`${S.dx} × ${S.dp} = ${frac(S.h,'4π')}`,
+ q(G,u,c){return u==='dp'?`The position of ${c.k} is known to within ${G.dx}. Calculate the minimum uncertainty in its momentum.`:`The uncertainty in the momentum of ${c.k} is ${G.dp}. Calculate the minimum uncertainty in its position.`}});
+
+add({id:'uet',area:QW,eq:`ΔE Δt ≥ ${frac('h','4π')}`,vars:{dE:['ΔE','minimum uncertainty in energy','energy'],dt:['Δt','uncertainty in time','time'],h:['h','Planck’s constant','none']},subj:'dE',rearr:['dt'],
+ gen(r){const V={},sf={},c={},hide=['h'];V.h=HP;sf.h=3;V.dt=rl(r,1e-24,1e-8);V.dE=HP/(4*Math.PI*V.dt);sf.dt=sfp(r);sf.dE=sfp(r);return{V,sf,c:{},hide,fix:['h']}},
+ solve:{dE:V=>V.h/(4*Math.PI*V.dt),dt:V=>V.h/(4*Math.PI*V.dE)},
+ sub:S=>`${S.dE} × ${S.dt} = ${frac(S.h,'4π')}`,
+ q(G,u){return u==='dE'?`An excited state of a particle lasts for ${G.dt}. Calculate the minimum uncertainty in its energy.`:`The uncertainty in the energy of an excited state is ${G.dE}. Calculate the minimum uncertainty in its lifetime.`}});
+
+add({id:'fqvb',area:QW,eq:'F = qvB',vars:{F:['F','magnetic force','force'],q:['q','charge','charge'],v:['v','speed','spd'],B:['B','magnetic induction','magb']},subj:'F',rearr:['v','B'],
+ gen(r){const V={},sf={},c={},hide=['q'];const k=pick(r,[['an electron',QE],['a proton',QE],['an alpha particle',3.2e-19]]);c.k=k[0];V.q=k[1];sf.q=2;V.v=rl(r,1e5,3e7);V.B=rl(r,1e-5,1.5);V.F=V.q*V.v*V.B;['F','v','B'].forEach(k=>sf[k]=sfp(r));return{V,sf,c,hide,fix:['q']}},
+ solve:{F:V=>V.q*V.v*V.B,v:V=>V.F/(V.q*V.B),B:V=>V.F/(V.q*V.v)},
+ sub:S=>`${S.F} = ${S.q} × ${S.v} × ${S.B}`,
+ q(G,u,c){const k=cap(c.k);if(u==='F')return`${k} moves at ${G.v} at right angles to a magnetic field of magnetic induction ${G.B}. Calculate the magnetic force on it.`;
+  if(u==='v')return`${k} moving at right angles to a magnetic field of magnetic induction ${G.B} experiences a force of ${G.F}. Calculate its speed.`;
+  return`${k} moving at ${G.v} at right angles to a magnetic field experiences a force of ${G.F}. Calculate the magnetic induction.`}});
+
+add({id:'w2pf',area:QW,eq:'ω = 2πf',vars:{w:['ω','angular frequency','angv'],f:['f','frequency','freq']},subj:'w',rearr:['f'],
+ gen(r){const V={},sf={};const o=pick(r,[['A mass on a spring',0.5,5],['A pendulum',0.2,2],['A vibrating tuning fork',250,1000],['A loudspeaker cone',50,5000],['A guitar string',80,1000]]);V.f=rl(r,o[1],o[2]);V.w=2*Math.PI*V.f;sf.f=sfp(r);sf.w=sfp(r);return{V,sf,c:{o:o[0]}}},
+ solve:{w:V=>2*Math.PI*V.f,f:V=>V.w/(2*Math.PI)},
+ sub:S=>`${S.w} = 2π × ${S.f}`,
+ q(G,u,c){return u==='w'?`${c.o} oscillates with a frequency of ${G.f}. Calculate the angular frequency.`:`${c.o} oscillates with an angular frequency of ${G.w}. Calculate the frequency.`}});
+
+add({id:'shma',area:QW,eq:'a = −ω<sup>2</sup>y',vars:{a:['a','size of the acceleration','acc'],w:['ω','angular frequency','angv'],y:['y','displacement','len']},subj:'a',rearr:['w','y'],
+ gen(r){const V={},sf={},c={};const o=pick(r,OSC);c.o=o[0];V.y=rl(r,o[1],o[2]);V.w=rl(r,o[3],o[4]);V.a=V.w*V.w*V.y;['a','w','y'].forEach(k=>sf[k]=sfp(r));return{V,sf,c}},
+ solve:{a:V=>V.w*V.w*V.y,w:V=>Math.sqrt(V.a/V.y),y:V=>V.a/(V.w*V.w)},
+ sub:S=>`${S.a} = ${S.w}<sup>2</sup> × ${S.y}`,
+ q(G,u,c){const o=c.o;if(u==='a')return`A ${o} moves with simple harmonic motion with an angular frequency of ${G.w}. Calculate the size of its acceleration when its displacement is ${G.y}.`;
+  if(u==='w')return`A ${o} moves with simple harmonic motion. When its displacement is ${G.y}, the size of its acceleration is ${G.a}. Calculate the angular frequency.`;
+  return`A ${o} moves with simple harmonic motion with an angular frequency of ${G.w}. Calculate the displacement when the size of its acceleration is ${G.a}.`}});
+
+add({id:'shmv',area:QW,eq:'v = ±ω√(A<sup>2</sup> − y<sup>2</sup>)',vars:{v:['v','speed','spd'],w:['ω','angular frequency','angv'],A:['A','amplitude','len'],y:['y','displacement','len']},subj:'v',rearr:['A','y'],
+ gen(r){const V={},sf={},c={};const o=pick(r,OSC);c.o=o[0];V.A=rl(r,o[1],o[2]);V.y=V.A*rl(r,0.1,0.85);V.w=rl(r,o[3],o[4]);V.v=V.w*Math.sqrt(V.A*V.A-V.y*V.y);['v','w','A','y'].forEach(k=>sf[k]=3);return{V,sf,c}},
+ solve:{v:V=>V.w*Math.sqrt(V.A*V.A-V.y*V.y),A:V=>Math.sqrt(V.y*V.y+V.v*V.v/(V.w*V.w)),y:V=>Math.sqrt(V.A*V.A-V.v*V.v/(V.w*V.w))},
+ sub:S=>`${S.v} = ${S.w} × √(${S.A}<sup>2</sup> − ${S.y}<sup>2</sup>)`,
+ q(G,u,c){const o=c.o;if(u==='v')return`A ${o} oscillates with simple harmonic motion with an amplitude of ${G.A} and an angular frequency of ${G.w}. Calculate its speed when its displacement is ${G.y}.`;
+  if(u==='A')return`A ${o} oscillates with simple harmonic motion with an angular frequency of ${G.w}. When its displacement is ${G.y}, its speed is ${G.v}. Calculate the amplitude.`;
+  return`A ${o} oscillates with simple harmonic motion with an amplitude of ${G.A} and an angular frequency of ${G.w}. Calculate its displacement when its speed is ${G.v}.`}});
+
+add({id:'shmek',area:QW,eq:'E<sub>k</sub> = ½mω<sup>2</sup>(A<sup>2</sup> − y<sup>2</sup>)',vars:{E:['E<sub>k</sub>','kinetic energy','energy'],m:['m','mass','mass'],w:['ω','angular frequency','angv'],A:['A','amplitude','len'],y:['y','displacement','len']},subj:'E',rearr:['m'],
+ gen(r){const V={},sf={},c={};V.m=rl(r,0.05,2);V.A=rl(r,0.02,0.2);V.y=V.A*rl(r,0.1,0.85);V.w=rl(r,2,20);V.E=0.5*V.m*V.w*V.w*(V.A*V.A-V.y*V.y);['E','m','w','A','y'].forEach(k=>sf[k]=3);return{V,sf,c}},
+ solve:{E:V=>0.5*V.m*V.w*V.w*(V.A*V.A-V.y*V.y),m:V=>2*V.E/(V.w*V.w*(V.A*V.A-V.y*V.y))},
+ sub:S=>`${S.E} = ½ × ${S.m} × ${S.w}<sup>2</sup> × (${S.A}<sup>2</sup> − ${S.y}<sup>2</sup>)`,
+ q(G,u){return u==='E'?`A mass of ${G.m} on a spring oscillates with simple harmonic motion with amplitude ${G.A} and angular frequency ${G.w}. Calculate its kinetic energy when its displacement is ${G.y}.`:`A mass on a spring oscillates with simple harmonic motion with amplitude ${G.A} and angular frequency ${G.w}. Its kinetic energy is ${G.E} when its displacement is ${G.y}. Calculate the mass.`}});
+
+add({id:'shmep',area:QW,eq:'E<sub>p</sub> = ½mω<sup>2</sup>y<sup>2</sup>',vars:{E:['E<sub>p</sub>','potential energy','energy'],m:['m','mass','mass'],w:['ω','angular frequency','angv'],y:['y','displacement','len']},subj:'E',rearr:['m','y'],
+ gen(r){const V={},sf={},c={};V.m=rl(r,0.05,2);V.y=rl(r,0.01,0.2);V.w=rl(r,2,20);V.E=0.5*V.m*V.w*V.w*V.y*V.y;['E','m','w','y'].forEach(k=>sf[k]=sfp(r));return{V,sf,c}},
+ solve:{E:V=>0.5*V.m*V.w*V.w*V.y*V.y,m:V=>2*V.E/(V.w*V.w*V.y*V.y),y:V=>Math.sqrt(2*V.E/(V.m*V.w*V.w))},
+ sub:S=>`${S.E} = ½ × ${S.m} × ${S.w}<sup>2</sup> × ${S.y}<sup>2</sup>`,
+ q(G,u){if(u==='E')return`A mass of ${G.m} oscillates with simple harmonic motion with angular frequency ${G.w}. Calculate its potential energy when its displacement is ${G.y}.`;
+  if(u==='m')return`An object oscillates with simple harmonic motion with angular frequency ${G.w}. Its potential energy is ${G.E} when its displacement is ${G.y}. Calculate its mass.`;
+  return`A mass of ${G.m} oscillates with simple harmonic motion with angular frequency ${G.w}. Calculate its displacement when its potential energy is ${G.E}.`}});
+
+add({id:'wedge',area:QW,eq:`Δx = ${frac('λl','2d')}`,vars:{dx:['Δx','fringe separation','len'],lam:['λ','wavelength','len'],l:['l','length of the wedge','len'],d:['d','thickness of the spacer','len']},subj:'dx',rearr:['lam','d'],
+ gen(r){const V={},sf={},c={};V.lam=pick(r,LAMS)*1e-9;V.l=rl(r,0.05,0.12);V.d=rl(r,2e-5,2e-4);V.dx=V.lam*V.l/(2*V.d);sf.lam=3;sf.l=sfp(r);sf.d=sfp(r);sf.dx=sfp(r);return{V,sf,c,du:{lam:'nm',l:'mm',d:'mm',dx:'mm'},fix:['lam']}},
+ solve:{dx:V=>V.lam*V.l/(2*V.d),lam:V=>2*V.d*V.dx/V.l,d:V=>V.lam*V.l/(2*V.dx)},
+ sub:S=>`${S.dx} = ${frac(S.lam+' × '+S.l,'2 × '+S.d)}`,
+ q(G,u){if(u==='dx')return`Two glass slides ${G.l} long form a thin air wedge, separated at one end by a spacer of thickness ${G.d}. Light of wavelength ${G.lam} is used. Calculate the fringe separation.`;
+  if(u==='lam')return`Two glass slides ${G.l} long form a thin air wedge, separated at one end by a spacer of thickness ${G.d}. The fringe separation is ${G.dx}. Calculate the wavelength of the light.`;
+  return`Two glass slides ${G.l} long form a thin air wedge. Light of wavelength ${G.lam} gives a fringe separation of ${G.dx}. Calculate the thickness of the spacer.`}});
+
+add({id:'bloom',area:QW,eq:`d = ${frac('λ','4n')}`,vars:{d:['d','thickness of the coating','len'],lam:['λ','wavelength','len'],n:['n','refractive index of the coating','none']},subj:'d',rearr:['lam','n'],
+ gen(r){const V={},sf={},c={};V.lam=pick(r,[550,589,510,633,480])*1e-9;V.n=pick(r,[1.38,1.25,1.30,1.45,1.35]);V.d=V.lam/(4*V.n);sf.lam=3;sf.n=3;sf.d=3;return{V,sf,c,du:{lam:'nm',d:'nm'},fix:['lam','d']}},
+ solve:{d:V=>V.lam/(4*V.n),lam:V=>4*V.n*V.d,n:V=>V.lam/(4*V.d)},
+ sub:S=>`${S.d} = ${frac(S.lam,'4 × '+S.n)}`,
+ q(G,u){if(u==='d')return`A lens is coated with a non-reflecting layer of refractive index ${G.n}. Calculate the minimum thickness of coating needed for light of wavelength ${G.lam}.`;
+  if(u==='lam')return`A lens has a non-reflecting coating of thickness ${G.d} and refractive index ${G.n}. Calculate the wavelength for which reflection is minimised.`;
+  return`A non-reflecting coating of thickness ${G.d} on a lens minimises reflection of light of wavelength ${G.lam}. Calculate the refractive index of the coating.`}});
+
+add({id:'young',area:QW,eq:`Δx = ${frac('λD','d')}`,vars:{dx:['Δx','fringe separation','len'],lam:['λ','wavelength','len'],D:['D','slit to screen distance','len'],d:['d','slit separation','len']},subj:'dx',rearr:['lam','D','d'],
+ gen(r){const V={},sf={},c={};V.lam=pick(r,LAMS)*1e-9;V.D=rl(r,0.8,4);V.d=rl(r,1.5e-4,1e-3);V.dx=V.lam*V.D/V.d;sf.lam=3;sf.D=sfp(r);sf.d=sfp(r);sf.dx=sfp(r);return{V,sf,c,du:{lam:'nm',d:'mm',dx:'mm'},fix:['lam']}},
+ solve:{dx:V=>V.lam*V.D/V.d,lam:V=>V.dx*V.d/V.D,D:V=>V.dx*V.d/V.lam,d:V=>V.lam*V.D/V.dx},
+ sub:S=>`${S.dx} = ${frac(S.lam+' × '+S.D,S.d)}`,
+ q(G,u){if(u==='dx')return`In a Young's slits experiment, light of wavelength ${G.lam} passes through two slits ${G.d} apart. The screen is ${G.D} away. Calculate the fringe separation.`;
+  if(u==='lam')return`In a Young's slits experiment, the slits are ${G.d} apart and the screen is ${G.D} away. The fringe separation is ${G.dx}. Calculate the wavelength of the light.`;
+  if(u==='D')return`In a Young's slits experiment, light of wavelength ${G.lam} passes through slits ${G.d} apart. The fringe separation is ${G.dx}. Calculate the distance from the slits to the screen.`;
+  return`In a Young's slits experiment, light of wavelength ${G.lam} is used with a screen ${G.D} away. The fringe separation is ${G.dx}. Calculate the slit separation.`}});
+
+add({id:'brew',area:QW,eq:'n = tan θ<sub>B</sub>',vars:{tb:['θ<sub>B</sub>','Brewster angle','ang'],n:['n','refractive index','none']},subj:'tb',rearr:['n'],
+ gen(r){const V={},sf={},c={};const m=pick(r,[['glass',1.51],['water',1.33],['Perspex',1.49],['diamond',2.42],['glycerol',1.47],['ice',1.31]]);c.m=m[0];V.n=m[1]*rl(r,0.99,1.01);V.tb=rad(Math.atan(V.n));sf.n=3;sf.tb=3;return{V,sf,c,fix:['tb']}},
+ solve:{tb:V=>rad(Math.atan(V.n)),n:V=>Math.tan(deg(V.tb))},
+ sub:S=>`${S.n} = tan ${S.tb.includes('θ')?S.tb:S.tb+'°'}`,
+ q(G,u,c){return u==='tb'?`Light reflects off the surface of ${c.m} of refractive index ${G.n}. Calculate the Brewster angle.`:`The reflected light from a surface of ${c.m} is completely plane polarised when the angle of incidence is ${G.tb}. Calculate the refractive index of the ${c.m}.`}});
+
+add({id:'coul',area:EM,eq:`F = ${frac('Q<sub>1</sub>Q<sub>2</sub>','4πε<sub>0</sub>r<sup>2</sup>')}`,vars:{F:['F','electrostatic force','force'],Q1:['Q<sub>1</sub>','charge','charge'],Q2:['Q<sub>2</sub>','charge','charge'],r:['r','separation','len'],e0:['ε<sub>0</sub>','permittivity of free space','none']},subj:'F',rearr:['Q2','r'],
+ gen(r){const V={},sf={},c={},hide=['e0'];V.e0=E0;sf.e0=3;V.Q1=rl(r,1e-9,5e-6);V.Q2=rl(r,1e-9,5e-6);V.r=rl(r,0.02,0.8);V.F=V.Q1*V.Q2/(4*Math.PI*E0*V.r*V.r);['F','Q1','Q2','r'].forEach(k=>sf[k]=sfp(r));return{V,sf,c,hide,fix:['e0']}},
+ solve:{F:V=>V.Q1*V.Q2/(4*Math.PI*V.e0*V.r*V.r),Q2:V=>V.F*4*Math.PI*V.e0*V.r*V.r/V.Q1,r:V=>Math.sqrt(V.Q1*V.Q2/(4*Math.PI*V.e0*V.F))},
+ sub:S=>`${S.F} = ${frac(S.Q1+' × '+S.Q2,'4π × '+S.e0+' × ('+S.r+')<sup>2</sup>')}`,
+ q(G,u){if(u==='F')return`Two point charges of ${G.Q1} and ${G.Q2} are ${G.r} apart in a vacuum. Calculate the electrostatic force between them.`;
+  if(u==='Q2')return`A point charge of ${G.Q1} is ${G.r} from a second point charge. The force between them is ${G.F}. Calculate the size of the second charge.`;
+  return`Two point charges of ${G.Q1} and ${G.Q2} exert a force of ${G.F} on each other. Calculate their separation.`}});
+
+add({id:'efs',area:EM,eq:`E = ${frac('Q','4πε<sub>0</sub>r<sup>2</sup>')}`,vars:{E:['E','electric field strength','efld'],Q:['Q','charge','charge'],r:['r','distance','len'],e0:['ε<sub>0</sub>','permittivity of free space','none']},subj:'E',rearr:['Q','r'],
+ gen(r){const V={},sf={},c={},hide=['e0'];V.e0=E0;sf.e0=3;V.Q=rl(r,1e-9,5e-6);V.r=rl(r,0.02,0.8);V.E=V.Q/(4*Math.PI*E0*V.r*V.r);['E','Q','r'].forEach(k=>sf[k]=sfp(r));return{V,sf,c,hide,fix:['e0']}},
+ solve:{E:V=>V.Q/(4*Math.PI*V.e0*V.r*V.r),Q:V=>V.E*4*Math.PI*V.e0*V.r*V.r,r:V=>Math.sqrt(V.Q/(4*Math.PI*V.e0*V.E))},
+ sub:S=>`${S.E} = ${frac(S.Q,'4π × '+S.e0+' × ('+S.r+')<sup>2</sup>')}`,
+ q(G,u){if(u==='E')return`Calculate the electric field strength ${G.r} from a point charge of ${G.Q}.`;
+  if(u==='Q')return`The electric field strength ${G.r} from a point charge is ${G.E}. Calculate the charge.`;
+  return`A point charge of ${G.Q} produces an electric field. Calculate the distance from the charge where the field strength is ${G.E}.`}});
+
+add({id:'epot',area:EM,eq:`V = ${frac('Q','4πε<sub>0</sub>r')}`,vars:{V:['V','electrostatic potential','volt'],Q:['Q','charge','charge'],r:['r','distance','len'],e0:['ε<sub>0</sub>','permittivity of free space','none']},subj:'V',rearr:['Q','r'],
+ gen(r){const V={},sf={},c={},hide=['e0'];V.e0=E0;sf.e0=3;V.Q=rl(r,1e-9,5e-6);V.r=rl(r,0.02,0.8);V.V=V.Q/(4*Math.PI*E0*V.r);['V','Q','r'].forEach(k=>sf[k]=sfp(r));return{V,sf,c,hide,fix:['e0']}},
+ solve:{V:V=>V.Q/(4*Math.PI*V.e0*V.r),Q:V=>V.V*4*Math.PI*V.e0*V.r,r:V=>V.Q/(4*Math.PI*V.e0*V.V)},
+ sub:S=>`${S.V} = ${frac(S.Q,'4π × '+S.e0+' × '+S.r)}`,
+ q(G,u){if(u==='V')return`Calculate the electrostatic potential ${G.r} from a point charge of ${G.Q}.`;
+  if(u==='Q')return`The electrostatic potential ${G.r} from a point charge is ${G.V}. Calculate the charge.`;
+  return`A point charge of ${G.Q} is isolated in a vacuum. Calculate the distance from the charge where the potential is ${G.V}.`}});
+
+add({id:'fqe',area:EM,eq:'F = QE',vars:{F:['F','force','force'],Q:['Q','charge','charge'],E:['E','electric field strength','efld']},subj:'F',rearr:['Q','E'],
+ gen(r){const V={},sf={},c={};V.Q=rl(r,1e-9,2e-6);V.E=rl(r,100,5e5);V.F=V.Q*V.E;['F','Q','E'].forEach(k=>sf[k]=sfp(r));return{V,sf,c}},
+ solve:{F:V=>V.Q*V.E,Q:V=>V.F/V.E,E:V=>V.F/V.Q},
+ sub:S=>`${S.F} = ${S.Q} × ${S.E}`,
+ q(G,u){if(u==='F')return`A charge of ${G.Q} is placed in an electric field of strength ${G.E}. Calculate the force on the charge.`;
+  if(u==='Q')return`A charged sphere in an electric field of strength ${G.E} experiences a force of ${G.F}. Calculate its charge.`;
+  return`A charge of ${G.Q} experiences a force of ${G.F} in an electric field. Calculate the electric field strength.`}});
+
+add({id:'ved',area:EM,eq:'V = Ed',vars:{V:['V','potential difference','volt'],E:['E','electric field strength','efld'],d:['d','plate separation','len']},subj:'V',rearr:['E','d'],
+ gen(r){const V={},sf={},c={};V.d=rl(r,0.002,0.1);V.E=rl(r,500,5e5);V.V=V.E*V.d;['V','E','d'].forEach(k=>sf[k]=sfp(r));return{V,sf,c}},
+ solve:{V:V=>V.E*V.d,E:V=>V.V/V.d,d:V=>V.V/V.E},
+ sub:S=>`${S.V} = ${S.E} × ${S.d}`,
+ q(G,u){if(u==='V')return`The uniform electric field between two parallel plates ${G.d} apart has a strength of ${G.E}. Calculate the potential difference between the plates.`;
+  if(u==='E')return`Two parallel plates ${G.d} apart have a potential difference of ${G.V} across them. Calculate the electric field strength between them.`;
+  return`The potential difference between two parallel plates is ${G.V} and the field strength between them is ${G.E}. Calculate the plate separation.`}});
+
+add({id:'filb',area:EM,eq:'F = IlB sin θ',vars:{F:['F','force','force'],I:['I','current','cur'],l:['l','length of wire in the field','len'],B:['B','magnetic induction','magb'],th:['θ','angle between wire and field','ang']},subj:'F',rearr:['B','I','th'],
+ gen(r,u){const V={},sf={},c={};V.I=rl(r,0.5,12);V.l=rl(r,0.03,0.5);V.B=rl(r,0.02,0.8);V.th=u==='th'?rl(r,20,70):pick(r,[90,90,30,45,60,rl(r,20,80)]);V.F=V.I*V.l*V.B*Math.sin(deg(V.th));['F','I','l','B'].forEach(k=>sf[k]=sfp(r));sf.th=2;return{V,sf,c,fix:['th']}},
+ solve:{F:V=>V.I*V.l*V.B*Math.sin(deg(V.th)),B:V=>V.F/(V.I*V.l*Math.sin(deg(V.th))),I:V=>V.F/(V.l*V.B*Math.sin(deg(V.th))),th:V=>rad(Math.asin(V.F/(V.I*V.l*V.B)))},
+ sub:S=>`${S.F} = ${S.I} × ${S.l} × ${S.B} × sin ${S.th.includes('θ')?S.th:S.th+'°'}`,
+ q(G,u){if(u==='F')return`A wire carrying a current of ${G.I} has ${G.l} of its length in a magnetic field of magnetic induction ${G.B}. The wire is at ${G.th} to the field. Calculate the force on the wire.`;
+  if(u==='B')return`A wire carrying ${G.I} has ${G.l} of its length in a magnetic field, at ${G.th} to the field. The force on it is ${G.F}. Calculate the magnetic induction.`;
+  if(u==='I')return`A wire has ${G.l} of its length in a magnetic field of magnetic induction ${G.B}, at ${G.th} to the field. The force on it is ${G.F}. Calculate the current.`;
+  return`A wire carrying ${G.I} has ${G.l} of its length in a magnetic field of magnetic induction ${G.B}. The force on it is ${G.F}. Calculate the angle between the wire and the field.`}});
+
+add({id:'bwire',area:EM,eq:`B = ${frac('μ<sub>0</sub>I','2πr')}`,vars:{B:['B','magnetic induction','magb'],mu:['μ<sub>0</sub>','permeability of free space','none'],I:['I','current','cur'],r:['r','distance from the wire','len']},subj:'B',rearr:['I','r'],
+ gen(r){const V={},sf={},c={},hide=['mu'];V.mu=MU0;sf.mu=3;V.I=rl(r,0.5,50);V.r=rl(r,0.005,0.5);V.B=MU0*V.I/(2*Math.PI*V.r);['B','I','r'].forEach(k=>sf[k]=sfp(r));return{V,sf,c,hide,fix:['mu']}},
+ solve:{B:V=>V.mu*V.I/(2*Math.PI*V.r),I:V=>V.B*2*Math.PI*V.r/V.mu,r:V=>V.mu*V.I/(2*Math.PI*V.B)},
+ sub:S=>`${S.B} = ${frac('4π × 10<sup>−7</sup> × '+S.I,'2π × '+S.r)}`,
+ q(G,u){if(u==='B')return`A long straight wire carries a current of ${G.I}. Calculate the magnetic induction ${G.r} from the wire.`;
+  if(u==='I')return`The magnetic induction ${G.r} from a long straight wire is ${G.B}. Calculate the current in the wire.`;
+  return`A long straight wire carries a current of ${G.I}. Calculate the distance from the wire where the magnetic induction is ${G.B}.`}});
+
+add({id:'trc',area:EM,eq:'t = RC',vars:{t:['t','time constant','time'],R:['R','resistance','res'],C:['C','capacitance','cap']},subj:'t',rearr:['R','C'],
+ gen(r){const V={},sf={},c={};V.R=resE(r,100,1e6);V.C=pick(r,[10,22,47,100,220,470,1000,2200])*1e-6;V.t=V.R*V.C;sf.R=2;sf.C=2;sf.t=sfp(r);return{V,sf,c,du:{C:'µF'}}},
+ solve:{t:V=>V.R*V.C,R:V=>V.t/V.C,C:V=>V.t/V.R},
+ sub:S=>`${S.t} = ${S.R} × ${S.C}`,
+ q(G,u){if(u==='t')return`A ${G.C} capacitor is charged through a ${G.R} resistor. Calculate the time constant of the circuit.`;
+  if(u==='R')return`A ${G.C} capacitor is charged through a resistor. The time constant is ${G.t}. Calculate the resistance.`;
+  return`A capacitor is charged through a ${G.R} resistor. The time constant is ${G.t}. Calculate the capacitance.`}});
+
+add({id:'xc',area:EM,eq:`X<sub>C</sub> = ${frac('1','2πfC')}`,vars:{X:['X<sub>C</sub>','capacitive reactance','res'],f:['f','frequency','freq'],C:['C','capacitance','cap']},subj:'X',rearr:['f','C'],
+ gen(r){const V={},sf={},c={};V.f=rl(r,20,20000);V.C=pick(r,[0.1,0.22,0.47,1,2.2,4.7,10,22,47,100])*1e-6;V.X=1/(2*Math.PI*V.f*V.C);sf.f=sfp(r);sf.C=2;sf.X=sfp(r);return{V,sf,c,du:{C:'µF'}}},
+ solve:{X:V=>1/(2*Math.PI*V.f*V.C),f:V=>1/(2*Math.PI*V.X*V.C),C:V=>1/(2*Math.PI*V.f*V.X)},
+ sub:S=>`${S.X} = ${frac(1,'2π × '+S.f+' × '+S.C)}`,
+ q(G,u){if(u==='X')return`A ${G.C} capacitor is connected to an AC supply of frequency ${G.f}. Calculate its capacitive reactance.`;
+  if(u==='f')return`A ${G.C} capacitor has a capacitive reactance of ${G.X}. Calculate the frequency of the AC supply.`;
+  return`A capacitor connected to an AC supply of frequency ${G.f} has a capacitive reactance of ${G.X}. Calculate its capacitance.`}});
+
+add({id:'xl',area:EM,eq:'X<sub>L</sub> = 2πfL',vars:{X:['X<sub>L</sub>','inductive reactance','res'],f:['f','frequency','freq'],L:['L','inductance','ind']},subj:'X',rearr:['f','L'],
+ gen(r){const V={},sf={},c={};V.f=rl(r,20,20000);V.L=rl(r,0.001,2);V.X=2*Math.PI*V.f*V.L;['X','f','L'].forEach(k=>sf[k]=sfp(r));return{V,sf,c}},
+ solve:{X:V=>2*Math.PI*V.f*V.L,f:V=>V.X/(2*Math.PI*V.L),L:V=>V.X/(2*Math.PI*V.f)},
+ sub:S=>`${S.X} = 2π × ${S.f} × ${S.L}`,
+ q(G,u){if(u==='X')return`An inductor of inductance ${G.L} is connected to an AC supply of frequency ${G.f}. Calculate its inductive reactance.`;
+  if(u==='f')return`An inductor of inductance ${G.L} has an inductive reactance of ${G.X}. Calculate the frequency of the supply.`;
+  return`An inductor connected to an AC supply of frequency ${G.f} has an inductive reactance of ${G.X}. Calculate its inductance.`}});
+
+add({id:'emfl',area:EM,eq:`ε = −L${frac('dI','dt')}`,vars:{e:['ε','size of the induced EMF','volt'],L:['L','inductance','ind'],r:['dI/dt','rate of change of current','didt']},subj:'e',rearr:['L','r'],
+ gen(r){const V={},sf={},c={};V.L=rl(r,0.01,5);V.r=rl(r,2,500);V.e=V.L*V.r;['e','L','r'].forEach(k=>sf[k]=sfp(r));return{V,sf,c}},
+ solve:{e:V=>V.L*V.r,L:V=>V.e/V.r,r:V=>V.e/V.L},
+ sub:S=>`${S.e} = ${S.L} × ${S.r}`,
+ q(G,u){if(u==='e')return`The current in an inductor of inductance ${G.L} changes at ${G.r}. Calculate the size of the induced EMF.`;
+  if(u==='L')return`When the current in an inductor changes at ${G.r}, an EMF of ${G.e} is induced. Calculate the inductance.`;
+  return`An inductor of inductance ${G.L} has an induced EMF of ${G.e}. Calculate the rate of change of current.`}});
+
+add({id:'eli',area:EM,eq:'E = ½LI<sup>2</sup>',vars:{E:['E','energy stored','energy'],L:['L','inductance','ind'],I:['I','current','cur']},subj:'E',rearr:['L','I'],
+ gen(r){const V={},sf={},c={};V.L=rl(r,0.01,5);V.I=rl(r,0.1,5);V.E=0.5*V.L*V.I*V.I;['E','L','I'].forEach(k=>sf[k]=sfp(r));return{V,sf,c}},
+ solve:{E:V=>0.5*V.L*V.I*V.I,L:V=>2*V.E/(V.I*V.I),I:V=>Math.sqrt(2*V.E/V.L)},
+ sub:S=>`${S.E} = ½ × ${S.L} × ${S.I}<sup>2</sup>`,
+ q(G,u){if(u==='E')return`An inductor of inductance ${G.L} carries a current of ${G.I}. Calculate the energy stored in its magnetic field.`;
+  if(u==='L')return`An inductor carrying a current of ${G.I} stores ${G.E} of energy. Calculate its inductance.`;
+  return`An inductor of inductance ${G.L} stores ${G.E} of energy. Calculate the current in it.`}});
+
+const AREAS=['Rotational motion and astrophysics','Quanta and waves','Electromagnetism'];
+const FB={};F.forEach(f=>FB[f.id]=f);
+
+/* ---------- question builder ---------- */
+const QC={};
+function sectionOf(f,idx){return idx<20?0:idx<20+f.nr?1:2}
+function unkOf(f,idx){const s=sectionOf(f,idx);return s===0?f.subj:s===1?f.rearr[(idx-20)%f.rearr.length]:null}
+function buildQ(f,idx){
+  const key=f.id+':'+idx;if(QC[key])return QC[key];
+  const r=rng(key);const sec=sectionOf(f,idx);let u=unkOf(f,idx);if(sec===2)u=pick(r,f.all);
+  const vary=sec===2;const g=f.gen(r,u,vary);
+  const hide=g.hide||[],exact=g.exact||[],fix=g.fix||[];
+  const keys=Object.keys(g.V).filter(k=>g.V[k]!=null);
+  const du={};keys.forEach(k=>{const d=f.vars[k][2];du[k]=(g.du&&g.du[k])||BASE[d]});
+  if(vary){
+    const dims=[...new Set(keys.filter(k=>!hide.includes(k)&&!fix.includes(k)).map(k=>f.vars[k][2]))];
+    for(const d of dims){
+      if(r()<0.5)continue;
+      const ks=keys.filter(k=>f.vars[k][2]===d&&!hide.includes(k)&&!fix.includes(k));
+      const gk=ks.filter(k=>k!==u);if(!gk.length)continue;
+      const mag=Math.max(...gk.map(k=>Math.abs(g.V[k])));
+      const ok=(PFX[d]||[]).filter(o=>{if(o==='°C')return true;const x=mag/U[o][d][0];return x>=1&&x<1000});
+      if(ok.length){const ch=pick(r,ok);ks.forEach(k=>du[k]=ch)}
+    }
+  }
+  const G={},S={},VV={};let smin=99;
+  for(const k of keys){
+    if(k===u)continue;const d=f.vars[k][2];const un=du[k];const sf=g.sf[k]||2;
+    if(hide.includes(k)){VV[k]=g.V[k];S[k]=fmt(g.V[k],sf).h;continue}
+    let dv,txt,html;
+    if(d==='tabs'){dv=un==='°C'?Math.round(g.V[k]-273):Math.round(g.V[k]);txt=html=String(dv).replace('-','−')}
+    else{const fc=U[un][d][0];dv=Number((g.V[k]/fc).toPrecision(sf));let o=fmt(dv,sf);
+      if(!exact.includes(k)&&!/[.e]/.test(o.t)&&Math.abs(dv)<1e5&&cntSF(o.t)<sf){const step=Math.pow(10,String(Math.round(Math.abs(dv))).length-sf);dv+=step;o=fmt(dv,sf)}
+      txt=o.t;html=o.h}
+    if(!exact.includes(k))smin=Math.min(smin,cntSF(txt));
+    G[k]=`<span class="nv">${html}${un==='°'?'°':ul(un)?' '+un:''}</span>`;
+    if(d==='tabs'){VV[k]=un==='°C'?dv+273:dv;S[k]=String(VV[k])}
+    else if(f.disp){VV[k]=dv;S[k]=html}
+    else{const fc=U[un][d][0];VV[k]=dv*fc;S[k]=fc===1?html:fmt(VV[k],sf).h}
+  }
+  if(smin===99)smin=2;
+  S[u]=f.vars[u][0];
+  const ad=f.vars[u][2];
+  const au=f.disp?(ad==='tabs'?'K':du[u]):BASE[ad];
+  const ans=f.solve[u](VV);
+  const q={f,idx,sec,u,text:f.q(G,u,g.c||{},f),ans,au,ad,s:smin,sub:f.sub(S)};
+  QC[key]=q;return q;
+}
+
+/* ---------- marking ---------- */
+function parseNum(str){
+  let s=String(str).trim();
+  const sup={'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'};
+  s=s.replace(/10([⁻⁰¹²³⁴⁵⁶⁷⁸⁹]+)/g,(m,e)=>'10^'+[...e].map(c=>sup[c]).join(''));
+  s=s.replace(/\s+/g,'').replace(/,/g,'').replace(/[−–]/g,'-').replace(/[×xX*]10\^?/,'e').replace(/e\+/i,'e');
+  if(!/^-?(\d+\.?\d*|\.\d+)(e-?\d+)?$/i.test(s))return null;
+  return{v:parseFloat(s),m:s.split(/e/i)[0]};
+}
+function okRound(x,t,n){for(const tt of [t,t*(1+1e-9),t*(1-1e-9)]){const rr=+tt.toPrecision(n);if(Math.abs(x-rr)<=Math.abs(rr)*1e-9+1e-300)return true}return false}
+function mark(q,inStr,unit){
+  const p=parseNum(inStr);if(!p)return'parse';if(!unit)return'nounit';
+  const lo=Math.max(1,q.s-1),hi=q.s+2;
+  const inRange=(x,t)=>{for(let n=lo;n<=hi;n++)if(okRound(x,t,n))return true;return false};
+  const fa=U[q.au][q.ad];const ansB=q.ans*fa[0]+fa[1];
+  const ud=U[unit][q.ad];
+  if(!ud)return(inRange(p.v,ansB)||inRange(p.v,q.ans))?'unitwrong':'wrong';
+  const t=(ansB-ud[1])/ud[0];
+  if(inRange(p.v,t))return'right';
+  const rel=Math.abs(p.v-t)/Math.abs(t);const n=cntSF(p.m);
+  if(n>hi&&rel<0.05)return'manysf';
+  if(n<lo&&rel<0.25)return'fewsf';
+  if(rel<0.05)return'round';
+  for(const m of [1e3,1e-3,1e6,1e-6])if(Math.abs(p.v-t*m)/Math.abs(t*m)<0.03)return'prefix';
+  return'wrong';
+}
+const MSG={right:['ok','Correct.'],unitwrong:['mid','Your number is right, but the unit is wrong.'],manysf:['mid','Right value, but too many significant figures. Round it off.'],fewsf:['mid','Too few significant figures. Keep more figures in your answer.'],round:['mid','Close. Check your rounding.'],prefix:['no','Your number is out by a factor of a thousand or more. Check your units and prefixes.'],wrong:['no','Not right yet. Try again, or show the answer.'],parse:['no','Type a number, for example 2.5 or 3.0e8.'],nounit:['no','Choose a unit from the list.']};
+
+function solHTML(q){
+  const f=q.f,lo=Math.max(1,q.s-1),hi=q.s+2,un=ul(q.au);
+  const main=fmt(q.ans,q.s).h;
+  const acc=[];for(let n=lo;n<=hi;n++){const h=fmt(q.ans,n).h;if(!acc.includes(h))acc.push(h)}
+  return`<div class="mi"><div class="lbl">Marking instructions · 3 marks</div>
+  <div class="mrow"><span>${f.eq}</span><b>(1)</b></div>
+  <div class="mrow"><span>${q.sub}</span><b>(1)</b></div>
+  <div class="mrow"><span>${f.vars[q.u][0]} = ${main}${un?' '+un:''}</span><b>(1)</b></div>
+  <p class="acc">Accept ${lo} to ${hi} significant figures: ${acc.map(a=>`<span>${a}${un?' '+un:''}</span>`).join(', ')}${un?'. Any equivalent value with a correct prefix is also accepted.':''}</p></div>`;
+}
+
+/* ---------- storage ---------- */
+const SK='aheqbank.v1';
+function load(){try{return JSON.parse(localStorage.getItem(SK))||{}}catch(e){return{}}}
+let DB=load();if(!DB.r)DB.r={};
+function save(){try{localStorage.setItem(SK,JSON.stringify(DB))}catch(e){}}
+const st=(fid,idx)=>(DB.r[fid]||{})[idx];
+function setSt(fid,idx,v){(DB.r[fid]=DB.r[fid]||{})[idx]=v;save()}
+function stats(f){let g=0,a=0,r=0;const m=DB.r[f.id]||{};for(const k in m){if(m[k]==='g')g++;else if(m[k]==='a')a++;else if(m[k]==='r')r++}return{g,a,r,n:f.n}}
+const progBar=s=>`<div class="prog"><i class="g" style="width:${s.g/s.n*100}%"></i><i class="p" style="width:${s.a/s.n*100}%"></i><i class="n" style="width:${s.r/s.n*100}%"></i></div>`;
+
+/* ---------- views ---------- */
+const VIEWS=['home','menu','mix','quiz','summary'];
+function show(v){VIEWS.forEach(x=>$(x).hidden=x!==v);window.scrollTo(0,0)}
+function renderHome(){
+  $('units').innerHTML=AREAS.map(a=>`<section class="unit"><h2>${a}</h2><div class="tiles">${F.filter(f=>f.area===a).map(f=>{const s=stats(f);return`<button class="tile" data-f="${f.id}"><span class="eq">${f.eq}</span><span class="cnt">${s.g+s.a} of ${s.n} correct</span>${progBar(s)}</button>`}).join('')}</div></section>`).join('');
+  let t=0,c=0;F.forEach(f=>{const s=stats(f);t+=s.n;c+=s.g+s.a});$('overall').textContent=`${c} of ${t} questions answered correctly`;
+  try{$('skipGot').checked=!!DB.skip}catch(e){}
+}
+let curF=null;
+function renderMenu(f){
+  curF=f;$('munit').textContent=f.area;$('mtitle').innerHTML=f.eq;const s=stats(f);
+  $('mstat').textContent=`${s.g} right first time · ${s.a} right after another try · ${s.r} shown`;
+  const btn=i=>{const v=st(f.id,i)||'';const u=unkOf(f,i);const lab=sectionOf(f,i)===1?`<small>${f.vars[u][0]}</small>`:'';return`<button class="qb ${v}" data-i="${i}">${i+1}${lab}</button>`};
+  const rng_=(a,b)=>Array.from({length:b-a},(_,k)=>btn(a+k)).join('');
+  const lets=f.rearr.map(k=>f.vars[k][0]).join(', ');
+  $('mcols').innerHTML=`<section class="col"><h2>Non-rearranging</h2><div class="msg">Find ${f.vars[f.subj][0]}</div><div class="qs">${rng_(0,20)}</div></section>
+  <section class="col"><h2>Rearranging</h2><div class="msg">Find ${lets}</div><div class="qs">${rng_(20,20+f.nr)}</div></section>
+  <section class="col"><h2>Random</h2><div class="msg">Any letter, some with unit prefixes</div><div class="qs">${rng_(20+f.nr,f.n)}</div></section>`;
+  show('menu');
+}
+
+/* quiz state */
+let QS={list:[],pos:0,set:false,res:[]};let curQ=null,tries=0,done=false;
+function unitOptions(){return`<option value="">Choose…</option>`+UL.map(([l])=>`<option value="${l}">${l==='—'?'no unit':l}</option>`).join('')}
+$('aunit').innerHTML=unitOptions();
+function openQ(){
+  const [fid,idx]=QS.list[QS.pos];const f=FB[fid];const q=buildQ(f,idx);curQ=q;tries=0;done=false;
+  $('qeq').innerHTML=f.eq;$('qnum').textContent=idx+1;$('qsec').textContent=['Non-rearranging','Rearranging','Random'][q.sec];
+  $('qtext').innerHTML=q.text;$('ain').value='';$('aunit').value='';$('fb').hidden=true;$('sol').hidden=true;$('sol').innerHTML='';
+  $('ain').disabled=$('aunit').disabled=$('acheck').disabled=false;$('showAns').disabled=false;
+  $('qpos').textContent=QS.set?`${QS.pos+1} of ${QS.list.length}`:'';
+  $('prev').hidden=$('rand').hidden=QS.set;$('next').textContent=QS.set&&QS.pos===QS.list.length-1?'Finish':'Next';
+  show('quiz');
+}
+function finishQ(res){
+  done=true;$('ain').disabled=$('aunit').disabled=$('acheck').disabled=true;$('showAns').disabled=true;
+  $('sol').innerHTML=solHTML(curQ);$('sol').hidden=false;
+  setSt(curQ.f.id,curQ.idx,res);if(QS.set)QS.res[QS.pos]=res;
+}
+$('aform').addEventListener('submit',e=>{e.preventDefault();if(done)return;
+  const k=mark(curQ,$('ain').value,$('aunit').value);const [cls,txt]=MSG[k];
+  const fb=$('fb');fb.className='fb '+cls;fb.textContent=txt;fb.hidden=false;
+  if(k==='right'){finishQ(tries===0?'g':'a')}else if(k!=='parse'&&k!=='nounit'){tries++}});
+$('showAns').onclick=()=>{if(done)return;const fb=$('fb');fb.className='fb no';fb.textContent='Answer shown. Read through the working, then try another.';fb.hidden=false;finishQ('r')};
+function skipOK(fid,i){return !(DB.skip&&st(fid,i)==='g')}
+function stepSingle(d){const f=FB[QS.list[0][0]];let i=QS.list[0][1];for(let k=0;k<f.n;k++){i=(i+d+f.n)%f.n;if(skipOK(f.id,i))break}QS.list=[[f.id,i]];openQ()}
+$('next').onclick=()=>{if(QS.set){if(QS.pos<QS.list.length-1){QS.pos++;openQ()}else summary()}else stepSingle(1)};
+$('prev').onclick=()=>stepSingle(-1);
+$('rand').onclick=()=>{const f=FB[QS.list[0][0]];const pool=[...Array(f.n).keys()].filter(i=>i!==QS.list[0][1]&&skipOK(f.id,i));const i=pool.length?pool[Math.floor(Math.random()*pool.length)]:QS.list[0][1];QS.list=[[f.id,i]];openQ()};
+$('back').onclick=()=>{if(QS.set){renderHome();show('home')}else renderMenu(FB[QS.list[0][0]])};
+function summary(){const n=QS.list.length,g=QS.res.filter(x=>x==='g').length,a=QS.res.filter(x=>x==='a').length;
+  $('sscore').textContent=`${g} / ${n}`;$('slist').textContent=`Right first time: ${g}. Right after another try: ${a}. Answer shown or skipped: ${n-g-a}.`;show('summary')}
+
+/* home & menu events */
+document.addEventListener('click',e=>{
+  const t=e.target.closest('.tile');if(t){renderMenu(FB[t.dataset.f]);return}
+  const b=e.target.closest('.qb');if(b&&curF){QS={list:[[curF.id,+b.dataset.i]],pos:0,set:false,res:[]};openQ();return}
+  const s=e.target.closest('[data-sheet]');if(s)openSheet(s.dataset.sheet);
+});
+$('mback').onclick=()=>{renderHome();show('home')};
+$('mstart').onclick=()=>{const f=curF;let i=0;for(;i<f.n;i++){if(st(f.id,i)!=='g')break}if(i>=f.n)i=0;QS={list:[[f.id,i]],pos:0,set:false,res:[]};openQ()};
+$('skipGot').onchange=e=>{DB.skip=e.target.checked;save()};
+$('resetBtn').onclick=()=>{$('resetAsk').hidden=false};
+$('resetNo').onclick=()=>{$('resetAsk').hidden=true};
+$('resetYes').onclick=()=>{DB.r={};save();$('resetAsk').hidden=true;renderHome()};
+
+/* mixed practice */
+$('mixBtn').onclick=()=>{$('xtopics').innerHTML=AREAS.map(a=>`<div class="seglbl">${a}</div><div class="tlist">${F.filter(f=>f.area===a).map(f=>`<label><input type="checkbox" id="x_${f.id}" value="${f.id}" checked> <span class="eq">${f.eq}</span></label>`).join('')}</div>`).join('');$('xmsg').textContent='';show('mix')};
+$('xback').onclick=()=>{renderHome();show('home')};
+$('xall').onclick=()=>document.querySelectorAll('#xtopics input').forEach(i=>i.checked=true);
+$('xnone').onclick=()=>document.querySelectorAll('#xtopics input').forEach(i=>i.checked=false);
+$('xstart').onclick=()=>{
+  const fs=[...document.querySelectorAll('#xtopics input:checked')].map(i=>FB[i.value]);
+  const ks=[0,1,2].filter(k=>$('xk'+k).checked);
+  if(!fs.length||!ks.length){$('xmsg').textContent='Pick at least one formula and one question type.';return}
+  let pool=[];fs.forEach(f=>{for(let i=0;i<f.n;i++)if(ks.includes(sectionOf(f,i))&&skipOK(f.id,i))pool.push([f.id,i])});
+  if(!pool.length){$('xmsg').textContent='No questions left with these settings.';return}
+  for(let i=pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]]}
+  // spread across formulas
+  const by={};pool.forEach(p=>(by[p[0]]=by[p[0]]||[]).push(p));const groups=Object.values(by);const out=[];const n=+$('xn').value;
+  while(out.length<n&&groups.some(g=>g.length)){groups.sort(()=>Math.random()-.5);for(const g of groups){if(g.length&&out.length<n)out.push(g.pop())}}
+  QS={list:out,pos:0,set:true,res:[]};openQ()};
+$('sagain').onclick=()=>$('mixBtn').click();
+$('shome').onclick=()=>{renderHome();show('home')};
+
+/* sheets */
+const RELS=["v = <span class=\"frac\"><span>ds</span><span>dt</span></span>", "a = <span class=\"frac\"><span>dv</span><span>dt</span></span> = <span class=\"frac\"><span>d<sup>2</sup>s</span><span>dt<sup>2</sup></span></span>", "v = u + at", "s = ut + ½at<sup>2</sup>", "v<sup>2</sup> = u<sup>2</sup> + 2as", "ω = <span class=\"frac\"><span>dθ</span><span>dt</span></span>", "α = <span class=\"frac\"><span>dω</span><span>dt</span></span> = <span class=\"frac\"><span>d<sup>2</sup>θ</span><span>dt<sup>2</sup></span></span>", "ω = ω<sub>0</sub> + αt", "θ = ω<sub>0</sub>t + ½αt<sup>2</sup>", "ω<sup>2</sup> = ω<sub>0</sub><sup>2</sup> + 2αθ", "s = rθ", "v = rω", "a<sub>t</sub> = rα", "a<sub>r</sub> = <span class=\"frac\"><span>v<sup>2</sup></span><span>r</span></span> = rω<sup>2</sup>", "F = <span class=\"frac\"><span>mv<sup>2</sup></span><span>r</span></span> = mrω<sup>2</sup>", "T = Fr", "T = Iα", "L = mvr = mr<sup>2</sup>ω", "L = Iω", "E<sub>k</sub> = ½Iω<sup>2</sup>", "F = G<span class=\"frac\"><span>Mm</span><span>r<sup>2</sup></span></span>", "V = −<span class=\"frac\"><span>GM</span><span>r</span></span>", "v = √(<span class=\"frac\"><span>2GM</span><span>r</span></span>)", "r<sub>Schwarzschild</sub> = <span class=\"frac\"><span>2GM</span><span>c<sup>2</sup></span></span>", "b = <span class=\"frac\"><span>L</span><span>4πd<sup>2</sup></span></span>", "power per unit area = σT<sup>4</sup>", "L = 4πr<sup>2</sup>σT<sup>4</sup>", "E = hf", "λ = <span class=\"frac\"><span>h</span><span>p</span></span>", "mvr = <span class=\"frac\"><span>nh</span><span>2π</span></span>", "Δx Δp<sub>x</sub> ≥ <span class=\"frac\"><span>h</span><span>4π</span></span>", "ΔE Δt ≥ <span class=\"frac\"><span>h</span><span>4π</span></span>", "F = qvB", "ω = <span class=\"frac\"><span>2π</span><span>T</span></span> = 2πf", "a = <span class=\"frac\"><span>d<sup>2</sup>y</span><span>dt<sup>2</sup></span></span> = −ω<sup>2</sup>y", "y = A cos ωt or y = A sin ωt", "v = ±ω√(A<sup>2</sup> − y<sup>2</sup>)", "E<sub>k</sub> = ½mω<sup>2</sup>(A<sup>2</sup> − y<sup>2</sup>)", "E<sub>p</sub> = ½mω<sup>2</sup>y<sup>2</sup>", "y = A sin 2π(ft − <span class=\"frac\"><span>x</span><span>λ</span></span>)", "E = kA<sup>2</sup>", "φ = <span class=\"frac\"><span>2πx</span><span>λ</span></span>", "optical path difference = mλ or (m + ½)λ, where m = 0, 1, 2 …", "Δx = <span class=\"frac\"><span>λl</span><span>2d</span></span>", "d = <span class=\"frac\"><span>λ</span><span>4n</span></span>", "Δx = <span class=\"frac\"><span>λD</span><span>d</span></span>", "n = tan θ<sub>B</sub>", "F = <span class=\"frac\"><span>Q<sub>1</sub>Q<sub>2</sub></span><span>4πε<sub>0</sub>r<sup>2</sup></span></span>", "E = <span class=\"frac\"><span>Q</span><span>4πε<sub>0</sub>r<sup>2</sup></span></span>", "V = <span class=\"frac\"><span>Q</span><span>4πε<sub>0</sub>r</span></span>", "F = QE", "V = Ed", "F = IlB sin θ", "B = <span class=\"frac\"><span>μ<sub>0</sub>I</span><span>2πr</span></span>", "c = <span class=\"frac\"><span>1</span><span>√(ε<sub>0</sub>μ<sub>0</sub>)</span></span>", "t = RC", "X<sub>C</sub> = <span class=\"frac\"><span>V</span><span>I</span></span>", "X<sub>C</sub> = <span class=\"frac\"><span>1</span><span>2πfC</span></span>", "ε = −L<span class=\"frac\"><span>dI</span><span>dt</span></span>", "E = ½LI<sup>2</sup>", "X<sub>L</sub> = <span class=\"frac\"><span>V</span><span>I</span></span>", "X<sub>L</sub> = 2πfL", "<span class=\"frac\"><span>ΔW</span><span>W</span></span> = √((<span class=\"frac\"><span>ΔX</span><span>X</span></span>)<sup>2</sup> + (<span class=\"frac\"><span>ΔY</span><span>Y</span></span>)<sup>2</sup> + (<span class=\"frac\"><span>ΔZ</span><span>Z</span></span>)<sup>2</sup>)", "ΔW = √(ΔX<sup>2</sup> + ΔY<sup>2</sup> + ΔZ<sup>2</sup>)", "<span class=\"frac\"><span>ΔW<sub>n</sub></span><span>W<sub>n</sub></span></span> = n<span class=\"frac\"><span>ΔW</span><span>W</span></span>"];
+function openSheet(k){
+  $('dtitle').textContent=k==='rel'?'Relationships sheet':'Data sheet';
+  $('dbody').innerHTML=k==='rel'?`<div class="rels">${RELS.map(r=>`<div>${r}</div>`).join('')}</div>`:
+  `<table class="dt"><tr><th>Quantity</th><th>Symbol</th><th>Value</th></tr><tr><td>Gravitational acceleration on Earth</td><td>g</td><td>9.8 m s⁻²</td></tr><tr><td>Radius of Earth</td><td>R<sub>E</sub></td><td>6.4 × 10<sup>6</sup> m</td></tr><tr><td>Mass of Earth</td><td>M<sub>E</sub></td><td>6.0 × 10<sup>24</sup> kg</td></tr><tr><td>Mass of Moon</td><td>M<sub>M</sub></td><td>7.3 × 10<sup>22</sup> kg</td></tr><tr><td>Radius of Moon</td><td>R<sub>M</sub></td><td>1.7 × 10<sup>6</sup> m</td></tr><tr><td>Mass of Sun</td><td></td><td>2.0 × 10<sup>30</sup> kg</td></tr><tr><td>Solar radius</td><td></td><td>6.955 × 10<sup>8</sup> m</td></tr><tr><td>Stefan-Boltzmann constant</td><td>σ</td><td>5.67 × 10<sup>−8</sup> W m⁻² K⁻⁴</td></tr><tr><td>Universal constant of gravitation</td><td>G</td><td>6.67 × 10<sup>−11</sup> m<sup>3</sup> kg⁻¹ s⁻²</td></tr><tr><td>Mass of electron</td><td>m<sub>e</sub></td><td>9.11 × 10<sup>−31</sup> kg</td></tr><tr><td>Charge on electron</td><td>e</td><td>−1.60 × 10<sup>−19</sup> C</td></tr><tr><td>Mass of neutron</td><td>m<sub>n</sub></td><td>1.675 × 10<sup>−27</sup> kg</td></tr><tr><td>Mass of proton</td><td>m<sub>p</sub></td><td>1.673 × 10<sup>−27</sup> kg</td></tr><tr><td>Planck’s constant</td><td>h</td><td>6.63 × 10<sup>−34</sup> J s</td></tr><tr><td>Permittivity of free space</td><td>ε<sub>0</sub></td><td>8.85 × 10<sup>−12</sup> F m⁻¹</td></tr><tr><td>Permeability of free space</td><td>μ<sub>0</sub></td><td>4π × 10<sup>−7</sup> H m⁻¹</td></tr><tr><td>Speed of light in vacuum</td><td>c</td><td>3.00 × 10<sup>8</sup> m s⁻¹</td></tr><tr><td>Speed of sound in air</td><td>v</td><td>3.4 × 10<sup>2</sup> m s⁻¹</td></tr></table>
+  <h3 style="font-size:1rem;margin:16px 0 4px">Refractive indices (589 nm)</h3><table class="dt"><tr><td>Diamond</td><td>2.42</td></tr><tr><td>Glass</td><td>1.51</td></tr><tr><td>Ice</td><td>1.31</td></tr><tr><td>Perspex</td><td>1.49</td></tr><tr><td>Glycerol</td><td>1.47</td></tr><tr><td>Water</td><td>1.33</td></tr><tr><td>Air</td><td>1.00</td></tr><tr><td>Magnesium fluoride</td><td>1.38</td></tr></table>`;
+  $('drawer').hidden=false;
+}
+$('dclose').onclick=()=>$('drawer').hidden=true;
+document.addEventListener('keydown',e=>{if(e.key==='Escape')$('drawer').hidden=true});
+
+/* countdown */
+function tick(){const d=Date.UTC(2027,4,4,8,0)-Date.now();if(d<=0){$('cdt').textContent='Good luck';return}
+  const D=Math.floor(d/864e5),H=Math.floor(d%864e5/36e5),M=Math.floor(d%36e5/6e4);
+  $('cdt').innerHTML=`<span>${D}<small>days</small></span><span>${H}<small>hours</small></span><span>${M}<small>mins</small></span>`}
+tick();setInterval(tick,30000);
+
+renderHome();show('home');
+</script>
+
+</body></html>
