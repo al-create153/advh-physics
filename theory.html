@@ -1130,6 +1130,770 @@ write:[
 });
 
 
+/*X3START*/
+const EX3=(key,x)=>{const t=TOPICS.find(t=>t.key===key);t.x3=t.x3||{};for(const k in x)t.x3[k]=(t.x3[k]||[]).concat(x[k]);};
+EX3("ka",{
+mc:[
+["How is velocity related to displacement using calculus?","v = ds/dt",[["v = ∫s dt","Integrating s does not give v."],["v = d²s/dt²","That is acceleration."],["v = ds/dv","Not meaningful."]],"Velocity is the rate of change of displacement.",""],
+["How is acceleration related to displacement?","a = d²s/dt²",[["a = ds/dt","That is velocity."],["a = ∫s dt","Integration goes the other way."],["a = s/t²","Only for special cases."]],"Second derivative.",""],
+["What does the gradient of a velocity-time graph give at any instant?","the instantaneous acceleration",[["the displacement","That is the area."],["the average velocity","Not the gradient."],["the jerk","That is da/dt."]],"a = dv/dt.",""],
+["How can displacement be found from a velocity-time function?","by integrating v with respect to t",[["by differentiating v","That gives acceleration."],["by multiplying v by a","Not correct."],["by dividing v by t","That is not displacement."]],"s = ∫v dt.",""],
+["s = 3t² + 2t. At what rate is the velocity changing?","6 m s⁻² (constant)",[["6t + 2 m s⁻²","That is the velocity."],["3 m s⁻²","Differentiate twice."],["2 m s⁻²","Check: d²s/dt² = 6."]],"v = 6t + 2, a = 6.","h"],
+["An object has v = 4t³. Which statement is true?","Its acceleration increases with time.",[["Its acceleration is constant.","a = 12t² changes."],["Its acceleration decreases.","a = 12t² grows."],["It is at rest.","v is not zero for t > 0."]],"a = 12t².","h"],
+["A velocity-time graph is a curve with increasing gradient. What does this mean?","The acceleration is increasing.",[["The acceleration is constant.","Constant a is a straight line."],["The object is slowing down.","The velocity increases."],["The displacement is decreasing.","Velocity is positive."]],"Gradient = acceleration.","h"],
+["Can the equations of motion (suvat) be used for a = 2t?","No, because the acceleration is not constant.",[["Yes, always.","Only for uniform acceleration."],["Yes, if t is small.","Not valid in general."],["Only with s = ut + ½at².","None apply."]],"Use calculus instead.","h"],
+["s = 5t² − t³. What is the velocity at t = 2 s?","8 m s⁻¹",[["12 m s⁻¹","That is s at t = 2."],["−2 m s⁻¹","Check: 10t − 3t² = 20 − 12."],["4 m s⁻¹","Differentiate correctly."]],"v = 10t − 3t² = 20 − 12 = 8 m s⁻¹.","p"]
+],
+gap:[
+["The equations of motion can be derived by [integrating] a constant acceleration with respect to [time].",["differentiating","displacement"],"v = u + at comes from ∫a dt."],
+["Acceleration is the first derivative of [velocity] and the second derivative of [displacement].",["force","mass"],"Calculus links."],
+["The area under an acceleration-time graph gives the change in [velocity]. The area under a velocity-time graph gives the [displacement].",["force","momentum"],"Integration."]
+],
+sort:[
+["Sort these by the operation needed.",{"Differentiate":["find v from s(t)","find a from v(t)"],"Integrate":["find s from v(t)","find v from a(t)"]},"Up or down the chain."],
+["Sort these accelerations.",{"Constant, suvat allowed":["a = 4","a = −9.8"],"Variable, calculus needed":["a = 2t","a = 6t − 1","a = 3t²"]},"suvat needs constant a."],
+["Sort these: what does each give?",{"Gradient of s-t graph":["velocity"],"Gradient of v-t graph":["acceleration"],"Area under v-t graph":["displacement"],"Area under a-t graph":["change in velocity"]},"Graphs and calculus."]
+],
+order:[
+["Put the steps in order to derive s = ut + ½at².",["Start with a = dv/dt = constant.","Integrate to get v = u + at.","Write v = ds/dt.","Integrate again to get s = ut + ½at²."],"Two integrations."],
+["Put the steps in order to find the maximum displacement for s = 6t − t².",["Differentiate to get v = 6 − 2t.","Set v = 0.","Solve: t = 3 s.","Substitute back: s = 9 m."],"Stationary point."],
+["Put the steps in order to find the acceleration at t = 2 s for s(t).",["Differentiate s to get v(t).","Differentiate v to get a(t).","Substitute t = 2 s.","Give the answer in m s⁻²."],"Differentiate twice."]
+],
+build:[
+["Explain how to derive v² = u² + 2as.",["Start from v = u + at, so t = (v − u)/a.","Substitute into s = ut + ½at².","Expand and simplify.","This gives v² = u² + 2as."],["Square v = u + at.","Integrate v² with respect to s."],"Eliminate t."],
+["Explain why the suvat equations cannot be used if a = 3t.",["The suvat equations are derived assuming constant acceleration.","Here the acceleration changes with time.","So the assumptions do not hold.","Calculus must be used instead."],["suvat only works for falling objects.","suvat needs a negative acceleration."],"Uniform acceleration only."],
+["Explain how to find the displacement from a velocity-time graph that is a curve.",["Displacement is the area under the v-t graph.","For a curve, the area is found by integration.","If v(t) is known, integrate it between the time limits.","Otherwise estimate the area by counting squares."],["Read the displacement off the y-axis.","Find the gradient at the end."],"Integrate or count squares."]
+],
+spot:[
+["Find v at t = 3 s for s = 2t³.",["v = ds/dt","v = 6t²","v = 6 × 3","v = 18 m s⁻¹"],2,"Square t: v = 6 × 9 = 54 m s⁻¹."],
+["Find s for v = 4t from t = 0 to 2 s.",["s = ∫v dt","s = 4t²","s = 4 × 2²","s = 16 m"],1,"∫4t dt = 2t², so s = 2 × 2² = 8 m."],
+["Describe the motion for v = 10 − 2t.",["At t = 0, v = 10 m s⁻¹.","The acceleration is −2 m s⁻².","The object stops at t = 5 s.","The acceleration increases with time."],3,"The acceleration is constant at −2 m s⁻²."]
+],
+write:[
+["State the calculus relationship between acceleration and velocity.",[["a *= *dv ?\\/ ?dt|derivative.{0,30}velocity|rate of change of velocity","a = dv/dt"]],1,"Acceleration is the rate of change of velocity: a = dv/dt."],
+["Explain how to find the time when an object is momentarily at rest, given s(t).",[["differentiat|ds ?\\/ ?dt","Differentiate s to find v"],["(v *= *0|zero|set.{0,10}0)","Set v = 0"],["(solve|find t)","Solve for t"]],2,"Differentiate s(t) to find v(t). Set v = 0 and solve for t."],
+["Describe how the equations of motion are derived from a = constant.",[["integrat","Integrate"],["v *= *u *\\+ *at","Get v = u + at"],["s *= *ut *\\+","Then s = ut + ½at²"]],2,"Integrate a with respect to t to get v = u + at (u is the constant). Integrate again to get s = ut + ½at²."]
+]
+});
+
+EX3("am",{
+mc:[
+["What is the unit of angular velocity?","rad s⁻¹",[["m s⁻¹","That is linear velocity."],["rad s⁻²","That is angular acceleration."],["Hz","Related but not the same unit."]],"ω = dθ/dt.",""],
+["How many radians are there in one complete revolution?","2π",[["π","That is half a turn."],["360","That is in degrees."],["1","One radian is about 57°."]],"360° = 2π rad.",""],
+["What is the relationship between linear and angular velocity?","v = rω",[["v = ω/r","Multiply, do not divide."],["v = r²ω","Not squared."],["v = ω","Units differ."]],"Further from the axis, faster.",""],
+["What provides the centripetal force for a satellite in orbit?","gravity",[["the engine","Engines are off in orbit."],["air resistance","There is almost no air."],["centrifugal force","That is not a real force in an inertial frame."]],"Gravity points to the centre.",""],
+["A car goes round a bend at constant speed. Which is true?","It is accelerating towards the centre of the bend.",[["It is not accelerating.","Its direction changes."],["It is accelerating outwards.","Acceleration is inwards."],["Its velocity is constant.","Velocity changes direction."]],"Centripetal acceleration.","h"],
+["A ball on a string moves in a horizontal circle. The string breaks. Which way does the ball go?","along the tangent to the circle",[["straight out from the centre","No outward force acts."],["towards the centre","No inward force any more."],["it keeps circling","No centripetal force."]],"Newton's first law.","h"],
+["The speed of an object in a circle is doubled at the same radius. What happens to the centripetal force?","It quadruples.",[["It doubles.","F = mv²/r."],["It halves.","It increases."],["It stays the same.","It depends on v²."]],"F ∝ v².","h"],
+["A wheel turns at 300 revolutions per minute. What is its angular velocity?","31 rad s⁻¹",[["300 rad s⁻¹","Convert rpm."],["5 rad s⁻¹","That is revolutions per second."],["1885 rad s⁻¹","Divide by 60."]],"ω = 2π × 5 = 31 rad s⁻¹.","p"]
+],
+gap:[
+["The centripetal acceleration of an object moving in a circle is a = v²/r = [rω²]. It is directed towards the [centre].",["ω/r","tangent"],"Inward acceleration."],
+["Angular acceleration α is the rate of change of [angular] velocity. Its unit is rad [s⁻²].",["linear","s⁻¹"],"α = dω/dt."],
+["For rotational motion with constant α, ω = ω₀ + [αt] and θ = ω₀t + ½[αt²].",["ωt","α/t"],"Rotational suvat."]
+],
+sort:[
+["Sort these into linear or angular quantities.",{"Linear":["displacement s","velocity v","acceleration a"],"Angular":["angular displacement θ","angular velocity ω","angular acceleration α"]},"Analogues."],
+["Sort these: what provides the centripetal force?",{"Gravity":["the Moon orbiting Earth","a satellite"],"Tension":["a conker on a string"],"Friction":["a car turning a corner on a flat road"]},"A real force must act inwards."],
+["Sort these: does the quantity change for an object moving in a circle at constant speed?",{"Changes":["velocity","momentum","direction of acceleration"],"Constant":["speed","kinetic energy","size of centripetal force"]},"Direction keeps changing."]
+],
+order:[
+["Put the steps in order to find the tension in a string for a mass in a horizontal circle.",["Find the speed or angular velocity.","Write F = mv²/r or F = mrω².","Identify the tension as the centripetal force.","Substitute and calculate."],"Tension provides the force."],
+["Put these in order of angular velocity, smallest first.",["the hour hand of a clock","the minute hand","the second hand","a CD in a player"],"Faster rotation, larger ω."],
+["Put the steps in order to convert rpm to rad s⁻¹.",["Divide rpm by 60 to get revolutions per second.","Multiply by 2π.","Give the answer in rad s⁻¹.","Check it is a sensible size."],"ω = 2πf."]
+],
+build:[
+["Explain why an object moving in a circle at constant speed is accelerating.",["Velocity is a vector.","In a circle the direction of motion keeps changing.","So the velocity is changing.","A change in velocity is an acceleration, directed towards the centre."],["It is accelerating because its speed changes.","It accelerates outwards."],"Change in direction."],
+["Explain what happens to the required centripetal force if the radius is halved at constant angular velocity.",["F = mrω².","ω and m are unchanged.","Halving r halves F.","So less force is needed."],["F = mv²/r, so halving r doubles F.","The force stays the same."],"Choose the right form."],
+["Explain why passengers feel pushed outwards on a fast roundabout.",["Their bodies tend to keep moving in a straight line.","The seat or bar pushes them inwards to make them turn.","They feel this as being pushed against the outside.","There is no real outward force in an inertial frame."],["Centrifugal force pushes them outwards.","Gravity pulls them outwards."],"Inertia."]
+],
+spot:[
+["Find the centripetal force on a 2 kg mass at 3 m s⁻¹ in a 0.5 m circle.",["F = mv²/r","F = 2 × 3² ÷ 0.5","F = 2 × 6 ÷ 0.5","F = 24 N"],2,"3² = 9: F = 2 × 9 ÷ 0.5 = 36 N."],
+["Convert 90° to radians.",["360° = 2π rad.","90° is a quarter turn.","90° = π/2 rad.","90° = 2π/90 rad."],3,"π/2 rad (about 1.57 rad)."],
+["Find v for a point 0.2 m from the axis at ω = 10 rad s⁻¹.",["v = rω","v = 0.2 × 10","v = 2 m s⁻¹","v = 50 m s⁻¹"],3,"v = 2 m s⁻¹; 50 is ω ÷ r."]
+],
+write:[
+["State what is meant by one radian.",[["arc","The arc length"],["(equal|same).{0,20}radius|radius","Equal to the radius"]],2,"One radian is the angle subtended at the centre of a circle by an arc equal in length to the radius."],
+["Explain why a car needs friction to turn a corner on a flat road.",[["(centripetal|towards the centre|inward)","A centripetal force is needed"],["friction.{0,40}(provides|supplies|gives)|provided by friction","Friction provides it"],["(skid|slide|straight)","Without it, the car would go straight on"]],2,"A centripetal force towards the centre is needed to change the car's direction. On a flat road this is provided by friction between the tyres and road; without enough friction the car skids straight on."],
+["Derive the expression for centripetal acceleration in terms of ω and r.",[["a *= *v ?² ?\\/ ?r|v²\\/r","a = v²/r"],["v *= *r ?ω","v = rω"],["r ?ω ?²|rω²","a = rω²"]],2,"Start with a = v²/r. Substitute v = rω: a = (rω)²/r = rω²."]
+]
+});
+
+EX3("rd",{
+mc:[
+["What is torque?","the turning effect of a force, τ = Fr",[["a force acting through the centre","That gives no torque."],["angular velocity","Not a force effect."],["the moment of inertia","That is resistance to angular acceleration."]],"Torque = force × perpendicular distance.",""],
+["What is moment of inertia?","a measure of an object's resistance to angular acceleration",[["the mass of an object","It also depends on mass distribution."],["the torque on an object","Not the same."],["the angular momentum","L = Iω."]],"Depends on mass and its distribution.",""],
+["What is the unit of angular momentum?","kg m² s⁻¹",[["kg m s⁻¹","That is linear momentum."],["N m","That is torque."],["kg m²","That is moment of inertia."]],"L = Iω.",""],
+["What is the rotational kinetic energy of an object?","½Iω²",[["½mv²","That is translational."],["Iω","That is angular momentum."],["Iα","That is torque."]],"Analogue of ½mv².",""],
+["An ice skater pulls her arms in. What happens?","She spins faster, because her moment of inertia decreases and angular momentum is conserved.",[["She slows down.","Angular momentum is conserved."],["Her angular momentum increases.","No external torque acts."],["Her moment of inertia increases.","Mass moves closer to the axis."]],"Iω constant.","h"],
+["A solid cylinder and a hoop of the same mass and radius roll down a slope from rest. Which reaches the bottom first?","the solid cylinder",[["the hoop","It has a bigger I."],["they arrive together","Moments of inertia differ."],["it depends on the slope only","Mass distribution matters."]],"Less energy goes into rotation for the cylinder.","h"],
+["A disc rotates with no external torque. A lump of clay is dropped onto it. What happens to its angular velocity?","It decreases.",[["It increases.","I increases."],["It stays the same.","I changes."],["It reverses.","No reason to."]],"L = Iω constant; I increases.","h"],
+["A torque of 12 N m acts on a wheel with I = 0.4 kg m². What is the angular acceleration?","30 rad s⁻²",[["4.8 rad s⁻²","Divide, do not multiply."],["0.033 rad s⁻²","That is I/τ."],["12 rad s⁻²","Divide by I."]],"α = τ/I = 12 ÷ 0.4 = 30 rad s⁻².","p"]
+],
+gap:[
+["The rotational equivalent of F = ma is τ = [Iα].",["mω","Fr²"],"Newton's second law for rotation."],
+["The moment of inertia of a point mass is I = [mr²]. Mass further from the axis gives a [larger] moment of inertia.",["mr","smaller"],"Distribution matters."]
+],
+sort:[
+["Sort these into linear and rotational equivalents.",{"Linear":["mass","force","momentum"],"Rotational":["moment of inertia","torque","angular momentum"]},"Analogues."],
+["Sort these by moment of inertia (same mass and radius).",{"Larger I":["a hoop (mass at the rim)"],"Smaller I":["a solid disc","a solid sphere"]},"Mass further out, larger I."],
+["Sort these: what is conserved when no external torque acts?",{"Conserved":["angular momentum"],"Can change":["angular velocity","moment of inertia","rotational kinetic energy"]},"L = Iω constant."]
+],
+order:[
+["Put these in order of moment of inertia about a central axis (same mass and radius), smallest first.",["solid sphere (⅖mr²)","solid disc (½mr²)","hoop (mr²)"],"Mass further out, larger I."],
+["Put the steps in order to find the final ω after a collision on a turntable.",["Find the initial angular momentum, I₁ω₁.","Find the new total moment of inertia.","Set I₁ω₁ = I₂ω₂.","Solve for ω₂."],"Conservation."],
+["Put the steps in order to find the speed of a ball rolling down a slope.",["Find the potential energy lost, mgh.","Set it equal to ½mv² + ½Iω².","Use ω = v/r.","Solve for v."],"Energy method with rotation."]
+],
+build:[
+["Explain why a hoop rolls down a slope more slowly than a solid disc.",["Both lose the same potential energy (same mass and height).","This becomes translational and rotational kinetic energy.","The hoop has a larger moment of inertia.","So more of its energy is rotational, leaving less translational, so it is slower."],["The hoop is heavier.","The hoop has more friction."],"Energy split."],
+["Explain why a diver tucks to spin faster.",["No external torque acts in the air, so angular momentum is conserved.","Tucking brings mass closer to the axis.","This reduces the moment of inertia.","So the angular velocity increases."],["Tucking increases angular momentum.","Gravity provides a torque that speeds up the spin."],"Iω constant."],
+["Explain why a door handle is placed far from the hinges.",["Torque = force × perpendicular distance.","A larger distance from the pivot gives more torque.","For the same torque, a smaller force is needed.","So the door is easier to open."],["The handle is far away for decoration.","Distance makes the door lighter."],"τ = Fr."]
+],
+spot:[
+["Find the rotational Eₖ for I = 2 kg m² and ω = 3 rad s⁻¹.",["Eₖ = ½Iω²","Eₖ = ½ × 2 × 3","Eₖ = 3 J","The unit is joules."],1,"ω must be squared: ½ × 2 × 9 = 9 J."],
+["Find the torque from a 20 N force at 0.3 m, perpendicular.",["τ = Fr","τ = 20 × 0.3","τ = 6 N m","τ = 6 J"],3,"Torque is in N m, not J."],
+["Describe angular momentum.",["L = Iω.","It is a vector.","It is conserved if no external torque acts.","It is measured in kg m s⁻¹."],3,"Unit is kg m² s⁻¹."]
+],
+write:[
+["State the principle of conservation of angular momentum.",[["(total )?angular momentum.{0,40}(conserved|constant|before.{0,20}after)","Total angular momentum is constant"],["(no|absence of|without).{0,20}external torque","If no external torque acts"]],2,"The total angular momentum of a system stays constant (before equals after) provided no external torque acts."],
+["Explain why the moment of inertia of an object depends on how its mass is distributed.",[["mr ?²|r ?²|distance.{0,20}squared|square","I depends on r²"],["(further|far|distance).{0,30}axis","Mass further from the axis contributes more"]],2,"I = Σmr², so each bit of mass contributes in proportion to the square of its distance from the axis. Mass further from the axis increases I much more."],
+["Describe how to find the moment of inertia of a flywheel experimentally.",[["(falling|hanging) mass|mass.{0,20}(string|thread)","Use a falling mass on a string wound round the axle"],["(height|distance|fall)","Measure the height fallen"],["(time|speed|ω|angular velocity)","Measure the time or final speed"],["(energy|mgh)","Use conservation of energy"]],3,"Wind a string round the axle with a mass hanging from it. Release it and measure the height fallen and the time taken, giving the final speed. Use energy: mgh = ½mv² + ½Iω² (with ω = v/r) to find I."]
+]
+});
+
+EX3("gv",{
+mc:[
+["What is gravitational potential at a point?","the work done in bringing 1 kg from infinity to that point",[["the force on 1 kg","That is field strength."],["the energy of the planet","It is per kg."],["always positive","It is negative."]],"V = −GM/r.",""],
+["Why is gravitational potential negative?","Zero is defined at infinity and work must be done to move a mass away to infinity.",[["Gravity is repulsive.","Gravity attracts."],["Mass is negative.","Mass is positive."],["It is measured downwards.","Not the reason."]],"Masses are attracted, so energy rises to zero at infinity.",""],
+["What is escape velocity?","the minimum speed needed to escape a body's gravitational field with no further propulsion",[["the speed of a satellite in orbit","That is orbital speed."],["the speed of light","Not related."],["the speed reached in free fall","Not the definition."]],"v = √(2GM/r).",""],
+["What is gravitational field strength at a distance r from a planet of mass M?","GM/r²",[["GM/r","That is the size of the potential."],["GMm/r²","That is the force."],["−GM/r","That is the potential."]],"g = GM/r².",""],
+["Does a satellite's escape velocity depend on its mass?","No, the mass cancels.",[["Yes, heavier needs more speed.","½mv² = GMm/r: m cancels."],["Yes, lighter needs more speed.","m cancels."],["Only on Earth.","It applies everywhere."]],"v = √(2GM/r).","h"],
+["A satellite moves to a higher circular orbit. What happens to its speed?","It decreases.",[["It increases.","v = √(GM/r)."],["It stays the same.","It depends on r."],["It becomes zero.","It still orbits."]],"Bigger r, smaller v.","h"],
+["Equipotential lines around a planet are shown. How much work is done moving a mass along one?","zero",[["mgh","Not along an equipotential."],["GMm/r","That is a change in potential energy."],["it depends on the path","Along an equipotential it is zero."]],"No change in potential.","h"],
+["What is the escape velocity from the Moon? (M = 7.3 × 10²² kg, r = 1.7 × 10⁶ m)","2.4 km s⁻¹",[["1.7 km s⁻¹","That is the orbital speed."],["5.7 km s⁻¹","Check the square root."],["24 km s⁻¹","Check the powers of ten."]],"v = √(2 × 6.67 × 10⁻¹¹ × 7.3 × 10²² ÷ 1.7 × 10⁶) = 2.4 × 10³ m s⁻¹.","p"],
+["What is the gravitational potential at the Earth's surface? (M = 6.0 × 10²⁴ kg, r = 6.4 × 10⁶ m)","−6.3 × 10⁷ J kg⁻¹",[["6.3 × 10⁷ J kg⁻¹","It is negative."],["−9.8 J kg⁻¹","That is g."],["−4.0 × 10¹⁴ J kg⁻¹","Divide by r."]],"V = −GM/r = −6.3 × 10⁷ J kg⁻¹.","p"]
+],
+gap:[
+["The gravitational potential energy of a mass m at distance r is Eₚ = −[GMm/r].",["GM/r²","mgh"],"Valid at any distance."],
+["Equipotentials are lines joining points of equal [potential]. They are always at right angles to the field [lines].",["force","equipotentials"],"Field lines are perpendicular."],
+["For a circular orbit, the gravitational force provides the [centripetal] force, so GMm/r² = [mv²/r].",["centrifugal","mv/r"],"Leads to v = √(GM/r)."]
+],
+sort:[
+["Sort these: what depends on the satellite's mass?",{"Depends on m":["gravitational force on it","its potential energy"],"Does not depend on m":["orbital speed","orbital period","escape velocity"]},"m often cancels."],
+["Sort these formulas.",{"Field strength":["g = GM/r²"],"Potential":["V = −GM/r"],"Escape velocity":["v = √(2GM/r)"],"Force":["F = GMm/r²"]},"Know each."],
+["Sort these as r increases for a circular orbit.",{"Increases":["orbital period","potential (less negative)"],"Decreases":["orbital speed","field strength"]},"Kepler-type trends."]
+],
+order:[
+["Put the steps in order to derive escape velocity.",["Write the kinetic energy at the surface, ½mv².","Write the potential energy at the surface, −GMm/r.","Set total energy to zero for escape.","Rearrange: v = √(2GM/r)."],"Energy at infinity is zero."],
+["Put these in order of gravitational potential, most negative first.",["at the Earth's surface","in low Earth orbit","at the Moon's distance","far out in space"],"Potential rises towards zero."],
+["Put the steps in order to find the period of a circular orbit.",["Equate GMm/r² to mv²/r.","Solve for v = √(GM/r).","Use T = 2πr/v.","Calculate T."],"Orbital mechanics."]
+],
+build:[
+["Explain why escape velocity does not depend on the mass of the object.",["To escape, the kinetic energy must equal the work done against gravity.","½mv² = GMm/r.","The mass m appears on both sides and cancels.","So v = √(2GM/r) for any mass."],["Heavier objects need more speed.","Light objects cannot escape."],"Mass cancels."],
+["Explain why work done moving a mass along an equipotential is zero.",["An equipotential joins points of equal potential.","Work done = m × change in potential.","Along an equipotential the change in potential is zero.","So no work is done."],["The path is too short.","Gravity does not act along an equipotential."],"ΔV = 0."],
+["Explain why a geostationary satellite must be at a particular height.",["Its period must be 24 hours to match the Earth's rotation.","For a circular orbit, the period depends only on the radius (T² ∝ r³).","So only one radius gives a 24-hour period.","This is about 36 000 km above the surface."],["Any height works if the engine is on.","It must be as low as possible."],"Unique radius."]
+],
+spot:[
+["Find g at 2 Earth radii from the centre (g = 9.8 N kg⁻¹ at the surface).",["g ∝ 1/r²","r doubles.","g = 9.8 ÷ 2","g = 4.9 N kg⁻¹"],2,"Divide by 2² = 4: g = 2.45 N kg⁻¹."],
+["Describe gravitational potential.",["It is zero at infinity.","It is negative near a mass.","It is a vector.","Its unit is J kg⁻¹."],2,"Potential is a scalar."],
+["Derive orbital speed.",["GMm/r² = mv²/r","GM/r = v²","v = GM/r","v is independent of m."],2,"Take the square root: v = √(GM/r)."]
+],
+write:[
+["State what is meant by gravitational potential.",[["work done","Work done"],["(1|one|unit) ?kg|unit mass|per kilogram","Per kg"],["infinity","From infinity"]],3,"The gravitational potential at a point is the work done in moving unit mass (1 kg) from infinity to that point."],
+["Explain why gravitational potential is negative.",[["(zero|0).{0,20}infinity|infinity.{0,30}zero","Zero is at infinity"],["(attract|work.{0,30}(done|needed).{0,30}(away|infinity|escape))","Work must be done to move a mass away"]],2,"Potential is defined as zero at infinity. Gravity attracts, so work must be done on a mass to move it out to infinity; at any closer point its potential is less than zero."],
+["Describe how escape velocity is derived using energy.",[["kinetic","Kinetic energy"],["(potential|GMm ?\\/ ?r)","Potential energy GMm/r"],["(equal|total energy.{0,20}zero|set.{0,20}=)","Set kinetic energy equal to the energy needed to reach infinity"],["√|sqrt|square root","v = √(2GM/r)"]],3,"The kinetic energy at launch must equal the work needed to reach infinity: ½mv² = GMm/r. So v = √(2GM/r)."]
+]
+});
+
+EX3("gr",{
+mc:[
+["What is the equivalence principle?","Effects of gravity cannot be distinguished from effects of acceleration in a small region.",[["Mass and energy are the same.","That is E = mc²."],["All observers measure the same speed of light.","That is special relativity."],["Gravity is a force between charges.","Not correct."]],"Basis of general relativity.",""],
+["In general relativity, what causes gravity?","the curvature of spacetime by mass",[["a force carried by photons","Not in GR."],["the rotation of planets","Not the cause."],["electric charge","Not the cause."]],"Mass tells spacetime how to curve.",""],
+["What is the Schwarzschild radius?","the radius of the event horizon of a non-rotating black hole",[["the radius of any star","Only relevant for black holes."],["the distance to the nearest star","Not related."],["the radius of a neutron","Not related."]],"r = 2GM/c².",""],
+["A clock is placed on the ground floor and another at the top of a tall tower. Which runs slower?","the clock on the ground floor",[["the clock at the top","Weaker gravity, faster clock."],["they run at the same rate","Gravitational time dilation."],["neither, both stop","They keep running."]],"Clocks run slower in stronger gravity.","h"],
+["A ball is thrown across a lift accelerating upwards in space. What does a person inside see?","The ball curves downwards, as it would under gravity.",[["The ball goes in a straight line.","The floor accelerates up."],["The ball curves upwards.","It appears to fall."],["The ball stops.","It keeps moving."]],"Equivalence principle.","h"],
+["What is the Schwarzschild radius of a 2.0 × 10³⁰ kg star?","3.0 km",[["1.5 km","Use 2GM/c²."],["3.0 m","Check the powers of ten."],["8.9 × 10¹⁹ m","Divide by c²."]],"r = 2 × 6.67 × 10⁻¹¹ × 2.0 × 10³⁰ ÷ (3 × 10⁸)² = 3.0 × 10³ m.","p"],
+["A black hole has a Schwarzschild radius of 9 km. What is its mass?","6.1 × 10³⁰ kg",[["1.2 × 10³¹ kg","Divide by 2G."],["3.0 × 10³⁰ kg","Check: rc²/2G."],["6.1 × 10²⁷ kg","Use metres."]],"M = rc²/(2G) = 9000 × 9 × 10¹⁶ ÷ (1.33 × 10⁻¹⁰) = 6.1 × 10³⁰ kg.","p"],
+["On a spacetime diagram, a vertical worldline (time upwards) represents what?","an object at rest",[["an object at constant speed","That is a sloping line."],["an accelerating object","That is a curve."],["light","Light is at 45° in suitable units."]],"No change in position.","p"],
+["On a spacetime diagram, a curved worldline represents what?","an accelerating object",[["an object at rest","That is vertical."],["constant velocity","That is a straight sloping line."],["light","Light is straight."]],"Changing gradient means changing velocity.","p"]
+],
+gap:[
+["The boundary around a black hole from which nothing, not even [light], can escape is called the event [horizon].",["matter","radius"],"r = 2GM/c²."],
+["In general relativity, objects in free fall follow [geodesics] in curved [spacetime].",["orbits","space only"],"Shortest paths."],
+["Light passing near a massive object is [bent]. This is called gravitational [lensing].",["slowed","shifting"],"Evidence for GR."]
+],
+sort:[
+["Sort these as evidence for general relativity.",{"Evidence for GR":["gravitational lensing","precession of Mercury's orbit","gravitational time dilation measured by clocks"],"Not specific to GR":["the photoelectric effect","diffraction of light"]},"GR predictions."],
+["Sort these worldlines on a spacetime diagram.",{"Vertical straight line":["object at rest"],"Sloping straight line":["object at constant velocity"],"Curved line":["accelerating object"]},"Read the shape."],
+["Sort these by the theory they belong to.",{"Special relativity":["constant speed of light","time dilation due to speed","length contraction"],"General relativity":["equivalence principle","curved spacetime","gravitational time dilation"]},"SR versus GR."]
+],
+order:[
+["Put these in order of clock rate, slowest first.",["near a black hole's event horizon","on the surface of a neutron star","on the Earth's surface","in deep space"],"Stronger gravity, slower clock."],
+["Put the steps in order to find a Schwarzschild radius.",["Write down the mass in kg.","Use r = 2GM/c².","Substitute G and c.","Give the radius in metres."],"Direct use."],
+["Put the stages of the thought experiment in order.",["Imagine a person in a closed lift in deep space.","The lift accelerates upwards at 9.8 m s⁻².","The person feels pressed to the floor, as on Earth.","They cannot tell whether this is gravity or acceleration."],"Equivalence principle."]
+],
+build:[
+["Explain how the equivalence principle predicts that light bends in a gravitational field.",["Imagine a light beam crossing an accelerating lift.","The floor moves up while the light crosses.","To the person inside, the light appears to curve downwards.","By equivalence, light must also curve in a gravitational field."],["Light has mass, so gravity pulls it.","Light slows down in a gravitational field."],"Thought experiment."],
+["Explain what an event horizon is.",["Near a black hole spacetime is extremely curved.","Inside a certain radius, the escape velocity exceeds c.","Nothing, not even light, can escape from inside this radius.","This boundary is the event horizon."],["It is the surface of a star.","Light can escape slowly from inside."],"Escape speed exceeds c."],
+["Explain why GPS satellites must correct for general relativity.",["The satellites are in weaker gravity than clocks on Earth.","So their clocks run faster.","Small timing errors cause big position errors.","Correcting the clocks keeps GPS accurate."],["The satellites move faster than light.","GPS satellites have no clocks."],"Gravitational time dilation."]
+],
+spot:[
+["Describe the equivalence principle.",["It applies in a small region of space.","Gravity and acceleration have the same effect.","It shows that light is not affected by gravity.","It is a foundation of general relativity."],2,"It predicts that light is bent by gravity."],
+["Find r(s) for M = 4 × 10³⁰ kg.",["r = 2GM/c²","r = 2 × 6.67 × 10⁻¹¹ × 4 × 10³⁰ ÷ 3 × 10⁸","r = 1.8 × 10¹² m","r is the event horizon."],1,"c must be squared: r = 5.9 × 10³ m."],
+["Describe spacetime diagrams.",["Time is usually on the vertical axis.","A worldline shows an object's path.","A sloping straight line shows acceleration.","Light follows lines at 45° in suitable units."],2,"A sloping straight line shows constant velocity."]
+],
+write:[
+["State the equivalence principle.",[["(gravit)","Gravity"],["accelerat","Acceleration"],["(cannot|can.t|indistinguishable|no way|same)","Cannot be distinguished"]],3,"The effects of gravity and acceleration cannot be distinguished: an observer in a small closed box cannot tell whether they are in a gravitational field or accelerating."],
+["Describe how general relativity explains gravity.",[["(mass|energy).{0,30}curv|curv.{0,30}(mass|spacetime)","Mass curves spacetime"],["(spacetime|space-time)","Spacetime"],["(geodesic|path|follow)","Objects follow paths in curved spacetime"]],2,"Mass curves spacetime. Objects in free fall follow the straightest possible paths (geodesics) in this curved spacetime, which we see as gravity."],
+["Give one piece of evidence for general relativity.",[["(lensing|bending of light|light.{0,20}bent|eclipse)","Light bending (lensing)"],["(mercury|precession)","Mercury's precession"],["(clock|GPS|time dilation)","Gravitational time dilation"],["(gravitational wave|LIGO)","Gravitational waves"]],1,"Any one: gravitational lensing of light; precession of Mercury's orbit; clocks running at different rates at different heights (GPS); detection of gravitational waves."]
+]
+});
+
+EX3("st",{
+mc:[
+["What is the luminosity of a star?","the total power it emits",[["the power received per m² on Earth","That is apparent brightness."],["its surface temperature","Not the same."],["its colour","Related but different."]],"L in watts.",""],
+["What is the apparent brightness of a star?","the power per unit area received at a distance",[["the total power emitted","That is luminosity."],["its temperature","Not the same."],["its distance","Not the same."]],"b = L/(4πd²).",""],
+["What is a Hertzsprung-Russell diagram a plot of?","luminosity against surface temperature",[["mass against distance","Not an H-R diagram."],["brightness against age","Not an H-R diagram."],["radius against time","Not an H-R diagram."]],"Temperature decreases to the right.",""],
+["Two stars have the same temperature but one is 100 times more luminous. What can you conclude?","It has a radius 10 times larger.",[["It is 100 times bigger in radius.","L ∝ r²."],["It is hotter.","Same temperature."],["It is closer.","Luminosity is intrinsic."]],"L = 4πr²σT⁴, so L ∝ r².","h"],
+["A star's surface temperature doubles but its radius stays the same. What happens to its luminosity?","It increases 16 times.",[["It doubles.","L ∝ T⁴."],["It increases 4 times.","T⁴, not T²."],["It halves.","It increases."]],"2⁴ = 16.","h"],
+["Where is the Sun on the H-R diagram?","on the main sequence",[["among the white dwarfs","The Sun is fusing hydrogen."],["among the red giants","Not yet."],["among the supergiants","It is not massive enough."]],"Hydrogen-burning.","h"],
+["A star of radius 7.0 × 10⁸ m has a surface temperature of 5800 K. What is its luminosity? (σ = 5.67 × 10⁻⁸ W m⁻² K⁻⁴)","3.9 × 10²⁶ W",[["3.1 × 10²⁵ W","Include 4π."],["6.7 × 10¹¹ W","Use T⁴."],["3.9 × 10²⁸ W","Check the powers of ten."]],"L = 4π(7.0 × 10⁸)² × 5.67 × 10⁻⁸ × 5800⁴ = 3.9 × 10²⁶ W.","p"],
+["A star of luminosity 3.8 × 10²⁶ W is 1.5 × 10¹¹ m away. What is its apparent brightness?","1.3 × 10³ W m⁻²",[["2.5 × 10¹⁵ W m⁻²","Divide by 4πd²."],["1.7 × 10¹⁴ W m⁻²","Square d."],["1.3 × 10⁵ W m⁻²","Check the powers of ten."]],"b = 3.8 × 10²⁶ ÷ (4π × 2.25 × 10²²) = 1.3 × 10³ W m⁻².","p"]
+],
+gap:[
+["Stars on the [main] sequence are fusing hydrogen into [helium] in their cores.",["giant","carbon"],"Most of a star's life."],
+["The Stefan-Boltzmann law states that the power emitted per unit area is proportional to the [fourth] power of the [absolute] temperature.",["second","Celsius"],"P/A = σT⁴."],
+["A star forms when a cloud of gas and dust collapses under [gravity] until the core is hot enough for [fusion].",["pressure","fission"],"Star birth."]
+],
+sort:[
+["Sort these into regions of the H-R diagram.",{"Main sequence":["the Sun","a red dwarf"],"Giants and supergiants":["Betelgeuse","a red giant"],"White dwarfs":["Sirius B","a cooling stellar core"]},"Know the regions."],
+["Sort these stellar end points by initial mass.",{"Low mass like the Sun":["white dwarf"],"High mass":["neutron star"],"Very high mass":["black hole"]},"Mass decides fate."],
+["Sort these: intrinsic property or depends on distance?",{"Intrinsic":["luminosity","surface temperature","radius"],"Depends on distance":["apparent brightness"]},"b falls with d²."]
+],
+order:[
+["Put the stages in order for a Sun-like star.",["nebula","protostar","main sequence star","red giant","white dwarf"],"Low mass life cycle."],
+["Put the stages in order for a very massive star.",["main sequence star","red supergiant","supernova","neutron star or black hole"],"High mass life cycle."],
+["Put these stars in order of surface temperature, hottest first.",["blue","white","yellow","red"],"Colour indicates temperature."]
+],
+build:[
+["Explain why a red giant can be very luminous even though it is cool.",["Luminosity depends on radius and temperature: L = 4πr²σT⁴.","A red giant has a low surface temperature.","But its radius is enormous.","The large surface area more than makes up for the low T."],["Red giants are very hot inside so they glow brightly.","Red giants are close to Earth."],"Size matters."],
+["Explain why a main sequence star is stable.",["Fusion in the core produces energy.","This creates an outward radiation and gas pressure.","Gravity pulls the star inwards.","The two balance, so the star is in equilibrium."],["The star has no gravity.","Fusion pulls the star inwards."],"Hydrostatic equilibrium."],
+["Explain how the luminosity of a star can be found from its apparent brightness.",["Measure the apparent brightness b.","Find the distance d to the star.","Use b = L/(4πd²).","Rearrange: L = 4πd²b."],["Luminosity is the same as apparent brightness.","Use the colour only."],"Inverse square law."]
+],
+spot:[
+["Find the luminosity ratio for two stars of equal radius, T₁ = 2T₂.",["L = 4πr²σT⁴","Radii equal, so L ∝ T⁴.","L₁/L₂ = 2² = 4","Star 1 is more luminous."],2,"L₁/L₂ = 2⁴ = 16."],
+["Describe the H-R diagram.",["Luminosity is on the y-axis.","Temperature increases to the right.","Main sequence runs from top left to bottom right.","White dwarfs are at the bottom left."],1,"Temperature increases to the left."],
+["Describe the end of a Sun-like star.",["It becomes a red giant.","It loses its outer layers as a planetary nebula.","Its core collapses into a black hole.","It ends as a white dwarf."],2,"The core becomes a white dwarf, not a black hole."]
+],
+write:[
+["State what is meant by the luminosity of a star.",[["(total|all).{0,20}(power|energy per second)|power","The total power"],["(emit|radiat|gives out)","Emitted"]],2,"Luminosity is the total power emitted by a star."],
+["Explain why stars on the main sequence are stable.",[["(fusion|radiation|gas) pressure|outward","Outward pressure from fusion"],["gravit","Inward gravity"],["(balance|equal|equilibrium)","They balance"]],3,"Fusion in the core produces outward radiation and gas pressure, which balances the inward pull of gravity. The star is in equilibrium."],
+["Describe how the mass of a star affects its life cycle.",[["(more massive|high mass|larger mass|greater mass).{0,40}(shorter|faster|quicker)|shorter","More massive stars have shorter lives"],["(white dwarf)","Low mass ends as a white dwarf"],["(neutron star|black hole|supernova)","High mass ends as a supernova, neutron star or black hole"]],2,"More massive stars use their fuel much faster and have shorter lives. Low-mass stars like the Sun become white dwarfs; very massive stars explode as supernovae, leaving a neutron star or black hole."]
+]
+});
+
+EX3("qt",{
+mc:[
+["What is the de Broglie wavelength of a particle?","λ = h/p",[["λ = hf","That is photon energy."],["λ = p/h","Inverted."],["λ = mc²/h","Not the de Broglie relation."]],"All moving particles have a wavelength.",""],
+["What problem with classical physics is called the ultraviolet catastrophe?","Classical theory predicted infinite energy emitted at short wavelengths by a black body.",[["UV light causes skin cancer.","Not the physics problem."],["The Sun emits too little UV.","Not the problem."],["UV cannot be detected.","Not the problem."]],"Solved by Planck's quantisation.",""],
+["What does the Heisenberg uncertainty principle state?","Position and momentum cannot both be known exactly at the same time.",[["All measurements have errors.","It is a fundamental limit, not an experimental one."],["Electrons cannot be seen.","Not the statement."],["Energy is always conserved.","Not related."]],"Δx Δp ≥ h/4π.",""],
+["In the Bohr model, what is quantised?","the angular momentum of the electron",[["the mass of the electron","Mass is fixed."],["the charge of the nucleus","Not the Bohr condition."],["the speed of light","Not quantised."]],"mvr = nh/2π.",""],
+["Electrons are diffracted by a crystal. What does this show?","Electrons have wave properties.",[["Electrons are particles only.","Diffraction is a wave effect."],["Crystals emit electrons.","They scatter them."],["Electrons have no mass.","They do."]],"Evidence for de Broglie waves.","h"],
+["Why can quantum tunnelling occur?","A particle's wavefunction does not fall to zero at a barrier, so there is a small probability of finding it on the other side.",[["The particle gains energy from the barrier.","It does not need more energy."],["The barrier has holes.","Not the explanation."],["Classical physics allows it.","It is a quantum effect."]],"Probability, not certainty.","h"],
+["What is the de Broglie wavelength of an electron moving at 2.0 × 10⁶ m s⁻¹? (mₑ = 9.11 × 10⁻³¹ kg)","3.6 × 10⁻¹⁰ m",[["2.7 × 10⁹ m","That is p/h."],["1.2 × 10⁻²⁴ m","Divide h by p."],["3.6 × 10⁻⁸ m","Check the powers of ten."]],"λ = 6.63 × 10⁻³⁴ ÷ (9.11 × 10⁻³¹ × 2.0 × 10⁶) = 3.6 × 10⁻¹⁰ m.","p"],
+["An electron's position is known to within 1.0 × 10⁻¹⁰ m. What is the minimum uncertainty in its momentum?","5.3 × 10⁻²⁵ kg m s⁻¹",[["6.6 × 10⁻²⁴ kg m s⁻¹","Divide by 4π."],["5.3 × 10⁻³⁵ kg m s⁻¹","Divide by Δx, not multiply."],["1.1 × 10⁻²⁴ kg m s⁻¹","Use h/4π, not h/2π."]],"Δp ≥ h/(4πΔx) = 5.3 × 10⁻²⁵ kg m s⁻¹.","p"],
+["In the Bohr model, what is the angular momentum of an electron in the n = 2 level?","2.1 × 10⁻³⁴ J s",[["1.1 × 10⁻³⁴ J s","That is n = 1."],["1.3 × 10⁻³³ J s","Divide by 2π."],["4.2 × 10⁻³⁴ J s","Check: 2h/2π."]],"L = nh/2π = 2 × 6.63 × 10⁻³⁴ ÷ 2π = 2.1 × 10⁻³⁴ J s.","p"]
+],
+gap:[
+["Planck solved the ultraviolet catastrophe by proposing that energy is emitted in discrete packets called [quanta], with E = [hf].",["waves","mc²"],"Start of quantum theory."],
+["The Heisenberg uncertainty principle can be written Δx Δp ≥ [h/4π]. A similar relation links uncertainties in [energy] and time.",["h/2π","charge"],"Two forms."],
+["In quantum mechanics, the square of the wavefunction gives the [probability] of finding a particle at a [position].",["energy","speed"],"Probabilistic."]
+],
+sort:[
+["Sort these as evidence for waves or particles.",{"Wave behaviour of particles":["electron diffraction","electron interference"],"Particle behaviour of light":["photoelectric effect","Compton scattering"]},"Duality both ways."],
+["Sort these quantities with their uncertainty partners.",{"Pairs with momentum":["position"],"Pairs with energy":["time"]},"Heisenberg pairs."],
+["Sort these: classical or quantum explanation needed?",{"Classical works":["motion of a cricket ball","orbit of the Moon"],"Quantum needed":["line spectra of hydrogen","tunnelling in a scanning tunnelling microscope","black body radiation curve"]},"Scale matters."]
+],
+order:[
+["Put these in order of de Broglie wavelength, longest first (same speed).",["electron","proton","alpha particle","cricket ball"],"Bigger mass, shorter λ."],
+["Put the steps in order to find the de Broglie wavelength of an electron accelerated through a p.d.",["Find the kinetic energy, Eₖ = QV.","Find the speed from Eₖ = ½mv².","Find the momentum, p = mv.","Use λ = h/p."],"Energy to wavelength."],
+["Put these developments in order of history.",["Planck explains black body radiation","Einstein explains the photoelectric effect","Bohr proposes his atomic model","de Broglie proposes matter waves"],"1900, 1905, 1913, 1924."]
+],
+build:[
+["Explain why we do not see quantum effects for everyday objects.",["The de Broglie wavelength is λ = h/p.","Everyday objects have very large momenta.","Their wavelengths are far too small to detect.","So diffraction and interference are not seen."],["Everyday objects have no wavelength.","Quantum effects only apply in space."],"h is tiny."],
+["Explain how the Bohr model accounts for line spectra.",["Electrons can only have certain angular momenta, mvr = nh/2π.","So they can only have certain energies.","When an electron moves between levels, a photon is emitted or absorbed.","Its energy equals the level difference, giving specific frequencies."],["Electrons spiral into the nucleus.","Electrons emit any frequency."],"Quantised levels."],
+["Explain how the uncertainty principle is related to tunnelling.",["A particle near a barrier has an uncertain position.","Its wavefunction extends into and beyond the barrier.","There is a small but non-zero probability of finding it beyond.","So it can sometimes pass through, though classically it could not."],["The particle gains energy to jump over the barrier.","Tunnelling happens to cricket balls regularly."],"Probabilistic nature."]
+],
+spot:[
+["Find λ for a proton (m = 1.67 × 10⁻²⁷ kg) at 1.0 × 10⁵ m s⁻¹.",["p = mv = 1.67 × 10⁻²² kg m s⁻¹","λ = h/p","λ = 1.67 × 10⁻²² ÷ 6.63 × 10⁻³⁴","λ = 2.5 × 10¹¹ m"],2,"λ = h/p = 6.63 × 10⁻³⁴ ÷ 1.67 × 10⁻²² = 4.0 × 10⁻¹² m."],
+["Describe the Heisenberg uncertainty principle.",["It applies to pairs such as position and momentum.","The more precisely one is known, the less precisely the other is.","Better instruments could remove the uncertainty.","Δx Δp ≥ h/4π."],2,"It is a fundamental limit; better instruments cannot remove it."],
+["Describe the Bohr model.",["Electrons move in fixed orbits.","Angular momentum is quantised.","Electrons radiate energy continuously in orbit.","Photons are emitted when electrons change level."],2,"In allowed orbits electrons do not radiate."]
+],
+write:[
+["State what is meant by the ultraviolet catastrophe.",[["(classical|Rayleigh|Jeans)","Classical theory"],["(infinite|unlimited|increase without limit|tends to infinity)","Predicted infinite energy"],["(short wavelength|high frequency|ultraviolet)","At short wavelengths"]],2,"Classical theory predicted that a black body would emit an infinite amount of energy at short (ultraviolet) wavelengths, which does not happen."],
+["Explain what electron diffraction shows about the nature of electrons.",[["wave","Electrons behave as waves"],["(de Broglie|λ *= *h ?\\/ ?p|wavelength)","They have a de Broglie wavelength"],["(spacing|atoms|crystal|similar size)","Comparable to atomic spacing"]],2,"Diffraction is a wave property, so electrons behave as waves. Their de Broglie wavelength (λ = h/p) is similar to the spacing of atoms in a crystal, so they diffract."],
+["Give one consequence of the uncertainty principle.",[["(tunnel)","Quantum tunnelling"],["(cannot|impossible).{0,40}(both|exactly|simultaneous)|not possible to know","Cannot know position and momentum exactly"],["(zero.?point|never at rest|minimum energy)","Particles always have some energy"]],1,"Any one: position and momentum cannot both be known exactly; quantum tunnelling; a confined particle always has some kinetic energy."]
+]
+});
+
+EX3("pf",{
+mc:[
+["What are cosmic rays?","high-energy particles from space, mostly protons",[["gamma rays from the Sun only","They are mostly particles."],["radio waves from galaxies","Not particles."],["neutrinos only","Mostly protons."]],"Primary cosmic rays.",""],
+["What is the solar wind?","a stream of charged particles (plasma) flowing out from the Sun",[["light from the Sun","That is radiation, not wind."],["a wind on the Sun's surface","It flows outwards into space."],["neutrons from the Sun","It is mostly protons and electrons."]],"It affects the Earth's magnetic field.",""],
+["Why do aurorae occur mainly near the poles?","Charged particles follow the magnetic field lines, which enter the atmosphere near the poles.",[["The poles are colder.","Temperature is not the reason."],["The Sun shines more at the poles.","Not the reason."],["The atmosphere is thinner at the equator.","Not the reason."]],"Charged particles spiral along field lines.",""],
+["A charged particle enters a magnetic field at an angle (not 90°). What path does it follow?","a helix",[["a circle","Only at 90°."],["a straight line","Only if parallel."],["a parabola","That is in an electric field."]],"Parallel velocity unchanged, perpendicular part circles.","h"],
+["A proton and an electron enter the same magnetic field at the same speed, at right angles. Which is true?","They curve in opposite directions and the proton's circle is much larger.",[["They curve the same way.","Opposite charges."],["The electron's circle is larger.","r = mv/(qB): proton has more mass."],["Neither is deflected.","Both are charged."]],"r = mv/(qB).","h"],
+["Why does the Earth's magnetic field protect life?","It deflects most charged particles from the solar wind and cosmic rays.",[["It blocks ultraviolet light.","That is the ozone layer."],["It keeps the atmosphere warm.","Not its role."],["It absorbs gamma rays.","Not its role."]],"Magnetosphere.","h"],
+["A proton moves at 2.0 × 10⁶ m s⁻¹ perpendicular to a 0.10 T field. What is the radius of its path?","0.21 m",[["2.1 × 10⁻⁵ m","Use the proton's mass."],["4.8 m","r = mv/(qB)."],["0.021 m","Check the powers of ten."]],"r = 1.67 × 10⁻²⁷ × 2.0 × 10⁶ ÷ (1.6 × 10⁻¹⁹ × 0.10) = 0.21 m.","p"],
+["What force acts on an electron at 3.0 × 10⁷ m s⁻¹ perpendicular to a 0.02 T field?","9.6 × 10⁻¹⁴ N",[["6.0 × 10⁵ N","Multiply by the charge."],["4.8 × 10⁻¹⁹ N","Include v."],["9.6 × 10⁻¹² N","Check the powers of ten."]],"F = qvB = 1.6 × 10⁻¹⁹ × 3.0 × 10⁷ × 0.02 = 9.6 × 10⁻¹⁴ N.","p"],
+["An alpha particle moves in a circle of radius 0.5 m in a 0.4 T field. What is its speed? (m = 6.64 × 10⁻²⁷ kg, q = 3.2 × 10⁻¹⁹ C)","9.6 × 10⁶ m s⁻¹",[["4.8 × 10⁶ m s⁻¹","q is 2e."],["2.4 × 10⁷ m s⁻¹","Check: qBr/m."],["9.6 × 10⁴ m s⁻¹","Check the powers of ten."]],"v = qBr/m = 3.2 × 10⁻¹⁹ × 0.4 × 0.5 ÷ 6.64 × 10⁻²⁷ = 9.6 × 10⁶ m s⁻¹.","p"]
+],
+gap:[
+["The force on a charged particle moving at right angles to a magnetic field is F = [qvB].",["qE","mv²"],"Provides centripetal force."],
+["When primary cosmic rays hit the upper atmosphere, they produce a [shower] of [secondary] particles.",["beam","primary"],"Cosmic ray showers."],
+["The radius of a charged particle's circular path in a magnetic field is r = [mv/(qB)].",["qB/mv","mvB/q"],"From qvB = mv²/r."]
+],
+sort:[
+["Sort these particle paths in a uniform magnetic field.",{"Circle":["velocity at 90° to the field"],"Helix":["velocity at an angle to the field"],"Straight line":["velocity parallel to the field","an uncharged particle"]},"Angle matters."],
+["Sort these: makes the circular path radius larger or smaller?",{"Larger radius":["greater speed","greater mass"],"Smaller radius":["stronger field","greater charge"]},"r = mv/(qB)."],
+["Sort these sources of particles.",{"From the Sun":["solar wind","solar flares"],"From outside the Solar System":["galactic cosmic rays"]},"Origins."]
+],
+order:[
+["Put these in order of path radius at the same speed in the same field, smallest first.",["electron","proton","alpha particle"],"r ∝ m/q: e tiny, p = m/e, α = 2m/e roughly ×2."],
+["Put the steps in order to derive r = mv/(qB).",["The magnetic force provides the centripetal force.","Write qvB = mv²/r.","Cancel one v.","Rearrange to r = mv/(qB)."],"Equate forces."],
+["Put the steps in order for how an aurora forms.",["Charged particles from the Sun reach the Earth's magnetic field.","They spiral along field lines towards the poles.","They collide with atoms in the upper atmosphere.","Excited atoms emit light as they de-excite."],"Solar wind to light."]
+],
+build:[
+["Explain why a charged particle moving at right angles to a uniform magnetic field moves in a circle.",["The magnetic force is always at right angles to the velocity.","So it changes the direction but not the speed.","The force has constant size, qvB.","A constant force at right angles to the motion gives circular motion."],["The field accelerates the particle along the field lines.","The field slows the particle down."],"Centripetal force."],
+["Explain why a particle entering a field at an angle follows a helical path.",["Resolve the velocity into parts parallel and perpendicular to the field.","The parallel part feels no force, so it stays constant.","The perpendicular part gives circular motion.","Combined, the path is a helix along the field."],["The particle zig-zags across the field.","The field stops the parallel motion."],"Components."],
+["Explain how secondary cosmic rays are detected at the Earth's surface.",["Primary cosmic rays collide with atoms high in the atmosphere.","These collisions produce showers of secondary particles.","Some, such as muons, reach the ground.","They can be detected with detectors such as scintillators or cloud chambers."],["Primary cosmic rays reach the ground unchanged.","Cosmic rays are detected only by telescopes."],"Air showers."]
+],
+spot:[
+["Find r for an electron at 1.0 × 10⁷ m s⁻¹ in 0.01 T.",["r = mv/(qB)","r = 9.11 × 10⁻³¹ × 1.0 × 10⁷ ÷ (1.6 × 10⁻¹⁹ × 0.01)","r = 5.7 × 10⁻³ m","r = 5.7 m"],3,"r = 5.7 × 10⁻³ m (5.7 mm)."],
+["Describe the force on a charged particle in a magnetic field.",["It is at right angles to the velocity.","It is at right angles to the field.","It increases the particle's speed.","It is zero if the particle moves parallel to the field."],2,"It does no work, so the speed is unchanged."],
+["Describe the solar wind.",["It comes from the Sun's corona.","It is made of charged particles.","It is made of neutral atoms only.","It interacts with the Earth's magnetic field."],2,"It is a plasma of charged particles."]
+],
+write:[
+["State what is meant by the solar wind.",[["(stream|flow|plasma)","A stream or plasma"],["charged particles|protons|electrons","Of charged particles"],["(from the Sun|Sun)","From the Sun"]],2,"The solar wind is a stream of charged particles (plasma), mainly protons and electrons, flowing out from the Sun."],
+["Explain why the Earth's magnetic field protects living things.",[["(deflect|divert|trap)","It deflects charged particles"],["(solar wind|cosmic ray|charged particle)","From the solar wind and cosmic rays"],["(radiation|harm|damage|ionis)","Which could be harmful"]],2,"The magnetic field deflects or traps most charged particles in the solar wind and cosmic rays, which would otherwise expose living things to harmful ionising radiation."],
+["Derive the expression for the radius of a charged particle's circular path in a magnetic field.",[["qvB","Magnetic force qvB"],["mv ?² ?\\/ ?r|mv²\\/r","Centripetal force mv²/r"],["r *= *mv ?\\/ ?\\(?qB","r = mv/(qB)"]],3,"The magnetic force provides the centripetal force: qvB = mv²/r. So r = mv/(qB)."]
+]
+});
+
+EX3("shm",{
+mc:[
+["What is the defining condition for simple harmonic motion?","acceleration proportional to displacement and directed towards the equilibrium position",[["constant acceleration","SHM has varying acceleration."],["constant velocity","Velocity changes."],["acceleration proportional to velocity","Not the condition."]],"a = −ω²y.",""],
+["Where is the speed of an object in SHM greatest?","at the equilibrium position",[["at maximum displacement","It is momentarily at rest there."],["halfway to the maximum","Not the maximum."],["it is constant","It varies."]],"All energy is kinetic there.",""],
+["Where is the acceleration of an object in SHM greatest?","at maximum displacement",[["at the equilibrium position","a = 0 there."],["halfway","Not the maximum."],["it is constant","It varies."]],"a = −ω²y, biggest when |y| is biggest.",""],
+["What is damping?","the reduction in amplitude of an oscillation due to energy loss",[["an increase in frequency","Frequency hardly changes."],["the reduction in period","Not the definition."],["oscillation in water","Not the definition."]],"Energy lost to friction or resistance.",""],
+["The amplitude of a pendulum is doubled. What happens to its total energy?","It increases four times.",[["It doubles.","E ∝ A²."],["It stays the same.","It depends on amplitude."],["It halves.","It increases."]],"E = ½mω²A².","h"],
+["Which is the correct sign of acceleration when the displacement is positive in SHM?","negative",[["positive","It is towards equilibrium."],["zero","Only at y = 0."],["it can be either","It is always opposite to y."]],"a = −ω²y.","h"],
+["A car's suspension is critically damped. What happens after it hits a bump?","It returns to equilibrium in the shortest time without oscillating.",[["It oscillates many times.","That is light damping."],["It returns very slowly.","That is heavy damping."],["It never returns.","It does return."]],"Critical damping.","h"],
+["A mass on a spring oscillates with ω = 4 rad s⁻¹ and amplitude 0.05 m. What is the maximum speed?","0.20 m s⁻¹",[["0.8 m s⁻¹","That is the maximum acceleration."],["0.0125 m s⁻¹","Multiply, do not divide."],["80 m s⁻¹","Check: ωA."]],"v(max) = ωA = 4 × 0.05 = 0.20 m s⁻¹.","p"],
+["An oscillator has a frequency of 2.0 Hz and amplitude 0.10 m. What is the maximum acceleration?","16 m s⁻²",[["1.3 m s⁻²","That is the maximum speed."],["0.4 m s⁻²","Use ω = 2πf."],["158 m s⁻²","Check: (4π)² × 0.1."]],"ω = 4π; a = ω²A = 158 × 0.10 = 16 m s⁻².","p"]
+],
+gap:[
+["For SHM, the displacement can be written y = A[cos] ωt if timing starts at maximum displacement, or y = A[sin] ωt if it starts at equilibrium.",["tan","log"],"Choose by the starting point."],
+["The total energy of a simple harmonic oscillator is E = ½m[ω²A²]. At the equilibrium position it is all [kinetic].",["ωA","potential"],"Energy swaps between forms."],
+["The velocity in SHM is v = ±ω√([A² − y²]).",["A − y","y² − A²"],"Zero at y = ±A."]
+],
+sort:[
+["Sort these for a mass on a spring at maximum displacement.",{"Maximum":["acceleration","potential energy","restoring force"],"Zero":["velocity","kinetic energy"]},"Turning point."],
+["Sort these types of damping.",{"Light damping":["a pendulum in air","a guitar string"],"Critical damping":["a car's suspension","a door closer"],"Heavy damping":["a pendulum in thick oil"]},"How quickly it returns."],
+["Sort these: SHM or not?",{"SHM":["a mass on a spring (small oscillations)","a simple pendulum at small angles"],"Not SHM":["a bouncing ball","a ball rolling in a V-shaped trough"]},"Need a ∝ −y."]
+],
+order:[
+["Put the stages in order for one half cycle starting from maximum displacement.",["At rest, maximum acceleration towards equilibrium.","Speeding up towards equilibrium.","Maximum speed, zero acceleration, at equilibrium.","Slowing down to rest at the other extreme."],"Half an oscillation."],
+["Put these in order of time to return to equilibrium without oscillating, quickest first.",["critical damping","heavy damping","very heavy damping"],"Critical damping is the fastest return with no overshoot; more damping makes it slower."],
+["Put the steps in order to show a mass on a spring moves with SHM.",["Write the restoring force F = −ky.","Use F = ma.","So a = −(k/m)y.","This has the form a = −ω²y, so the motion is SHM."],"Derivation."]
+],
+build:[
+["Explain why a mass on a spring performs SHM.",["When displaced, the spring exerts a restoring force F = −ky.","By Newton's second law, a = F/m = −(k/m)y.","So the acceleration is proportional to displacement.","It is directed towards equilibrium, which defines SHM."],["The spring pushes with a constant force.","Gravity alone causes the oscillation."],"Hooke's law."],
+["Explain how energy changes during one oscillation of a pendulum.",["At the extremes, the pendulum is momentarily at rest with maximum potential energy.","As it swings down, potential energy becomes kinetic energy.","At the lowest point, kinetic energy is maximum.","With no damping, the total energy stays constant."],["The total energy is greatest at the lowest point.","Kinetic energy is greatest at the extremes."],"Energy exchange."],
+["Explain why the frequency of an SHM oscillator does not depend on its amplitude.",["SHM has a = −ω²y.","ω depends only on the system, for example √(k/m).","A larger amplitude gives a larger acceleration in proportion.","So the time for one cycle is the same."],["Larger amplitudes always take longer.","Frequency increases with amplitude."],"Isochronous."]
+],
+spot:[
+["Find v(max) for A = 0.2 m and f = 0.5 Hz.",["ω = 2πf","ω = 2π × 0.5 = 3.14 rad s⁻¹","v(max) = ω²A","v(max) = 1.97 m s⁻¹"],2,"v(max) = ωA = 3.14 × 0.2 = 0.63 m s⁻¹."],
+["Describe SHM.",["The acceleration is proportional to displacement.","The acceleration is directed towards equilibrium.","The period depends on the amplitude.","The motion can be described by sine or cosine functions."],2,"The period is independent of amplitude."],
+["Describe the energy of a simple harmonic oscillator.",["At y = 0, the kinetic energy is maximum.","At y = A, the potential energy is maximum.","The total energy is ½mω²A.","With damping, the total energy decreases."],2,"E = ½mω²A²."]
+],
+write:[
+["State the condition for simple harmonic motion.",[["(proportional|∝)","Acceleration proportional to displacement"],["(towards|opposite).{0,30}(equilibrium|centre|rest position)|opposite.{0,20}direction","Directed towards equilibrium"]],2,"The acceleration (or restoring force) is proportional to the displacement from equilibrium and directed towards the equilibrium position: a = −ω²y."],
+["Explain what is meant by critical damping.",[["(shortest|quickest|minimum) time","In the shortest time"],["(without|no) oscillat|not oscillate|does not overshoot","Without oscillating"],["(equilibrium|rest)","Returns to equilibrium"]],2,"Critical damping returns the system to equilibrium in the shortest possible time without oscillating."],
+["Show that y = A cos ωt satisfies the SHM equation.",[["(differentiat|dy ?\\/ ?dt|dt)","Differentiate"],["−ωA sin|-ωA sin|−Aω sin","v = −ωA sin ωt"],["−ω²A cos|-ω²A cos|−ω²y|-ω²y","a = −ω²A cos ωt = −ω²y"]],2,"Differentiate: v = dy/dt = −ωA sin ωt. Differentiate again: a = −ω²A cos ωt = −ω²y. This is the SHM equation."]
+]
+});
+
+EX3("wv",{
+mc:[
+["What is the intensity of a wave proportional to?","the square of the amplitude",[["the amplitude","It is A²."],["the frequency","Not in general."],["the wavelength","Not in general."]],"I ∝ A².",""],
+["What is the phase difference between two points one wavelength apart on a travelling wave?","2π radians",[["π radians","That is half a wavelength."],["0 only","2π is equivalent to 0 but the full value is 2π."],["π/2 radians","That is a quarter wavelength."]],"φ = 2πx/λ.",""],
+["What is a stationary wave?","a wave formed by two identical waves travelling in opposite directions, with fixed nodes and antinodes",[["a wave that does not move at all","Particles still vibrate."],["a travelling wave in a solid","Not the definition."],["a wave with zero frequency","It has a frequency."]],"Superposition of reflected waves.",""],
+["What is the distance between adjacent nodes on a stationary wave?","half a wavelength",[["one wavelength","That is between alternate nodes."],["a quarter wavelength","That is node to antinode."],["two wavelengths","Too large."]],"λ/2.",""],
+["Two points on a travelling wave are a quarter wavelength apart. What is their phase difference?","π/2 rad",[["π rad","That is half a wavelength."],["2π rad","That is a whole wavelength."],["π/4 rad","Check: 2π × ¼."]],"φ = 2π × ¼ = π/2.","h"],
+["The amplitude of a sound wave doubles. What happens to its intensity?","It quadruples.",[["It doubles.","I ∝ A²."],["It halves.","It increases."],["It stays the same.","It depends on A."]],"2² = 4.","h"],
+["On a stationary wave, two points either side of a node are compared. What is their phase relationship?","They are in antiphase (π apart).",[["They are in phase.","Points between the same pair of nodes are in phase."],["π/2 apart","Not on a stationary wave."],["They do not move.","Only nodes do not move."]],"Each loop moves in antiphase with its neighbour.","h"],
+["A wave is described by y = 0.2 sin 2π(50t − x/4). What is its speed?","200 m s⁻¹",[["12.5 m s⁻¹","v = fλ = 50 × 4."],["0.2 m s⁻¹","That is the amplitude."],["50 m s⁻¹","That is the frequency."]],"f = 50 Hz, λ = 4 m, v = 200 m s⁻¹.","p"],
+["Two points on a wave of wavelength 0.6 m are 0.15 m apart. What is the phase difference?","π/2 rad",[["π rad","Check: 2π × 0.15 ÷ 0.6."],["4 rad","Not correct."],["0.25 rad","Multiply by 2π."]],"φ = 2π × 0.15 ÷ 0.6 = π/2 rad.","p"]
+],
+gap:[
+["A travelling wave can be described by y = A sin 2π([ft] − x/λ).",["λt","f/t"],"Wave equation."],
+["At a [node] there is no displacement. At an [antinode] the amplitude is a maximum.",["crest","trough"],"Stationary waves."],
+["The [Doppler] effect causes a change in observed frequency when a source moves. For an approaching source, f₀ = fₛ v/(v − [vₛ]).",["Compton","v₀"],"AH Doppler equation."]
+],
+sort:[
+["Sort these features.",{"Travelling wave":["energy is transferred along it","all points have the same amplitude"],"Stationary wave":["fixed nodes and antinodes","no net energy transfer"]},"Two kinds of wave."],
+["Sort these by phase difference.",{"0 (in phase)":["one wavelength apart","two wavelengths apart"],"π (antiphase)":["half a wavelength apart","1.5 wavelengths apart"],"π/2":["a quarter wavelength apart"]},"φ = 2πx/λ."],
+["Sort these terms in y = A sin 2π(ft − x/λ).",{"Amplitude":["A"],"Frequency":["f"],"Wavelength":["λ"]},"Read the equation."]
+],
+order:[
+["Put the steps in order to find λ from a stationary wave.",["Locate adjacent nodes.","Measure the distance between them.","This distance is λ/2.","Double it to get λ."],"Node spacing."],
+["Put these in order of phase difference, smallest first.",["λ/8 apart","λ/4 apart","λ/2 apart","3λ/4 apart"],"π/4, π/2, π, 3π/2."],
+["Put the stages in order for how a stationary wave forms on a string.",["A wave travels along the string.","It reflects at the fixed end.","The incident and reflected waves superpose.","Nodes and antinodes form at fixed positions."],"Reflection and superposition."]
+],
+build:[
+["Explain how a stationary wave is formed.",["A wave travels to a boundary and is reflected.","The reflected wave has the same frequency and amplitude.","The two waves travel in opposite directions and superpose.","This creates fixed points of zero (nodes) and maximum (antinodes) amplitude."],["Two waves of different frequency combine.","The wave stops moving because it runs out of energy."],"Superposition."],
+["Explain why intensity depends on the square of the amplitude.",["The energy of an oscillating particle is ½mω²A².","So energy is proportional to A².","Intensity is energy per second per unit area.","So intensity is proportional to A²."],["Intensity is proportional to wavelength.","Bigger amplitude means fewer waves."],"Energy ∝ A²."],
+["Explain how to read the frequency and wavelength from y = A sin 2π(ft − x/λ).",["Compare the given equation with the standard form.","The coefficient of t inside the bracket is f.","The term divided into x is λ.","Then v = fλ."],["The number in front of sin is the frequency.","The wavelength is the coefficient of t."],"Matching terms."]
+],
+spot:[
+["Find the phase difference for points 0.3 m apart, λ = 1.2 m.",["φ = 2πx/λ","φ = 2π × 0.3 ÷ 1.2","φ = π/4 rad","These points are not in phase."],2,"2π × 0.25 = π/2 rad."],
+["Describe a stationary wave.",["Nodes are points of zero amplitude.","Adjacent nodes are λ/2 apart.","It transfers energy along the string.","Antinodes are halfway between nodes."],2,"A stationary wave does not transfer energy along the medium."],
+["Use y = 0.05 sin 2π(20t − x/2).",["Amplitude = 0.05 m","Frequency = 20 Hz","Wavelength = 0.5 m","Speed = fλ"],2,"λ = 2 m, so v = 40 m s⁻¹."]
+],
+write:[
+["State what is meant by a node on a stationary wave.",[["(zero|no|minimum).{0,20}(amplitude|displacement|movement)|(amplitude|displacement).{0,30}(zero|0\\b)|(does not|doesn.t) (move|vibrate)","A point of zero amplitude"]],1,"A node is a point on a stationary wave where the amplitude (displacement) is always zero."],
+["Explain why there is no net transfer of energy along a stationary wave.",[["(two|equal).{0,30}(waves|opposite)|opposite direction","Two equal waves in opposite directions"],["(cancel|equal and opposite|same energy)","Their energy transfers cancel"]],2,"A stationary wave is made of two equal waves travelling in opposite directions. Each carries the same energy, so their energy transfers cancel out and there is no net transfer."],
+["Describe how to measure the wavelength of sound using a stationary wave.",[["(reflect|metal plate|wall|reflector)","Reflect sound from a plate"],["(microphone|detector)","Move a microphone between source and plate"],["(node|minimum)","Find positions of nodes"],["(λ ?\\/ ?2|half|double)","Node spacing is λ/2"]],3,"Point a loudspeaker at a metal plate to set up a stationary wave. Move a microphone along the line between them to find the nodes (minimum readings). Measure the distance across several nodes; adjacent nodes are λ/2 apart."]
+]
+});
+
+EX3("if",{
+mc:[
+["What is meant by optical path difference?","the difference in optical path length (n × geometrical path) between two rays",[["the difference in geometrical distance only","Refractive index matters."],["the angle between two rays","Not a distance."],["the wavelength of light","Not the definition."]],"OPD = n × distance difference.",""],
+["What is the phase change when light reflects off an optically denser medium?","π rad",[["0","That is reflection off a less dense medium."],["π/2 rad","Not correct."],["2π rad","That is equivalent to no change."]],"Half-wavelength shift.",""],
+["Which type of interference uses division of amplitude?","thin film interference",[["Young's double slits","That is division of wavefront."],["diffraction grating","Division of wavefront."],["single slit diffraction","Not division of amplitude."]],"Light is partly reflected and partly transmitted.",""],
+["Which type of interference uses division of wavefront?","Young's double slits",[["thin film","That is amplitude."],["wedge fringes","That is amplitude."],["soap bubbles","That is amplitude."]],"Two parts of the same wavefront.",""],
+["Why does a soap film show coloured bands in white light?","Different thicknesses give constructive interference for different wavelengths.",[["The soap contains dyes.","It is an interference effect."],["The film refracts light like a prism.","Not mainly refraction."],["The film absorbs colours.","Not absorption."]],"Thin film interference.","h"],
+["In Young's slits, the slit separation is halved. What happens to the fringe spacing?","It doubles.",[["It halves.","Δx = λD/d."],["It stays the same.","It depends on d."],["It quadruples.","It is inversely proportional to d."]],"Δx ∝ 1/d.","h"],
+["A non-reflecting coating has thickness λ/4n. Why does it reduce reflection?","Light reflected from the two surfaces has a path difference of λ/2 and interferes destructively.",[["The coating absorbs all the light.","It transmits more light."],["It reflects all colours.","It reduces reflection."],["It changes the wavelength.","Frequency is fixed; reflection cancels."]],"Both reflections have a π change, so OPD = λ/2 gives cancellation.","h"],
+["Young's slits: λ = 600 nm, D = 2.0 m, d = 0.40 mm. What is the fringe spacing?","3.0 mm",[["0.3 mm","Check the powers of ten."],["30 mm","Use d in metres."],["1.2 mm","Δx = λD/d."]],"Δx = 600 × 10⁻⁹ × 2.0 ÷ 0.40 × 10⁻³ = 3.0 × 10⁻³ m.","p"],
+["What is the minimum thickness of a non-reflecting coating (n = 1.38) for 550 nm light?","100 nm",[["138 nm","Divide by 4n."],["400 nm","That is λ/n; divide by 4n."],["200 nm","That is λ/2n."]],"d = λ/4n = 550 ÷ (4 × 1.38) = 100 nm.","p"]
+],
+gap:[
+["Coherent sources can be produced by division of [amplitude] or division of [wavefront].",["frequency","speed"],"Two methods."],
+["For wedge fringes, the fringe spacing is Δx = λl/[2d], where d is the thickness of the [spacer].",["d","glass"],"Air wedge."],
+["Optical path length is the product of [refractive index] and the [geometrical] path length.",["frequency","phase"],"OPL = nL."]
+],
+sort:[
+["Sort these by method of producing coherent light.",{"Division of amplitude":["thin film","air wedge","oil on water"],"Division of wavefront":["Young's double slits"]},"Partial reflection or splitting a wavefront."],
+["Sort these: phase change on reflection?",{"π phase change":["air to glass reflection","air to soap film reflection"],"No phase change":["glass to air reflection inside a block","soap film to air reflection"]},"Denser medium gives π."],
+["Sort these changes in a Young's slits experiment.",{"Fringes wider apart":["increase D","increase λ","decrease d"],"Fringes closer together":["decrease D","use blue instead of red light"]},"Δx = λD/d."]
+],
+order:[
+["Put the steps in order to measure λ with Young's slits.",["Shine a laser through the double slits onto a screen.","Measure the slit-to-screen distance D.","Measure across several fringes and divide to find Δx.","Use λ = Δx d/D."],"Measure, then calculate."],
+["Put the steps in order to find the thickness of a spacer from wedge fringes.",["Measure the length of the wedge, l.","Measure the fringe spacing, Δx, over many fringes.","Use Δx = λl/2d.","Rearrange for d."],"Air wedge method."],
+["Put these coatings in order of thickness for minimum reflection of the same light, thinnest first.",["n = 1.6","n = 1.5","n = 1.4","n = 1.3"],"d = λ/4n: larger n, thinner."]
+],
+build:[
+["Explain how a non-reflecting coating works.",["Light reflects from both the top and bottom of the coating.","Both reflections have a phase change of π, so they cancel out.","The extra path in the coating is 2nd = λ/2 when d = λ/4n.","So the two reflected rays interfere destructively."],["The coating absorbs the reflected light.","Only one surface reflects."],"Thin film interference."],
+["Explain why white light gives coloured fringes from a soap film.",["Light reflects from the front and back of the film.","The path difference depends on the thickness of the film.","For a given thickness, some wavelengths interfere constructively.","Different thicknesses reinforce different colours."],["The soap film is dyed.","All colours interfere at the same thickness."],"λ-dependent conditions."],
+["Explain why fringes in Young's experiment are measured across several fringes.",["Each fringe spacing is small.","Measuring one gives a large percentage uncertainty.","Measuring across many fringes gives a larger distance.","Dividing by the number of spacings gives a more precise Δx."],["The fringes are different sizes.","It removes the need to measure D."],"Reduce uncertainty."]
+],
+spot:[
+["Find Δx for λ = 500 nm, D = 1.5 m, d = 0.5 mm.",["Δx = λD/d","Δx = 500 × 10⁻⁹ × 1.5 ÷ 0.5","Δx = 1.5 × 10⁻⁶ m","Δx = 1.5 mm"],1,"d must be in metres: 0.5 × 10⁻³ m, giving 1.5 × 10⁻³ m."],
+["Describe a non-reflecting coating.",["It has a thickness of λ/4n.","Light reflects from both surfaces.","The reflected rays interfere constructively.","It increases the light transmitted."],2,"They interfere destructively."],
+["Describe wedge fringes.",["They are formed by an air wedge between two glass plates.","They are an example of division of amplitude.","The fringes are curved circles.","The fringe spacing is λl/2d."],2,"Wedge fringes are equally spaced straight lines."]
+],
+write:[
+["State what is meant by division of amplitude.",[["(partly|partial|part).{0,30}(reflect|transmit)|reflect.{0,30}transmit","Light is partly reflected and partly transmitted"],["(same|one) (source|beam|wave)|coherent","From the same wave, giving coherent beams"]],2,"Division of amplitude: one beam is split by partial reflection and transmission into two coherent beams with reduced amplitudes."],
+["Explain why a phase change of π occurs on reflection at an optically denser medium.",[["(denser|higher refractive index)","At a denser medium"],["(inverted|half.?wavelength|λ ?\\/ ?2|π)","The wave is inverted (shifted by λ/2)"]],2,"When light reflects from an optically denser medium, the reflected wave is inverted, equivalent to a shift of half a wavelength: a phase change of π."],
+["Describe how to find the wavelength of laser light using Young's slits.",[["(laser|light).{0,30}(double|two) slits|double slit","Laser through double slits"],["D|(distance|slits).{0,20}screen","Measure D"],["(fringe|Δx|spacing)","Measure the fringe spacing"],["λ *= *Δx ?d ?\\/ ?D|Δx *= *λ ?D ?\\/ ?d","Use Δx = λD/d"]],3,"Shine a laser through double slits onto a distant screen. Measure the slit separation d, the distance D to the screen, and the fringe spacing Δx across several fringes. Calculate λ = Δx d/D."]
+]
+});
+
+EX3("pol",{
+mc:[
+["Which type of wave can be polarised?","transverse waves",[["longitudinal waves","Vibrations are along the direction of travel."],["all waves","Only transverse."],["sound waves","Sound is longitudinal."]],"Polarisation is evidence that light is transverse.",""],
+["What is plane-polarised light?","light with vibrations in one plane only",[["light of one colour","That is monochromatic."],["light from a laser only","Not the definition."],["light in a single beam","Not the definition."]],"Vibrations confined to one plane.",""],
+["What happens to unpolarised light passing through a polarising filter?","Its irradiance is halved and it becomes plane-polarised.",[["It is completely blocked.","Half gets through."],["It is unchanged.","It is polarised."],["Its frequency changes.","Frequency is unchanged."]],"Filter passes one plane.",""],
+["Two polarising filters are crossed at 90°. What is transmitted?","no light",[["half the light","cos² 90° = 0."],["all the light","They block each other."],["a quarter of the light","Not at 90°."]],"Malus's law.","h"],
+["A third filter at 45° is placed between two crossed filters. What happens?","Some light now gets through.",[["Still no light gets through.","Each filter passes a component."],["All the light gets through.","Only some."],["The light becomes unpolarised.","It is still polarised."]],"I = I₀ cos² 45° cos² 45° ≠ 0.","h"],
+["Why can sound not be polarised?","Sound is a longitudinal wave.",[["Sound is too slow.","Speed is not the reason."],["Sound has no amplitude.","It does."],["Sound cannot travel in air.","It can."]],"Only transverse waves have a plane of vibration.","h"],
+["Light reflected from water at a certain angle is completely plane-polarised. What is this angle called?","the Brewster angle",[["the critical angle","That is for total internal reflection."],["the angle of refraction","Not the name."],["the normal","Not an angle."]],"tan θ = n.","h"],
+["Polarised light of irradiance 40 W m⁻² passes through an analyser at 60°. What is the transmitted irradiance?","10 W m⁻²",[["20 W m⁻²","Use cos², not cos."],["30 W m⁻²","cos² 60° = 0.25."],["0 W m⁻²","Not at 60°."]],"I = 40 × cos² 60° = 10 W m⁻².","p"],
+["What is the Brewster angle for glass with n = 1.52?","57°",[["41°","That is the critical angle."],["33°","That is 90 − 57."],["1.52°","Take the inverse tan."]],"θ = tan⁻¹ 1.52 = 57°.","p"],
+["Unpolarised light of 80 W m⁻² passes through a polariser and then an analyser at 30°. What is the final irradiance?","30 W m⁻²",[["60 W m⁻²","Halve it first at the polariser."],["35 W m⁻²","cos² 30° = 0.75."],["20 W m⁻²","Check: 40 × 0.75."]],"After polariser: 40 W m⁻²; after analyser: 40 × 0.75 = 30 W m⁻².","p"]
+],
+gap:[
+["Malus's law states that I = I₀ [cos²] θ, where θ is the angle between the polariser and the [analyser].",["sin²","screen"],"Transmitted irradiance."],
+["At the Brewster angle, the reflected and refracted rays are at [90°] to each other, and tan θ = [n].",["45°","1/n"],"Polarisation by reflection."],
+["Polarisation is evidence that light is a [transverse] wave.",["longitudinal","stationary"],"Only transverse waves can be polarised."]
+],
+sort:[
+["Sort these waves.",{"Can be polarised":["light","microwaves","radio waves"],"Cannot be polarised":["sound","ultrasound"]},"Transverse versus longitudinal."],
+["Sort these angles between polariser and analyser by transmitted irradiance (I₀ after polariser).",{"I₀":["0°"],"½I₀":["45°"],"0":["90°"]},"cos² θ."],
+["Sort these applications.",{"Uses polarisation":["polarising sunglasses","LCD screens","stress analysis in plastics","3D cinema glasses"],"Does not use polarisation":["a magnifying glass","an optical fibre"]},"Uses."]
+],
+order:[
+["Put these analyser angles in order of transmitted irradiance, highest first.",["0°","30°","60°","90°"],"cos² decreases."],
+["Put the steps in order to verify Malus's law.",["Pass light through a polariser and an analyser.","Measure irradiance with a light meter at different analyser angles.","Calculate cos² θ for each angle.","Plot I against cos² θ and look for a straight line through the origin."],"Linearise."],
+["Put the steps in order to find the refractive index using the Brewster angle.",["Reflect light off the surface at different angles.","View it through a rotating polariser.","Find the angle where the reflected light is completely blocked at one orientation.","Use n = tan θ."],"Brewster method."]
+],
+build:[
+["Explain why polarising sunglasses reduce glare from water.",["Light reflected from water is partially plane-polarised horizontally.","Polarising sunglasses have a vertical transmission axis.","They block much of the horizontally polarised light.","So glare is reduced but other light still passes."],["Sunglasses absorb all reflected light.","Water reflects only vertically polarised light."],"Reflection polarises."],
+["Explain why light still passes through crossed polarisers when a third is inserted at 45°.",["The first filter polarises the light.","The middle filter passes the component at 45°, cos² 45° of it.","This light is now polarised at 45°.","The last filter passes a component of that, so some light emerges."],["The middle filter creates new light.","The light becomes unpolarised again."],"Components."],
+["Explain what polarisation shows about the nature of light.",["Polarisation restricts vibrations to one plane.","Only transverse waves have vibrations in a plane perpendicular to motion.","Light can be polarised.","So light must be a transverse wave."],["Polarisation shows light is longitudinal.","Polarisation shows light has mass."],"Transverse nature."]
+],
+spot:[
+["Find I for I₀ = 50 W m⁻², θ = 45°.",["I = I₀ cos² θ","cos 45° = 0.707","I = 50 × 0.707","I = 35 W m⁻²"],2,"Square it: 50 × 0.5 = 25 W m⁻²."],
+["Find the Brewster angle for n = 1.33.",["tan θ = n","θ = tan⁻¹ 1.33","θ = 53°","At this angle the refracted light is completely polarised."],3,"The reflected light is completely polarised."],
+["Describe Malus's law.",["It applies to plane-polarised light.","θ is the angle between polariser and analyser.","I = I₀ cos θ","Maximum transmission at θ = 0."],2,"I = I₀ cos² θ."]
+],
+write:[
+["State what is meant by plane-polarised light.",[["(one|single) plane|one direction","Vibrations in one plane only"],["(electric field|vibrat|oscillat)","Of the oscillations"]],2,"Plane-polarised light has its oscillations (electric field vibrations) in one plane only."],
+["Explain why sound cannot be polarised.",[["longitudinal","Sound is longitudinal"],["(along|parallel|direction of travel|same direction)","Vibrations along the direction of travel"]],2,"Sound is longitudinal: the vibrations are along the direction of travel, so there is no plane to restrict. Only transverse waves can be polarised."],
+["Describe how to show that light reflected from a bench is partially polarised.",[["(polaroid|polarising filter|polariser|analyser)","View through a polarising filter"],["(rotate|turn)","Rotate it"],["(brightness|intensity|irradiance).{0,20}(change|vary|varies)|(dim|darker)","The brightness varies"]],2,"Look at the reflected light through a polarising filter and rotate the filter. The brightness changes as it turns, showing the reflected light is partially polarised."]
+]
+});
+
+EX3("fld",{
+mc:[
+["What is Coulomb's law?","The force between two point charges is proportional to the product of the charges and inversely proportional to the square of their separation.",[["The force is proportional to the separation.","It is inverse square."],["The force depends only on one charge.","It depends on both."],["The force is always attractive.","Like charges repel."]],"F = Q₁Q₂/(4πε₀r²).",""],
+["What is the electrical potential at a distance r from a point charge Q?","V = Q/(4πε₀r)",[["V = Q/(4πε₀r²)","That is field strength."],["V = Q₁Q₂/(4πε₀r)","That is potential energy."],["V = 4πε₀Q/r","Inverted constant."]],"Scalar, falls as 1/r.",""],
+["What is the magnetic induction around a long straight wire?","B = μ₀I/(2πr)",[["B = μ₀I/(2πr²)","It falls as 1/r."],["B = μ₀Ir","It decreases with r."],["B = I/(2πr)","Missing μ₀."]],"Field circles the wire.",""],
+["What is the force on a current-carrying wire in a magnetic field?","F = IlB sin θ",[["F = qvB cos θ","Wrong form."],["F = IB/l","Multiply by l."],["F = μ₀I/(2πr)","That is B."]],"Maximum when θ = 90°.",""],
+["Two equal positive charges are a distance r apart. The midpoint is examined. Which is true?","The electric field is zero but the potential is not zero.",[["Both are zero.","Potentials add as scalars."],["The field is a maximum.","The fields cancel."],["The potential is zero.","Two positive potentials add."]],"Field is a vector; potential is a scalar.","h"],
+["The distance between two charges is tripled. What happens to the force?","It falls to one ninth.",[["It falls to one third.","Inverse square."],["It triples.","It decreases."],["It falls to one sixth.","3² = 9."]],"F ∝ 1/r².","h"],
+["A wire carries a current parallel to a magnetic field. What is the force on it?","zero",[["IlB","Only at 90°."],["½IlB","sin 0° = 0."],["it depends on the current","It is zero whatever the current."]],"sin 0° = 0.","h"],
+["What is the force between charges of +2.0 μC and −3.0 μC that are 0.10 m apart?","5.4 N attractive",[["0.54 N","Square the distance."],["5.4 N repulsive","Opposite charges attract."],["54 N","Check the powers of ten."]],"F = 8.99 × 10⁹ × 2.0 × 10⁻⁶ × 3.0 × 10⁻⁶ ÷ 0.01 = 5.4 N.","p"]
+],
+gap:[
+["Electric field strength is the force per unit positive [charge]. Its unit is N C⁻¹ or [V m⁻¹].",["mass","J kg⁻¹"],"E = F/Q."],
+["Lines of equal potential, called [equipotentials], are at right angles to electric field [lines].",["isotherms","charges"],"No work moving along them."],
+["The permeability of free space, μ₀, appears in the equation for [magnetic] induction. The permittivity, ε₀, appears in [Coulomb's] law.",["gravitational","Newton's"],"Two constants."]
+],
+sort:[
+["Sort these quantities.",{"Vector":["electric field strength","magnetic induction","force"],"Scalar":["electrical potential","potential energy","charge"]},"Fields have direction."],
+["Sort these by their unit.",{"N C⁻¹":["electric field strength"],"V":["electrical potential"],"T":["magnetic induction"]},"Know the units."],
+["Sort these by what decreases as 1/r.",{"Falls as 1/r":["potential near a point charge","B near a long straight wire"],"Falls as 1/r²":["field strength near a point charge","Coulomb force"]},"Inverse or inverse square."]
+],
+order:[
+["Put the steps in order to find the speed of a charge accelerated between plates.",["Find the work done, W = QV.","Set W equal to ½mv².","Rearrange for v.","Check it is less than c."],"Energy method."],
+["Put the steps in order to find the resultant field at a point due to two charges.",["Calculate E from each charge.","Find the direction of each field.","Add the fields as vectors.","Give the size and direction of the resultant."],"Vector addition."],
+["Put these in order of the force on a 0.2 m wire carrying 3 A in a 0.5 T field, smallest first.",["θ = 0°","θ = 30°","θ = 60°","θ = 90°"],"F = IlB sin θ."]
+],
+build:[
+["Explain why potentials are easier to combine than electric fields.",["Potential is a scalar.","Potentials from several charges simply add (with signs).","Electric field strength is a vector.","Fields must be added taking direction into account."],["Potentials are always positive.","Fields are scalars."],"Scalar versus vector."],
+["Explain why two parallel wires carrying currents in the same direction attract.",["Each wire produces a magnetic field around it.","The other wire lies in this field.","A current in a field feels a force, F = IlB.","Using the field directions, the forces pull the wires together."],["The wires are electrically charged.","Gravity pulls them together."],"Magnetic interaction."],
+["Explain the path of an electron moving parallel to an electric field towards the negative plate.",["The electron feels a force towards the positive plate.","This force is opposite to its motion.","So it decelerates uniformly.","It may stop and accelerate back."],["It moves in a circle.","It speeds up towards the negative plate."],"Force against motion."]
+],
+spot:[
+["Find E at 0.2 m from a 4 μC charge.",["E = Q/(4πε₀r²)","E = 8.99 × 10⁹ × 4 × 10⁻⁶ ÷ 0.2","E = 1.8 × 10⁵ N C⁻¹","E points away from the charge."],1,"r must be squared: ÷ 0.04, giving E = 9.0 × 10⁵ N C⁻¹."],
+["Find B at 0.05 m from a wire carrying 10 A.",["B = μ₀I/(2πr)","B = 4π × 10⁻⁷ × 10 ÷ (2π × 0.05)","B = 4.0 × 10⁻⁵ T","B is measured in webers."],3,"B is measured in tesla (T)."],
+["Describe equipotentials around a point charge.",["They are circles centred on the charge.","They are perpendicular to the field lines.","Work is done moving a charge along them.","They get further apart further from the charge (for equal ΔV)."],2,"No work is done moving along an equipotential."]
+],
+write:[
+["State what is meant by electrical potential at a point.",[["work done","Work done"],["(unit|one|1|per).{0,20}(positive )?charge|per coulomb","Per unit positive charge"],["infinity","From infinity"]],3,"The electrical potential at a point is the work done in moving unit positive charge from infinity to that point."],
+["Explain why the electric field strength is zero midway between two equal positive charges.",[["(equal|same) (size|magnitude|strength)|equal","The fields are equal in size"],["opposite","And opposite in direction"],["(cancel|vector|resultant)","So they cancel"]],2,"At the midpoint, the fields from the two charges are equal in size and opposite in direction, so the resultant field is zero."],
+["Describe how the force on a current-carrying wire depends on its angle to the field.",[["sin ?θ|sine","F = IlB sin θ"],["(maximum|largest).{0,20}90|90.{0,30}(maximum|largest)","Maximum at 90°"],["(zero|no force).{0,30}(parallel|0)|parallel.{0,30}(zero|no force)","Zero when parallel"]],2,"F = IlB sin θ. The force is greatest when the wire is at 90° to the field and zero when it is parallel."]
+]
+});
+
+EX3("cir",{
+mc:[
+["What is the time constant of an RC circuit?","τ = RC",[["τ = R/C","Multiply."],["τ = 1/(RC)","That is 1/τ."],["τ = ½CV²","That is energy."]],"Time to fall to 37% when discharging.",""],
+["What is capacitive reactance?","the opposition of a capacitor to an alternating current",[["the resistance of a capacitor to d.c.","It blocks steady d.c."],["the charge stored","That is Q."],["the energy stored","That is ½CV²."]],"Xc = 1/(2πfC).",""],
+["What is self-inductance?","the property of a coil that produces a back e.m.f. when the current through it changes",[["the resistance of a coil","Different property."],["the magnetic field of a magnet","Not self-induced."],["the charge stored in a coil","Coils do not store charge."]],"ε = −L dI/dt.",""],
+["What is the energy stored in an inductor?","½LI²",[["½CV²","That is a capacitor."],["LI","Not energy."],["L dI/dt","That is the back e.m.f."]],"Stored in the magnetic field.",""],
+["What is the unit of inductance?","henry (H)",[["farad (F)","That is capacitance."],["tesla (T)","That is magnetic induction."],["weber (Wb)","That is flux."]],"1 H = 1 V s A⁻¹.",""],
+["The frequency of an a.c. supply to a capacitor is increased. What happens to the current?","It increases.",[["It decreases.","Xc falls as f rises."],["It stays the same.","Xc depends on f."],["It becomes zero.","Not at high f."]],"Xc = 1/(2πfC).","h"],
+["The frequency of an a.c. supply to an inductor is increased. What happens to the current?","It decreases.",[["It increases.","Inductors oppose changes more at high f."],["It stays the same.","Opposition depends on f."],["It becomes infinite.","Not possible."]],"Faster changes, larger back e.m.f.","h"],
+["When a switch in a circuit with a large inductor is opened, a spark is seen. Why?","The rapid fall in current induces a large back e.m.f.",[["The inductor stores charge.","It stores energy in a magnetic field."],["The battery voltage rises.","It does not."],["The resistance becomes zero.","Not the cause."]],"ε = −L dI/dt is large.","h"],
+["What is the time constant for a 100 kΩ resistor and a 47 μF capacitor?","4.7 s",[["0.47 s","Check the powers of ten."],["2.1 × 10⁹ s","Multiply, do not divide."],["47 s","Check the units."]],"τ = 100 × 10³ × 47 × 10⁻⁶ = 4.7 s.","p"]
+],
+gap:[
+["After one time constant, a discharging capacitor's voltage has fallen to about [37]% of its initial value. A charging capacitor has reached about [63]%.",["50","100"],"e⁻¹ ≈ 0.37."],
+["Lenz's law states that the induced e.m.f. [opposes] the change that [causes] it.",["helps","stops"],"Hence the minus sign."],
+["Capacitive reactance is inversely proportional to [frequency] and to [capacitance].",["voltage","resistance"],"Xc = 1/(2πfC)."]
+],
+sort:[
+["Sort these components by how their opposition to a.c. changes as frequency increases.",{"Opposition increases":["inductor"],"Opposition decreases":["capacitor"],"No change":["resistor"]},"Frequency response."],
+["Sort these: what changes τ = RC?",{"Increases τ":["bigger resistor","bigger capacitor"],"Decreases τ":["smaller resistor","smaller capacitor"],"No effect":["higher supply voltage"]},"Time constant."],
+["Sort these by where energy is stored.",{"Electric field":["charged capacitor"],"Magnetic field":["inductor carrying a current"]},"Two stores."]
+],
+order:[
+["Put the steps in order to measure a time constant.",["Charge the capacitor fully.","Discharge it through a resistor while recording voltage and time.","Find the voltage that is 37% of the start value.","Read off the time: this is τ."],"Discharge curve."],
+["Put these in order of time constant, smallest first.",["10 kΩ, 10 μF","10 kΩ, 100 μF","100 kΩ, 100 μF","1 MΩ, 100 μF"],"0.1, 1, 10, 100 s."],
+["Put the events in order when a d.c. supply is switched on to an inductor and resistor in series.",["The current starts to rise.","The changing current induces a back e.m.f.","The back e.m.f. opposes the rise, so the current grows gradually.","The current reaches a steady value, V/R, and the back e.m.f. falls to zero."],"Gradual growth."]
+],
+build:[
+["Explain why the current in an inductor circuit rises gradually when switched on.",["As the current starts to rise, the magnetic flux in the coil changes.","This induces a back e.m.f. in the coil (Lenz's law).","The back e.m.f. opposes the increase in current.","So the current rises gradually to its final value."],["The inductor stores charge slowly.","The battery takes time to warm up."],"Back e.m.f."],
+["Explain why a capacitor blocks d.c. but passes a.c.",["With d.c., the capacitor charges up and the current falls to zero.","With a.c., the capacitor keeps charging and discharging.","So charge keeps flowing back and forth in the circuit.","There is a continuous alternating current."],["Charge passes through the dielectric.","A capacitor has no reactance with d.c."],"Charging and discharging."],
+["Explain why a spark can be produced when a switch in an inductive circuit is opened.",["Opening the switch makes the current fall very quickly.","The rate of change of current is very large.","The back e.m.f., ε = −L dI/dt, is very large.","This can be enough to make a spark across the switch contacts."],["The inductor's resistance becomes zero.","The battery voltage increases."],"Large dI/dt."]
+],
+spot:[
+["Find Xc for 10 μF at 50 Hz.",["Xc = 1/(2πfC)","Xc = 1 ÷ (2π × 50 × 10 × 10⁻⁶)","Xc = 318 Ω","Xc = 2πfC = 3.1 × 10⁻³ Ω"],3,"Xc = 1/(2πfC) = 318 Ω."],
+["Find the energy in a 0.5 H inductor carrying 2 A.",["E = ½LI²","E = ½ × 0.5 × 2","E = 0.5 J","E is stored in the magnetic field."],1,"I must be squared: ½ × 0.5 × 4 = 1.0 J."],
+["Describe a capacitor discharging through a resistor.",["The voltage falls exponentially.","The current falls exponentially.","After one time constant, the voltage is 63% of its starting value.","After about 5τ, it is fully discharged."],2,"After one τ, it has fallen to 37% of its starting value."]
+],
+write:[
+["State what is meant by the time constant of an RC circuit.",[["(37|0\\.37|1 ?\\/ ?e|e⁻¹)","Falls to 37% (1/e)"],["(discharg|initial|starting)","Of its initial value when discharging"],["RC|τ","τ = RC"]],2,"The time constant τ = RC is the time for the voltage (or current) of a discharging capacitor to fall to 37% (1/e) of its initial value."],
+["Explain why the current in an inductor falls as the a.c. frequency increases.",[["(faster|rapid|rate).{0,30}chang|dI ?\\/ ?dt","The current changes faster"],["back e\\.?m\\.?f","Larger back e.m.f."],["oppos","Which opposes the current more"]],2,"At higher frequency the current changes faster, so the back e.m.f. (ε = −L dI/dt) is larger. This opposes the current more, so the current falls."],
+["State Lenz's law.",[["induced","The induced e.m.f. or current"],["oppos","Opposes"],["(change|cause)","The change that causes it"]],3,"Lenz's law: the direction of an induced e.m.f. (or current) is such that it opposes the change that causes it."]
+]
+});
+
+EX3("emr",{
+mc:[
+["What are the units of ε₀?","F m⁻¹",[["H m⁻¹","That is μ₀."],["m s⁻¹","That is c."],["N C⁻¹","That is field strength."]],"Permittivity of free space.",""],
+["Which scientist first predicted that light is an electromagnetic wave?","James Clerk Maxwell",[["Isaac Newton","Newton favoured a particle model."],["Albert Einstein","He came later."],["Michael Faraday","He discovered induction."]],"Maxwell's equations.",""],
+["What is the direction of the magnetic field in an EM wave relative to its direction of travel?","at right angles",[["parallel","EM waves are transverse."],["opposite","Not along the motion."],["at 45°","It is 90°."]],"E, B and v are mutually perpendicular.",""],
+["Which of these is not an electromagnetic wave?","ultrasound",[["X-rays","EM wave."],["microwaves","EM wave."],["infrared","EM wave."]],"Ultrasound is a sound wave.",""],
+["An EM wave passes from a vacuum into glass. What stays the same?","its frequency",[["its speed","It slows down."],["its wavelength","λ decreases."],["its direction always","It can refract."]],"Frequency is set by the source.","h"],
+["What does the value of c = 1/√(ε₀μ₀) suggest?","Light is an electromagnetic wave.",[["Light is a sound wave.","It needs no medium."],["Light travels faster in water.","It does not."],["Light has mass.","Not implied."]],"Electric and magnetic constants give light's speed.","h"],
+["Why can EM waves travel through a vacuum?","They are self-sustaining oscillations of electric and magnetic fields, which need no medium.",[["The vacuum contains ether.","No ether exists."],["They are made of particles only.","They are also waves."],["They are longitudinal.","They are transverse."]],"Fields generate each other.","h"],
+["An EM wave can be polarised. What does this show?","It is a transverse wave.",[["It is longitudinal.","Longitudinal waves cannot be polarised."],["It has a large amplitude.","Not shown."],["It travels slowly.","Not shown."]],"Polarisation needs transverse oscillations.","h"],
+["Calculate c from ε₀ = 8.85 × 10⁻¹² F m⁻¹ and μ₀ = 4π × 10⁻⁷ H m⁻¹.","3.00 × 10⁸ m s⁻¹",[["9.0 × 10¹⁶ m s⁻¹","That is c²."],["1.1 × 10⁻¹⁷ m s⁻¹","That is ε₀μ₀."],["3.3 × 10⁻⁹ m s⁻¹","Take the reciprocal."]],"c = 1/√(1.11 × 10⁻¹⁷) = 3.00 × 10⁸ m s⁻¹.","p"],
+["A radio wave has a frequency of 95 MHz. What is its wavelength?","3.2 m",[["0.32 m","Check: 3 × 10⁸ ÷ 9.5 × 10⁷."],["2.9 × 10¹⁶ m","Divide, do not multiply."],["32 m","Check the powers of ten."]],"λ = c/f = 3.2 m.","p"],
+["What is the energy of an X-ray photon of wavelength 1.0 × 10⁻¹⁰ m?","2.0 × 10⁻¹⁵ J",[["6.6 × 10⁻²⁴ J","Use E = hc/λ."],["2.0 × 10⁻¹⁷ J","Check the powers of ten."],["3.0 × 10¹⁸ J","That is the frequency."]],"E = hc/λ = 6.63 × 10⁻³⁴ × 3 × 10⁸ ÷ 10⁻¹⁰ = 2.0 × 10⁻¹⁵ J.","p"],
+["Light takes 1.28 s to reach the Earth from the Moon. How far is the Moon?","3.84 × 10⁸ m",[["2.3 × 10⁸ m","Multiply, do not divide."],["7.68 × 10⁸ m","Do not double it."],["3.84 × 10⁵ m","That is in km."]],"d = ct = 3.0 × 10⁸ × 1.28 = 3.84 × 10⁸ m.","p"]
+],
+gap:[
+["An electromagnetic wave consists of oscillating [electric] and [magnetic] fields at right angles to each other.",["gravitational","nuclear"],"Transverse wave."],
+["Maxwell showed that the speed of EM waves depends on ε₀ and [μ₀], and that it equals the measured speed of [light].",["G","sound"],"Unification."],
+["The constant ε₀ is called the [permittivity] of free space. The constant μ₀ is called the [permeability] of free space.",["conductivity","resistivity"],"Data sheet constants."],
+["All EM waves travel at [3.00 × 10⁸] m s⁻¹ in a [vacuum].",["340","medium"],"Speed of light."]
+],
+sort:[
+["Sort these into EM waves and other waves.",{"Electromagnetic":["radio waves","visible light","gamma rays"],"Not electromagnetic":["sound","water waves","seismic P-waves"]},"EM waves need no medium."],
+["Sort these properties.",{"True of all EM waves":["transverse","travel at c in a vacuum","can be polarised"],"Varies between EM waves":["frequency","wavelength","photon energy"]},"Shared and different."],
+["Sort these by the part of physics unified in Maxwell's theory.",{"Electricity":["Coulomb's law","electric fields"],"Magnetism":["magnetic fields around wires","forces on magnets"],"Optics":["the speed of light"]},"Unification."],
+["Sort these EM waves by photon energy.",{"Higher energy than visible light":["ultraviolet","X-rays","gamma rays"],"Lower energy than visible light":["infrared","microwaves","radio waves"]},"E = hf."]
+],
+order:[
+["Put the EM spectrum in order of increasing frequency.",["radio","microwave","infrared","visible","ultraviolet","X-ray","gamma"],"Increasing f, decreasing λ."],
+["Put the steps in order to calculate c from ε₀ and μ₀.",["Multiply ε₀ by μ₀.","Take the square root.","Take the reciprocal.","Compare with the measured speed of light."],"c = 1/√(ε₀μ₀)."],
+["Put these in order of wavelength, shortest first.",["gamma rays","ultraviolet","infrared","radio waves"],"Increasing λ."],
+["Put the steps in order to find the energy of a photon from its wavelength.",["Write down λ in metres.","Use f = c/λ.","Use E = hf.","Give the answer in joules."],"Wavelength to energy."]
+],
+build:[
+["Explain how Maxwell's work unified electricity, magnetism and light.",["Maxwell combined the laws of electricity and magnetism.","His equations predicted waves of electric and magnetic fields.","The predicted speed, 1/√(ε₀μ₀), equalled the measured speed of light.","So light was shown to be an electromagnetic wave."],["Maxwell showed that light is made of particles.","Maxwell measured the speed of sound."],"Unification."],
+["Explain why EM waves can travel through a vacuum.",["A changing electric field produces a magnetic field.","A changing magnetic field produces an electric field.","So the two fields keep generating each other.","No material medium is needed."],["Space is full of air.","The waves are carried by particles of dust."],"Self-propagating."],
+["Explain why all EM waves travel at the same speed in a vacuum.",["The speed of an EM wave is given by c = 1/√(ε₀μ₀).","ε₀ and μ₀ are constants of free space.","They do not depend on the frequency of the wave.","So all EM waves have the same speed in a vacuum."],["Higher frequency waves travel faster.","Speed depends on amplitude."],"Constants of space."],
+["Explain how the wave model and photon model of EM radiation are linked.",["EM radiation behaves as a wave of frequency f.","It also behaves as photons, each with energy E = hf.","Higher frequency waves have higher energy photons.","Which model is used depends on the situation."],["The wave model is always wrong.","Photons and waves have nothing to do with each other."],"Duality."]
+],
+spot:[
+["Find λ for a 2.4 GHz microwave.",["λ = c/f","λ = 3 × 10⁸ ÷ 2.4 × 10⁹","λ = 0.125 m","λ = 7.2 × 10¹⁷ m"],3,"λ = 0.125 m."],
+["Describe EM waves.",["They are transverse.","E and B oscillate in phase.","E and B are parallel to each other.","They travel at c in a vacuum."],2,"E and B are at right angles."],
+["Find c from the constants.",["c = 1/√(ε₀μ₀)","ε₀μ₀ = 8.85 × 10⁻¹² × 4π × 10⁻⁷ = 1.11 × 10⁻¹⁷","√(1.11 × 10⁻¹⁷) = 3.33 × 10⁻⁹","c = 3.33 × 10⁻⁹ m s⁻¹"],3,"Take the reciprocal: c = 3.00 × 10⁸ m s⁻¹."],
+["Describe the work of Maxwell.",["He combined electricity and magnetism.","He predicted EM waves.","He showed EM waves need the ether.","He showed light is an EM wave."],2,"No medium (ether) is needed."]
+],
+write:[
+["State what is meant by an electromagnetic wave.",[["(electric|E).{0,30}(magnetic|B)","Electric and magnetic fields"],["oscillat|vary|changing","Oscillating"],["(right angles|perpendicular|transverse)","At right angles"]],2,"An electromagnetic wave is a transverse wave of oscillating electric and magnetic fields at right angles to each other and to the direction of travel."],
+["Explain why the calculation c = 1/√(ε₀μ₀) was important.",[["(predict|calculated).{0,40}(speed|c)|speed","It predicted the speed of EM waves"],["(equal|same|matched).{0,30}(light|measured)","It matched the speed of light"],["(light.{0,20}electromagnetic|unif)","Showing light is an EM wave"]],2,"It predicted the speed of electromagnetic waves from electric and magnetic constants. The value matched the measured speed of light, showing light is an electromagnetic wave and unifying electricity, magnetism and optics."],
+["Give two properties shared by all electromagnetic waves.",[["transverse","Transverse"],["(3\\.00|3 ?× ?10|speed of light|same speed|c )","Same speed in a vacuum"],["(vacuum|no medium)","Travel through a vacuum"],["(polaris)","Can be polarised"],["(energy)","Transfer energy"]],2,"Any two: transverse; travel at c in a vacuum; need no medium; can be polarised; transfer energy."],
+["Describe the arrangement of fields in an electromagnetic wave.",[["(electric|E).{0,40}(perpendicular|right angles|90)|(perpendicular|right angles|90).{0,40}(electric|E)","E and B are perpendicular"],["(direction of travel|propagation|motion)","Both perpendicular to the direction of travel"],["in phase","Oscillating in phase"]],2,"The electric and magnetic fields oscillate in phase, at right angles to each other and to the direction of travel."]
+]
+});
+
+EX3("skills",{
+mc:[
+["How are percentage uncertainties combined when quantities are multiplied in Advanced Higher?","Add them in quadrature: √(a² + b²).",[["Take the largest one only.","That is the Higher method."],["Add them directly.","AH uses quadrature."],["Multiply them.","Not correct."]],"ΔW/W = √((ΔX/X)² + (ΔY/Y)²).",""],
+["How is the uncertainty in Xⁿ found?","n times the percentage uncertainty in X",[["the same as in X","Multiply by n."],["X to the power n","Not the uncertainty."],["divided by n","Multiply."]],"Δ(Xⁿ)/Xⁿ = nΔX/X.",""],
+["How are absolute uncertainties combined when quantities are added or subtracted?","√(ΔX² + ΔY²)",[["ΔX × ΔY","Not correct."],["by adding percentages","Use absolute values."],["the larger one only","Combine in quadrature."]],"Absolute uncertainties in quadrature.",""],
+["What is a calibration uncertainty?","the uncertainty in a reading due to the manufacturer's accuracy of the instrument",[["the random scatter of readings","That is random uncertainty."],["the smallest division on a scale","That is scale reading."],["a mistake by the user","Not uncertainty."]],"Quoted by the manufacturer.",""],
+["A quantity is calculated from x² where x has 3% uncertainty. Another factor has 4%. What is the total percentage uncertainty?","7.2%",[["7%","Use quadrature: √(6² + 4²)."],["10%","Do not add directly."],["5%","x² doubles x's uncertainty."]],"√(6² + 4²) = 7.2%.","h"],
+["Why might an uncertainty be considered negligible?","It is less than a third of the largest uncertainty.",[["It is less than 1%.","Compare with the largest uncertainty."],["It is a scale reading uncertainty.","Not automatically negligible."],["It is random.","Not a reason."]],"Small contributions hardly change the quadrature sum.","h"],
+["Two readings are subtracted: 8.4 ± 0.3 cm and 5.1 ± 0.4 cm. What is the uncertainty in the difference?","± 0.5 cm",[["± 0.1 cm","Do not subtract uncertainties."],["± 0.7 cm","Use quadrature."],["± 0.12 cm","Check: √(0.09 + 0.16)."]],"√(0.3² + 0.4²) = 0.5 cm.","h"],
+["L = 2.00 ± 0.02 m and T = 2.84 ± 0.03 s. g = 4π²L/T². What is the % uncertainty in g?","2.3%",[["2.1%","T² doubles T's uncertainty."],["3.1%","Use quadrature."],["1.1%","That is T's percentage uncertainty."]],"L: 1.0%; T²: 2 × 1.06% = 2.1%; √(1.0² + 2.1²) = 2.3%.","p"],
+["A gradient is 4.25 and the steepest worst line gives 4.60. What is the uncertainty in the gradient?","± 0.35",[["± 4.25","That is the gradient."],["± 8.85","Subtract, do not add."],["± 0.08","That is a fraction, not the uncertainty."]],"Δm = 4.60 − 4.25 = 0.35.","p"]
+],
+gap:[
+["The uncertainty in a gradient can be estimated from the difference between the best-fit line and a [worst]-fit line, or from a spreadsheet function such as [LINEST].",["average","SUM"],"Gradient uncertainty."],
+["For a product or quotient, the fractional uncertainties are combined in [quadrature]. For a power, the fractional uncertainty is multiplied by the [power].",["series","base"],"AH uncertainty rules."],
+["A [systematic] uncertainty affects all readings in the same way and can be spotted from an unexpected [intercept] on a graph.",["random","gradient"],"Systematic effects."]
+],
+sort:[
+["Sort these uncertainty rules.",{"Add absolute uncertainties in quadrature":["A + B","A − B"],"Add fractional uncertainties in quadrature":["A × B","A ÷ B"],"Multiply fractional uncertainty by n":["Aⁿ"]},"Know the rules."],
+["Sort these types of uncertainty.",{"Random":["spread of repeated readings"],"Scale reading":["half a division on an analogue scale"],"Calibration":["manufacturer's tolerance on a meter"],"Systematic":["a zero error"]},"Four types."],
+["Sort these improvements.",{"Reduces random uncertainty":["repeat readings","measure over more oscillations"],"Reduces systematic uncertainty":["calibrate the instrument","correct for zero error"],"Reduces scale reading uncertainty":["use an instrument with a finer scale"]},"Target the right source."]
+],
+order:[
+["Put the steps in order to find the uncertainty in g from a pendulum.",["Find the percentage uncertainty in L.","Find the percentage uncertainty in T, then double it for T².","Combine them in quadrature.","Apply the result to g to get the absolute uncertainty."],"AH method."],
+["Put the steps in order to find the uncertainty in a gradient by hand.",["Plot the points with error bars.","Draw the line of best fit.","Draw the steepest and least steep lines that fit the error bars.","Half the difference in gradients gives the uncertainty."],"Worst lines."],
+["Put these percentage uncertainties in order of contribution to a quadrature total, largest first.",["5%","3%","1%","0.5%"],"Squares make large terms dominate."]
+],
+build:[
+["Explain why some uncertainties can be ignored when combining in quadrature.",["In quadrature, each percentage uncertainty is squared.","Squaring makes small values much smaller still.","A value less than about a third of the largest adds very little.","So it can usually be treated as negligible."],["Small uncertainties are always zero.","Quadrature ignores the largest uncertainty."],"Squared terms."],
+["Explain why the uncertainty in T is doubled when calculating T².",["T² = T × T.","For a product, fractional uncertainties combine.","Both factors have exactly the same uncertainty and are not independent.","So the fractional uncertainty is 2 × ΔT/T."],["Squaring halves the uncertainty.","The uncertainty is squared too."],"Power rule."],
+["Explain how a graph can reveal a systematic uncertainty.",["Theory predicts a straight line through the origin.","The best-fit line has a non-zero intercept.","This means every point is offset by the same amount.","So a systematic error, such as a zero error, is likely."],["Random scatter shows a systematic error.","A curved graph always means a systematic error."],"Intercept."]
+],
+spot:[
+["Combine 3% and 4% uncertainties for a product.",["Use quadrature.","√(3² + 4²)","= √25","= 25%"],3,"√25 = 5%."],
+["Find the % uncertainty in r² for r = 5.0 ± 0.1 cm.",["% uncertainty in r = 0.1 ÷ 5.0 × 100 = 2%","For r², multiply by 2.","% uncertainty in r² = 2%","% uncertainty in r² = 4%"],2,"It is 4%, not 2%."],
+["Describe calibration uncertainty.",["It comes from the manufacturer's tolerance.","It is often given as a percentage of the reading.","It is reduced by repeating readings.","It should be combined with the other uncertainties."],2,"Repeating does not reduce calibration uncertainty."]
+],
+write:[
+["State how fractional uncertainties are combined for a quantity Z = XY.",[["quadrature|√|square root|squares","In quadrature"],["(fractional|percentage)","Use fractional or percentage uncertainties"]],2,"ΔZ/Z = √((ΔX/X)² + (ΔY/Y)²): the fractional (percentage) uncertainties are combined in quadrature."],
+["Explain why the uncertainty in a calculated value is often dominated by one measurement.",[["(square|quadrature)","Uncertainties combine as squares"],["(largest|biggest|dominant)","The largest has the most effect"]],2,"Uncertainties combine in quadrature, so each is squared. The largest percentage uncertainty dominates the total, and smaller ones contribute very little."],
+["Describe how to find the uncertainty in a gradient from a graph.",[["(error bars)","Plot error bars"],["(worst|steepest|least steep|max.{0,10}min)","Draw worst-fit lines"],["(difference|half)","Use the difference in gradients"],["LINEST|spreadsheet","Or use LINEST"]],2,"Plot the points with error bars and draw the best-fit line. Draw the steepest and least steep lines that fit the error bars. The uncertainty is half the difference between their gradients (or use LINEST in a spreadsheet)."]
+]
+});
+
+EX3("words",{
+mc:[
+["What does 'derive' mean in an AH question?","Show the steps that lead from known relationships to the required expression.",[["Give a numerical answer.","Derive gives an expression."],["Write down the formula from the data sheet.","Show how it is obtained."],["Describe an experiment.","Not what derive means."]],"Logical algebraic steps.",""],
+["What is expected in a 'show that' question?","all steps of working, with the final value to more significant figures than given",[["only the given answer","No marks without working."],["a diagram","Not required."],["a written explanation only","Working is needed."]],"Prove the result.",""],
+["What is the purpose of an open-ended question?","to assess depth of understanding of physics in an unfamiliar situation",[["to test recall of definitions","That is a state question."],["to test arithmetic","Not mainly."],["to give free marks","Marks are for understanding."]],"Up to 3 marks.",""],
+["Why should answers avoid using 'it' without saying what 'it' refers to?","The marker may not know which quantity is meant.",[["Markers dislike short words.","Clarity is the issue."],["It is not allowed in physics.","It is allowed if clear."],["It adds to the word count.","Not the reason."]],"Name the quantity.",""],
+["A question asks 'Explain why the period of the pendulum is independent of mass.' What is required?","physics reasoning showing that mass cancels out",[["a statement that the period is independent of mass","That repeats the question."],["a list of variables","Not an explanation."],["a calculation of the period","Not asked."]],"Explain: give the physics reason.","h"],
+["What does 'estimate' mean in a question?","Make an approximate calculation using sensible assumed values.",[["Guess without any working.","Show reasoning."],["Give the exact answer.","An approximation is expected."],["Measure the value.","Not possible in an exam."]],"State assumptions.","h"],
+["L = Iω. I = 0.40 kg m², ω = 12.5 rad s⁻¹. What should be written for L?","5.0 kg m² s⁻¹",[["5 kg m² s⁻¹","Give 2 sig figs."],["5.00 kg m² s⁻¹","Data has 2 sig figs."],["5.0","Unit missing."]],"Match sig figs and give units.","p"],
+["v = 1.92 × 10⁷ m s⁻¹ is calculated. The data had 3 sig figs. What should be written?","1.92 × 10⁷ m s⁻¹",[["19 200 000 m s⁻¹","Use standard form."],["1.9 × 10⁷ m s⁻¹","3 sig figs are justified."],["1.92 × 10⁷","Unit missing."]],"Correct sig figs and unit.","p"],
+["A pupil writes 'F = 3.6 × 10⁻¹⁴ n'. What is wrong?","The unit should be N (capital).",[["Standard form is not allowed.","It is fine."],["Too many sig figs.","Two is fine."],["The value must be positive.","It is."]],"Units are case sensitive.","p"],
+["The answer to a 'show that' question is given as 2.5 m s⁻¹. Which final line is best?","v = 2.48 m s⁻¹",[["v = 2.5 m s⁻¹","Give more sig figs than given."],["v = 2.48","Unit missing."],["v ≈ 2 m s⁻¹","Too few."]],"Show the extra figure.","p"],
+["Which is the best way to give an uncertainty?","g = 9.8 ± 0.2 m s⁻²",[["g = 9.8124 ± 0.2 m s⁻²","Match decimal places."],["g = 9.8 m s⁻² ± 2%","Mixed format is less clear."],["g ± 0.2 = 9.8","Wrong order."]],"Value ± uncertainty, same decimal places.","p"]
+],
+gap:[
+["In a derivation, start from a known [equation] and show each algebraic [step].",["answer","number"],"Logical progression."],
+["In an open-ended question, a good answer shows a [good] understanding of the physics, with the main ideas clearly [explained].",["brief","listed"],"3 marks."],
+["Every final numerical answer needs the correct [unit] and a sensible number of significant [figures].",["diagram","lines"],"Final answer marks."],
+["When answering 'Justify your answer', give the physics [reason] or [calculation] that supports the choice.",["opinion","guess"],"Justify means support."]
+],
+sort:[
+["Sort these command words by what they need.",{"Expression":["derive","show that (algebraic)"],"Number":["calculate","determine","estimate"],"Words":["explain","describe","state"]},"Answer format."],
+["Sort these features of answers.",{"Gains marks":["clear statement of the physics principle used","correct units","consistent sig figs"],"Loses marks":["missing units","answers that repeat the question","too many sig figs"]},"Exam technique."],
+["Sort these: needs working shown or not?",{"Working essential":["show that","calculate (multi-mark)","derive"],"Short answer acceptable":["state","name"]},"Show your method."],
+["Sort these by how much the marker expects.",{"One fact":["state the unit of inductance"],"Several linked points":["explain why the current rises gradually in an inductive circuit"],"Wide-ranging understanding":["using your knowledge of physics, comment on the design of a rollercoaster"]},"Match depth to marks."]
+],
+order:[
+["Put the steps in order for a derivation.",["State the physical principle used.","Write the starting equations.","Substitute and rearrange step by step.","Arrive at the required expression."],"Logical flow."],
+["Put the steps in order to answer an open-ended question.",["Read the context carefully.","Identify the relevant physics principles.","Explain how they apply to the situation.","Check you have explained, not just listed."],"Depth over breadth."],
+["Put the steps in order for a multi-step calculation.",["List the known quantities with units.","Choose the relevant equations.","Substitute and solve, keeping full values.","Round the final answer and add the unit."],"Method."],
+["Put these in order of the marks typically available, fewest first.",["state","describe","explain","derive or open-ended"],"More depth, more marks."]
+],
+build:[
+["Build an answer to 'Derive v = √(GM/r) for a circular orbit.'",["The gravitational force provides the centripetal force.","GMm/r² = mv²/r.","Cancel m and one r: GM/r = v².","So v = √(GM/r)."],["Use v = d/t.","The orbit speed depends on the satellite's mass."],"State principle, then algebra."],
+["Build an answer to 'Explain why a spinning skater speeds up when pulling in her arms.'",["No external torque acts, so angular momentum is conserved.","Pulling in her arms reduces her moment of inertia.","L = Iω is constant.","So ω increases."],["She gains energy from the ice.","Her mass decreases."],"Principle and reasoning."],
+["Build an answer to 'Show that the de Broglie wavelength of an electron at 1.0 × 10⁶ m s⁻¹ is about 7 × 10⁻¹⁰ m.'",["λ = h/p = h/(mv).","λ = 6.63 × 10⁻³⁴ ÷ (9.11 × 10⁻³¹ × 1.0 × 10⁶).","λ = 7.28 × 10⁻¹⁰ m.","This is about 7 × 10⁻¹⁰ m."],["λ = 7 × 10⁻¹⁰ m, as given.","Use λ = hf."],"Full working, extra sig figs."],
+["Build an answer to 'Estimate the energy stored in a car's flywheel.'",["State assumed values, e.g. I ≈ 0.5 kg m², ω ≈ 300 rad s⁻¹.","Use E = ½Iω².","E ≈ ½ × 0.5 × 300² ≈ 2 × 10⁴ J.","Give the answer to 1 or 2 sig figs."],["The answer is exactly 22 500 J.","Estimation questions need no working."],"Sensible assumptions."]
+],
+spot:[
+["Answer to 'Show that F is about 5 N.'",["F = ma","F = 1.2 × 4.2","F = 5.04 N","F = 5 N"],3,"Leave the extra figure: F = 5.04 N."],
+["Advice for derivations.",["Start from a known equation.","State the principle you are using.","Skip steps to save time.","Arrive at the required expression."],2,"Show every step."],
+["Advice on units.",["The unit of torque is N m.","The unit of angular momentum is kg m² s⁻¹.","The unit of moment of inertia is kg m⁻².","The unit of angular acceleration is rad s⁻²."],2,"Moment of inertia is in kg m²."],
+["Advice for open-ended questions.",["Use relevant physics.","Explain clearly.","List as many equations as possible.","Show understanding of the situation."],2,"Equations alone do not show understanding; explain the physics."]
+],
+write:[
+["State two features of a good derivation.",[["(principle|law)","States the principle used"],["(step|each line|logical)","Shows each step clearly"],["(start|known|data sheet)","Starts from known relationships"],["(final|required|expression)","Reaches the required expression"]],2,"It states the physics principle used, starts from known relationships, shows each algebraic step clearly, and reaches the required expression."],
+["Explain why stating assumptions is important in an 'estimate' question.",[["(marker|examiner|reader)","The marker can follow the reasoning"],["(value|number|assum).{0,30}(reasonable|sensible|justif)|sensible|reasonable","Shows the values used are sensible"]],1,"Stating assumptions lets the marker see which values were used and judge whether they are sensible, so marks can be given for the method."],
+["Describe how to set out a calculation to gain full marks.",[["equation|formula|relationship","Write the equation"],["substitut","Show the substitution"],["unit","Give the unit"],["(sig|significant)","Use sensible sig figs"]],3,"Write the relationship used, show the substitution of values, and give the final answer with the correct unit and a sensible number of significant figures."],
+["Explain the difference between 'describe' and 'explain' in an exam question.",[["describe.{0,40}(what|happens|features)","Describe: what happens"],["explain.{0,40}(why|reason|physics)","Explain: why, with physics reasons"]],2,"Describe means say what happens or give features. Explain means give the physics reasons why it happens."]
+]
+});
+
+/*X3END*/
 const TYPES={K:"Key words",TF:"True or false",M:"Multiple choice",H:"Hinge question",P:"Problem solving",G:"Fill the gaps",S:"Sort",O:"Put in order",B:"Build an answer",X:"Spot the mistake",W:"Written answer"};
 const PRESETS=[["All types",Object.keys(TYPES)],["Literacy",["K","G","B","X","W"]],["Knowledge",["K","TF","M","H"]],["Problem solving",["P","H","O","W","S"]]];
 const $=s=>document.querySelector(s);
@@ -1142,7 +1906,7 @@ function expand(t){
   const items=[];let n=0;
   const add=o=>{o.id=t.key+"."+(++n);o.topic=t.key;items.push(o);};
   /* originals first, then later additions, so existing question numbers never change */
-  [t.d,t.x,t.x2].forEach(d=>{if(d)expandPart(d,add);});
+  [t.d,t.x,t.x2,t.x3].forEach(d=>{if(d)expandPart(d,add);});
   return items;
 }
 function expandPart(d,add){
